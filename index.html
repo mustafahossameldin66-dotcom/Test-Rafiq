@@ -1231,8 +1231,29 @@ const tajRules={
 };
 const adhkar=[['سبحان الله','sub',10],['الحمد لله','hamd',10],['أستغفر الله','ist',10],['الله أكبر','tak',10]];
 const $DAY_CACHE='rafiq-day-cache-v1';
+const RAFIQ_SCHEMA_VERSION=100;
 function deepMerge(a,b){const o=structuredClone(a);for(const k in b){if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&typeof o[k]==='object'&&o[k]&&!Array.isArray(o[k]))o[k]=deepMerge(o[k],b[k]);else o[k]=b[k]}return o}
-function load(){try{const raw=localStorage.getItem(STORAGE);state=raw?deepMerge(DEFAULT,JSON.parse(raw)):structuredClone(DEFAULT)}catch{state=structuredClone(DEFAULT)}if(!state.firstDate&&state.entries.length)state.firstDate=state.entries.map(e=>e.date).sort()[0]||dayKey();save()}
+function migrateState(raw){
+  let next=deepMerge(DEFAULT,raw&&typeof raw==='object'?raw:{});
+  const version=Number(next._schemaVersion||0);
+  if(!next.v62||typeof next.v62!=='object')next.v62={};
+  if(!next.v62.contentPacks||typeof next.v62.contentPacks!=='object')next.v62.contentPacks={};
+  if(!Array.isArray(next.entries))next.entries=[];
+  if(!next.dailyLog||typeof next.dailyLog!=='object')next.dailyLog={};
+  if(!next.prayers||typeof next.prayers!=='object')next.prayers={};
+  if(!next.mistakes||!Array.isArray(next.mistakes))next.mistakes=[];
+  if(!Number.isFinite(next.streak))next.streak=0;
+  if(!Number.isFinite(next.goal)||next.goal<=0)next.goal=604;
+  next._schemaVersion=RAFIQ_SCHEMA_VERSION;
+  if(version<RAFIQ_SCHEMA_VERSION)next._migratedAt=new Date().toISOString();
+  return next;
+}
+function load(){
+  try{const raw=localStorage.getItem(STORAGE);state=migrateState(raw?JSON.parse(raw):null)}
+  catch{state=migrateState(null)}
+  if(!state.firstDate&&state.entries.length)state.firstDate=state.entries.map(e=>e.date).sort()[0]||dayKey();
+  save();
+}
 function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
 function dayKey(d=new Date()){const x=new Date(d);return new Date(x.getTime()-x.getTimezoneOffset()*60000).toISOString().slice(0,10)}
 function ritualKey(d=new Date()){const p=state.prayerToday?.Maghrib;const now=new Date(d);if(p){const [h,m]=String(p).split(':').map(Number);const mg=new Date(now);mg.setHours(h||0,m||0,0,0);if(now>=mg)return dayKey(addDays(now,1));}return dayKey(now)}
@@ -1933,7 +1954,7 @@ function renderAll(){
   if(active==='explore') renderExplore();
   renderAdhkar();
 }
-function init(){load();setTimeGlow();applyGraphics();initGlobalOcean();setupEvents();initOceanExplorer();renderAll();if(!state.name)openModal('welcomeModal');refreshPrayer().then(()=>{if(state.name)showDailySplash(false)}).catch(()=>{if(state.name)showDailySplash(false)});if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon))setTimeout(()=>locate(true),900);if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js?v=91',{updateViaCache:'none'}).catch(()=>{});window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;renderSettings()});let resizeRaf=0,lastLayoutBucket=Math.floor(window.innerWidth/120);window.addEventListener('resize',()=>{if(resizeRaf)return;resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;const bucket=Math.floor(window.innerWidth/120);if(bucket!==lastLayoutBucket){lastLayoutBucket=bucket;applyGraphics();if($('spiritual')?.classList.contains('active'))createOceanBubbles();createGlobalOceanBubbles();}if($('progress')?.classList.contains('active'))drawChart()})},{passive:true});window.addEventListener('orientationchange',()=>{setTimeout(()=>{applyGraphics();createGlobalOceanBubbles();},180)},{passive:true});window.addEventListener('online',()=>{document.body.dataset.net='online';refreshPrayer();toast('عاد الاتصال بالإنترنت ✅')});window.addEventListener('offline',()=>{document.body.dataset.net='offline';toast('أنت أوفلاين — البيانات المحلية متاحة ✅')});setInterval(()=>{setTimeGlow();const g=$('greeting');if(g&&state.name)g.textContent=greeting();checkBoundaryAndSplash();},60000)}
+function initCore(){load();setTimeGlow();applyGraphics();initGlobalOcean();setupEvents();initOceanExplorer();renderAll();if(!state.name)openModal('welcomeModal');refreshPrayer().then(()=>{if(state.name)showDailySplash(false)}).catch(()=>{if(state.name)showDailySplash(false)});if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon))setTimeout(()=>locate(true),900);if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js?v=100',{updateViaCache:'none'}).catch(()=>{});window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;renderSettings()});let resizeRaf=0,lastLayoutBucket=Math.floor(window.innerWidth/120);window.addEventListener('resize',()=>{if(resizeRaf)return;resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;const bucket=Math.floor(window.innerWidth/120);if(bucket!==lastLayoutBucket){lastLayoutBucket=bucket;applyGraphics();if($('spiritual')?.classList.contains('active'))createOceanBubbles();createGlobalOceanBubbles();}if($('progress')?.classList.contains('active'))drawChart()})},{passive:true});window.addEventListener('orientationchange',()=>{setTimeout(()=>{applyGraphics();createGlobalOceanBubbles();},180)},{passive:true});window.addEventListener('online',()=>{document.body.dataset.net='online';refreshPrayer();toast('عاد الاتصال بالإنترنت ✅')});window.addEventListener('offline',()=>{document.body.dataset.net='offline';toast('أنت أوفلاين — البيانات المحلية متاحة ✅')});setInterval(()=>{setTimeGlow();const g=$('greeting');if(g&&state.name)g.textContent=greeting();checkBoundaryAndSplash();},60000)}
 function checkBoundaryAndSplash(){const key=ritualKey();if(state.lastDailyBoundary!==key){state.lastDailyBoundary=key;save();if(state.name)showDailySplash(false)}}
 
 (function(){
@@ -1945,7 +1966,7 @@ function checkBoundaryAndSplash(){const key=ritualKey();if(state.lastDailyBounda
   }
 })();
 
-init();
+/* Core boot is orchestrated once at the end of the document. */
 
 /* V43: hydrate the exact ZAD ocean shell on every page. */
 (function(){
@@ -2283,7 +2304,7 @@ init();
   function saveProfileV(){profileHydrate();V.profile.role=q('welcomeRole')?.value||V.profile.role||state.role||'';V.profile.study=q('welcomeStudy')?.value||V.profile.study||'';V.profile.dialect=q('welcomeDialect')?.value||V.profile.dialect||'ar';state.role=V.profile.role;V.profile.name=state.name;V.profile.age=state.age;save()}
   function dialect(text){if((V.profile.dialect||'ar')!=='ar-eg')return text;return String(text).replaceAll('ابدأ','يلا ابدأ').replaceAll('اليوم','النهارده').replaceAll('الآن','دلوقتي').replaceAll('مراجعة','مراجعة').replaceAll('حفظ','حفظ')}
   function showNetwork(){const b=q('v62NetBadge');if(!b)return;const on=navigator.onLine;b.className='v62-offline '+(on?'on':'off');b.textContent=on?'🟢 متصل — يمكن تنزيل الحزم':'🟠 أوفلاين — الـCore المحلي شغال'}
-  function religiousDay(){const k=day();const h=typeof hijri==='function'?hijri(new Date()):'';q('v62ReligiousTitle').textContent=`اليوم الشرعي: ${h||k}`;q('v62ReligiousSub').textContent='بداية اليوم الشرعي عند المغرب، وبداية الليلة لليوم الهجري التالي. مواقيت الصلاة المخزنة هي المرجع المحلي للتذكيرات.'}
+  function religiousDayV62(){const k=day();const h=typeof hijri==='function'?hijri(new Date()):'';q('v62ReligiousTitle').textContent=`اليوم الشرعي: ${h||k}`;q('v62ReligiousSub').textContent='بداية اليوم الشرعي عند المغرب، وبداية الليلة لليوم الهجري التالي. مواقيت الصلاة المخزنة هي المرجع المحلي للتذكيرات.'}
   function currentSeries(){const idx=Math.min(SERIES.length-1,Number(V.learning.seriesIndex||0));return SERIES[idx]}
   function renderTrack(){const box=q('v62CurriculumTrack');if(!box)return;const idx=Number(V.learning.seriesIndex||0);box.innerHTML=SERIES.map((s,i)=>`<div class="v62-track-item ${i===idx?'active':''}" data-v62-series="${i}"><span class="v62-track-no">${s.order}</span><div class="grow"><b>${v62esc(s.title)}</b><small>${v62esc(s.kind)} • ${v62esc(s.desc)}</small></div><span class="v62-badge ${s.status==='local'?'local':s.status==='mixed'?'online':'pack'}">${s.status==='local'?'محلي':s.status==='mixed'?'مختلط':'حزمة كتاب'}</span></div>`).join('');box.querySelectorAll('[data-v62-series]').forEach(x=>x.onclick=()=>{V.learning.seriesIndex=+x.dataset.v62Series;V.learning.lesson=0;save();renderV62()})}
   function lessonFor(s){
@@ -2314,14 +2335,14 @@ init();
   function bindTadabbur(){q('v62SaveTadabbur').onclick=()=>{if(!V.tadabbur.active)return toast('افتح آية من المصحف أولًا');V.tadabbur.notes=V.tadabbur.notes||{};V.tadabbur.notes[V.tadabbur.active.key]=q('v62TadabburNote').value.trim();save();lampBoost(1);toast('حُفظ التدبر ✅')};q('v62MarkAction').onclick=()=>{if(!V.tadabbur.active)return toast('افتح آية من المصحف أولًا');V.tadabbur.actions=V.tadabbur.actions||{};V.tadabbur.actions[V.tadabbur.active.key]=true;save();lampBoost(2);toast('تم تسجيل العمل بالآية ✅')}}
   function lampBoost(n){try{state.v60=state.v60||{};state.v60.lamp=state.v60.lamp||{level:0,missedDays:0,lastActivity:''};state.v60.lamp.level=Math.min(100,(state.v60.lamp.level||0)+n);state.v60.lamp.lastActivity=new Date().toISOString();save()}catch{}}
   function dailyStudy(){const s=currentSeries();let title=s.title,sub='الورد اليومي من هذا المسار.';try{const a=window.rafiqRelease?.seriesAsset?.(s.id);if(a){title=a._title||a.title||title;sub='اقرأ من الكتاب، ثم سجّل ما تعلمته وما ستطبقه اليوم.'}}catch{}q('v62TodayStudy').textContent=title;q('v62TodayStudySub').textContent=sub;q('v62TodayQuran').textContent=state.dailyPlan?`جديد: ${state.dailyPlan} ${state.goalUnit||'وحدة'}`:'حسب خطتك';q('v62TodayQuranSub').textContent='مع مراجعة القريب والبعيد والتثبيت والتربيط والمتشابهات حسب حالتك.'}
-  function renderV62(){deep();profileHydrate();showNetwork();religiousDay();renderTrack();renderLesson();renderTazkiyah();renderNoise();renderTopics();renderTadabbur();bindTadabbur();dailyStudy()}
+  function renderV62(){deep();profileHydrate();showNetwork();religiousDayV62();renderTrack();renderLesson();renderTazkiyah();renderNoise();renderTopics();renderTadabbur();bindTadabbur();dailyStudy()}
   function addNav(){const nav=q('topNav');if(!nav||nav.querySelector('[data-view="library"]'))return;const b=document.createElement('button');b.className='nav-item v62-nav-item';b.dataset.view='library';b.innerHTML='<span class="ico">📚</span><span>أبواب زاد</span>';nav.appendChild(b);b.onclick=()=>window.switchView&&window.switchView('library')}
   function hookMushaf(){const old=window.openAyahStudy;window.openAyahStudy=function(s,a){if(typeof old==='function')old(s,a);try{const key=`${s}:${a}`;const text=document.querySelector(`.mushaf-ayah[data-ayah="${a}"] .mushaf-ayah-text`)?.textContent||'';V.tadabbur.active={key,text,ref:`${surahs[s-1]||'السورة'}: ${a}`};save();renderTadabbur()}catch{}}}
   function hookPrayer(){const old=window.renderPrayerChecklist; if(typeof old==='function'){window.renderPrayerChecklist=function(){old(); showNetwork(); const p=state.prayerToday; if(!p)return; const f=p.Fajr,m=p.Maghrib,i=p.Isha; const now=new Date(); const msg=[]; if(i){const ih=+i.split(':')[0],im=+i.split(':')[1]; if(now.getHours()>ih || (now.getHours()===ih&&now.getMinutes()>=im))msg.push('🕯️ بعد العشاء: الشفع والوتر');} if(now.getHours()>=0&&now.getHours()<12)msg.push('🌌 بعد منتصف الليل: قيام الليل والاستغفار والدعاء'); if(m&&f)msg.push('🌓 الثلث الأخير يُحسب من المغرب إلى الفجر حسب المواقيت المخزنة'); const el=q('nextReminder');if(el&&msg.length)el.textContent=msg.join(' • ');}}
   }
   function hookProfile(){ensureWelcomeFields();const start=q('welcomeStartBtn');if(start&&!start.dataset.v62Hook){start.dataset.v62Hook='1';start.addEventListener('click',()=>setTimeout(saveProfileV,30));}}
-  function init(){addNav();ensureWelcomeFields();hookProfile();hookMushaf();hookPrayer();renderV62();if(q('v62PackBtn'))q('v62PackBtn').onclick=()=>q('v62PackInput')?.click();if(q('v62PackInput'))q('v62PackInput').onchange=e=>e.target.files?.[0]&&packImport(e.target.files[0]);if(q('v62PackListBtn'))q('v62PackListBtn').onclick=()=>{const ks=Object.values(V.contentPacks||{});toast(ks.length?`محفوظة على الجهاز: ${ks.map(x=>x.title||x.id).join('، ')}`:'لا توجد حزم محلية بعد')};window.addEventListener('online',showNetwork);window.addEventListener('offline',showNetwork);window.renderV62=renderV62;}
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  function initZadLearningLayer(){addNav();ensureWelcomeFields();hookProfile();hookMushaf();hookPrayer();renderV62();if(q('v62PackBtn'))q('v62PackBtn').onclick=()=>q('v62PackInput')?.click();if(q('v62PackInput'))q('v62PackInput').onchange=e=>e.target.files?.[0]&&packImport(e.target.files[0]);if(q('v62PackListBtn'))q('v62PackListBtn').onclick=()=>{const ks=Object.values(V.contentPacks||{});toast(ks.length?`محفوظة على الجهاز: ${ks.map(x=>x.title||x.id).join('، ')}`:'لا توجد حزم محلية بعد')};window.addEventListener('online',showNetwork);window.addEventListener('offline',showNetwork);window.renderV62=renderV62;}
+window.initZadLearningLayer=initZadLearningLayer;
 })();
 </script>
 
@@ -2476,8 +2497,22 @@ async function openBook(a){let blob=await getBlob(a);if(!blob){if(!navigator.onL
 async function deleteBook(a){try{await (await cache()).delete(dbKey(a.id));toast('تم حذف النسخة المحلية ✅');await renderAssetList()}catch{toast('تعذر حذف النسخة المحلية')}}
 function bindButtons(){document.querySelectorAll('[data-v69-download]').forEach(b=>b.onclick=()=>{const a=assets.find(x=>String(x.id)===String(b.dataset.v69Download));if(a)download(a,b.closest('[data-asset-card]'))});document.querySelectorAll('[data-v69-open]').forEach(b=>b.onclick=()=>{const a=assets.find(x=>String(x.id)===String(b.dataset.v69Open));if(a)openBook(a)});document.querySelectorAll('[data-v69-delete]').forEach(b=>b.onclick=()=>{const a=assets.find(x=>String(x.id)===String(b.dataset.v69Delete));if(a)deleteBook(a)});}
 function bindReader(){const close=q('v64ReaderClose'),prev=q('v64PrevPage'),next=q('v64NextPage'),open=q('v64OpenNew');if(close&&!close.dataset.v69){close.dataset.v69='1';close.onclick=()=>{q('v64Reader').classList.remove('show');q('v64Reader').setAttribute('aria-hidden','true');q('v64PdfFrame').src='about:blank';if(readerUrl){URL.revokeObjectURL(readerUrl);readerUrl=null}}}if(prev&&!prev.dataset.v69){prev.dataset.v69='1';prev.onclick=()=>{page=Math.max(1,page-1);if(readerUrl){q('v64PdfFrame').src=readerUrl+'#page='+page;q('v64PageLabel').textContent='صفحة '+page}}}if(next&&!next.dataset.v69){next.dataset.v69='1';next.onclick=()=>{page+=1;if(readerUrl){q('v64PdfFrame').src=readerUrl+'#page='+page;q('v64PageLabel').textContent='صفحة '+page}}}if(open&&!open.dataset.v69){open.dataset.v69='1';open.onclick=()=>{if(readerUrl)window.open(readerUrl,'_blank','noopener')}}}
-function init(){const oldCard=q('v64ContentCard');if(oldCard)oldCard.style.display='none';const oldRelease=document.getElementById('v66ReleaseLibraryCard');if(oldRelease)oldRelease.remove();bindReader();const btn=q('v66RefreshRelease');if(btn)btn.onclick=loadAssets;loadAssets();window.rafiqRelease={refresh:loadAssets,assets:()=>assets,seriesAsset,open:id=>{const a=assets.find(x=>String(x.id)===String(id));return a&&openBook(a)},download:id=>{const a=assets.find(x=>String(x.id)===String(id));return a&&download(a,null)}};}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+function initReleaseLibrary(){const oldCard=q('v64ContentCard');if(oldCard)oldCard.style.display='none';const oldRelease=document.getElementById('v66ReleaseLibraryCard');if(oldRelease)oldRelease.remove();bindReader();const btn=q('v66RefreshRelease');if(btn)btn.onclick=loadAssets;loadAssets();window.rafiqRelease={refresh:loadAssets,assets:()=>assets,seriesAsset,open:id=>{const a=assets.find(x=>String(x.id)===String(id));return a&&openBook(a)},download:id=>{const a=assets.find(x=>String(x.id)===String(id));return a&&download(a,null)}};}
+window.initReleaseLibrary=initReleaseLibrary;
+})();
+</script>
+<script id="rafiq-v100-boot">
+(function(){
+  'use strict';
+  function boot(){
+    if(window.__rafiqV100Booted)return;
+    window.__rafiqV100Booted=true;
+    try{ if(typeof initCore==='function') initCore(); }catch(e){ console.error('[Rafiq] core boot failed',e); }
+    try{ if(typeof window.initZadLearningLayer==='function') window.initZadLearningLayer(); }catch(e){ console.error('[Rafiq] learning layer boot failed',e); }
+    try{ if(typeof window.initReleaseLibrary==='function') window.initReleaseLibrary(); }catch(e){ console.error('[Rafiq] release library boot failed',e); }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
+  else boot();
 })();
 </script>
 </body>

@@ -1,5 +1,5 @@
-/* Rafiq Quran — V91 offline-first app shell */
-const SHELL_CACHE = 'rafiq-shell-v91';
+/* Rafiq Quran — V100 clean offline-first app shell */
+const SHELL_CACHE = 'rafiq-shell-v100';
 const SHELL = [
   './',
   './index.html',
@@ -32,28 +32,31 @@ self.addEventListener('fetch', event => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // Keep navigation usable when offline.
   if (req.mode === 'navigate') {
     event.respondWith(
       fetch(req).then(response => {
-        const copy = response.clone();
-        caches.open(SHELL_CACHE).then(cache => cache.put('./index.html', copy)).catch(() => {});
+        if (response && response.ok) {
+          const copy = response.clone();
+          caches.open(SHELL_CACHE).then(cache => cache.put('./index.html', copy)).catch(() => {});
+        }
         return response;
       }).catch(() => caches.match('./index.html'))
     );
     return;
   }
 
-  // Local app shell: cache first, then network.
   if (url.origin === self.location.origin) {
     event.respondWith(
-      caches.match(req).then(cached => cached || fetch(req).then(response => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(SHELL_CACHE).then(cache => cache.put(req, copy)).catch(() => {});
-        }
-        return response;
-      }))
+      caches.match(req).then(cached => {
+        if (cached) return cached;
+        return fetch(req).then(response => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(SHELL_CACHE).then(cache => cache.put(req, copy)).catch(() => {});
+          }
+          return response;
+        });
+      })
     );
   }
 });

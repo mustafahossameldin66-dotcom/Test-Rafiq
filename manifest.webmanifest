@@ -1,11 +1,1 @@
-{
-  "name":"رفيق القرآن",
-  "short_name":"رفيق القرآن",
-  "start_url":"./",
-  "display":"standalone",
-  "dir":"rtl",
-  "lang":"ar",
-  "background_color":"#07100b",
-  "theme_color":"#07100b",
-  "description":"تطبيق شخصي للحفظ والمراجعة والتزكية والعبادة والعلم، مصمم ليعمل Offline-first."
-}
+{"name":"رفيق القرآن","short_name":"رفيق القرآن","start_url":"./","display":"standalone","dir":"rtl","lang":"ar","background_color":"#07100b","theme_color":"#07100b","description":"تطبيق للحفظ والمراجعة والتزكية والعلم، يعمل دون اتصال للوظائف الأساسية مع تنزيل الكتب والتلاوات عند الحاجة."}

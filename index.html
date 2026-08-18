@@ -1,9 +1,8 @@
 <!doctype html>
-<!DOCTYPE html>
 
 <html dir="rtl" lang="ar">
 <head>
-<!-- RAFIQ BUILD: V61-OFFLINE-FIRST-CORE-FIX-20260818 -->
+<!-- RAFIQ BUILD: V68-CONTENT-REFINED-20260818 -->
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#07100b" name="theme-color"/>
@@ -12,7 +11,7 @@
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="رفيق القرآن" name="application-name"/>
 <meta content="رفيق القرآن" name="apple-mobile-web-app-title"/>
-<title>رفيق القرآن — Mega V66</title>
+<title>رفيق القرآن — Mega V68</title>
 <link href="./icon.svg" rel="icon" type="image/svg+xml"/>
 <link href="./manifest.webmanifest" rel="manifest"/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
@@ -157,7 +156,6 @@ body.mode-1 *{animation:none!important;transition:none!important}.mode-1 .space-
 body.mode-2 .space-view::before{animation:none!important;opacity:.20!important}.mode-2 .space-view::after{animation:nebulaDriftLite 50s ease-in-out infinite alternate!important;opacity:.12!important}.mode-2 .space-planet{animation:none!important}.mode-2 .space-moon{animation:none!important}.mode-2 .ocean::before{animation:none!important}.mode-2 .ocean::after{animation:causticDrift 45s linear infinite!important;opacity:.26!important}.mode-2 .ocean-water-noise{display:none!important}.mode-2 .ocean-ray{filter:none!important;opacity:.16!important}.mode-3 .ocean-water-noise{animation:none!important;opacity:.07!important}.mode-3 .ocean-ray{filter:blur(5px)!important;opacity:.25!important}.mode-3 .floating-card{backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);box-shadow:0 18px 42px rgba(4,14,7,.36),0 0 26px rgba(126,217,157,.07)!important}
 @media(max-width:800px){.space-content-grid{grid-template-columns:1fr}.space-orbit-stage{height:230px}.space-planet{width:160px;height:160px}.space-planet::after{width:230px;height:56px}.space-moon{right:calc(50% - 132px);top:54px;width:30px;height:30px}.space-topbar{position:sticky;top:8px}}
 
-
 /* V19 — performance tuning: space scene is lighter, especially on mobile/tablet */
 .space-view{contain:paint;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 .space-view::before{animation:spaceDrift 70s linear infinite;opacity:.28}
@@ -218,21 +216,11 @@ body.mode-2 .space-view::before{animation:none!important;opacity:.20!important}.
   .floating-card:nth-child(1){right:52%;top:8%}.floating-card:nth-child(2){right:6%;top:6%}.floating-card:nth-child(3){right:28%;top:25%}.floating-card:nth-child(4){left:4%;top:38%}.floating-card:nth-child(5){left:36%;top:48%}.floating-card:nth-child(6){right:4%;top:55%}.floating-card:nth-child(7){right:50%;top:68%}.floating-card:nth-child(8){right:8%;top:80%}.floating-card:nth-child(9){left:4%;top:17%}.floating-card:nth-child(10){right:34%;top:83%}.floating-card:nth-child(11){left:5%;top:74%}.floating-card:nth-child(12){right:33%;top:63%}
 }
 
-
 /* V22 — spacious ocean portals + richer encyclopedia layout */
 .float-grid{min-height:780px!important;display:grid!important;grid-template-columns:repeat(4,minmax(150px,1fr))!important;grid-auto-rows:168px!important;gap:26px 30px!important;padding:40px 44px 110px!important;align-items:center!important;justify-items:center!important;}
 .floating-card{position:relative!important;inset:auto!important;width:min(100%,205px)!important;min-height:130px!important;margin:0!important;}
 .floating-card:nth-child(1){grid-area:1/4;transform:translateY(0)}
 .floating-card:nth-child(2){grid-area:1/3;transform:translateY(-18px)}
-
-
-
-
-
-
-
-
-
 
 .floating-card:hover,.floating-card:focus-visible{transform:translateY(-18px) scale(1.12)!important;z-index:30}
 .space-content-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px!important;}
@@ -249,7 +237,6 @@ body.mode-2 .space-view::before{animation:none!important;opacity:.20!important}.
 
 /* V22 — hierarchical encyclopedia archive */\n.space-archive-shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;margin-top:18px}\n.space-topic-panel,.space-article-panel{background:linear-gradient(145deg,rgba(212,175,55,.045),rgba(255,255,255,.012));border:1px solid rgba(212,175,55,.14);border-radius:24px;box-shadow:0 18px 50px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.03)}\n.space-topic-panel{padding:12px;position:sticky;top:12px;max-height:calc(100vh - 35px);overflow:auto}\n.space-topic-title{font-weight:900;color:#f0d77a;font-size:17px;padding:8px 10px 12px;border-bottom:1px solid rgba(212,175,55,.1);margin-bottom:8px}\n.space-topic-btn{width:100%;text-align:right;padding:11px 12px;border-radius:15px;border:1px solid transparent;background:transparent;color:#bfc9c3;font:inherit;cursor:pointer;transition:.22s;margin-bottom:5px}\n.space-topic-btn:hover,.space-topic-btn.active{color:#f3db83;background:rgba(212,175,55,.075);border-color:rgba(212,175,55,.2);box-shadow:0 0 18px rgba(212,175,55,.06)}\n.space-topic-btn small{display:block;color:#7f8a84;font-size:11px;margin-top:3px}\n.space-article-panel{padding:24px;min-height:620px}\n.space-article-panel h3{margin:0 0 8px;color:#f0d77a;font-size:28px}\n.space-article-kicker{display:inline-flex;padding:5px 9px;border-radius:999px;background:rgba(115,215,149,.07);border:1px solid rgba(115,215,149,.16);color:#b4e9c6;font-size:11px;margin-bottom:10px}\n.space-article-intro{color:#bfc9c3;font-size:15px;line-height:2.05;margin:0 0 18px}\n.space-study-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}\n.space-study-section{padding:16px;border-radius:18px;background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.05)}\n.space-study-section h4{margin:0 0 8px;color:#e9d57c;font-size:18px}\n.space-study-section p,.space-study-section li{margin:0;color:#c6cfca;font-size:14px;line-height:2.05}\n.space-study-section ul{margin:8px 0 0;padding-right:18px}\n.space-study-evidence{padding:15px;border-radius:18px;background:rgba(212,175,55,.065);border:1px solid rgba(212,175,55,.17);color:#eee5c5;font-family:Amiri,serif;font-size:19px;line-height:2.1;margin-top:14px}\n.space-study-practice{margin-top:14px;padding:15px;border-radius:18px;background:rgba(76,166,93,.055);border:1px solid rgba(76,166,93,.15);color:#cfe4d3;font-size:14px;line-height:2}\n.space-study-caution{margin-top:14px;padding:15px;border-radius:18px;background:rgba(224,154,26,.055);border:1px solid rgba(224,154,26,.15);color:#e8d9ad;font-size:13px;line-height:1.95}\n.space-study-sources{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.05)}\n.space-study-sources a{display:inline-flex;align-items:center;gap:6px;padding:8px 11px;border-radius:999px;border:1px solid rgba(115,215,149,.24);background:rgba(115,215,149,.07);color:#a1e4b8;text-decoration:none;font-size:12px}\n.space-archive-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:14px}\n.space-archive-search{width:min(360px,100%);padding:10px 12px;margin:0!important;border-radius:14px!important;background:rgba(255,255,255,.025)!important}\n.space-archive-meta{color:#8e9a93;font-size:12px;line-height:1.8}\n.space-related{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}\n.space-related button{padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.02);color:#c8d0cb;border:1px solid rgba(212,175,55,.12);font:inherit;font-size:12px;cursor:pointer}\n.space-related button:hover{border-color:rgba(212,175,55,.3);color:#f0d77a}\n.space-footnote{margin-top:18px;color:#85928a;font-size:11px;line-height:1.9}\n@media(max-width:900px){.space-archive-shell{grid-template-columns:1fr}.space-topic-panel{position:relative;top:auto;max-height:none}.space-topic-list{display:grid;grid-template-columns:1fr 1fr;gap:6px}.space-topic-btn{margin:0}.space-study-grid{grid-template-columns:1fr}.space-article-panel{padding:18px}.space-archive-heading{flex-direction:column}}\n@media(max-width:560px){.space-topic-list{grid-template-columns:1fr}.space-study-section p,.space-study-section li{font-size:13px}.space-article-intro{font-size:14px}}\n
 
-
 /* V23 — deep encyclopedia visual system */
 .archive-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding:24px 26px;border-radius:30px;background:linear-gradient(145deg,rgba(13,44,23,.88),rgba(6,20,11,.95));border:1px solid rgba(132,219,162,.18);box-shadow:0 22px 70px rgba(0,0,0,.35),0 0 40px rgba(109,213,144,.08);margin-bottom:18px}
 .archive-head>div{display:flex;gap:16px;align-items:flex-start}.archive-icon{width:62px;height:62px;border-radius:22px;display:grid;place-items:center;font-size:32px;background:radial-gradient(circle,rgba(144,223,171,.2),rgba(13,43,23,.7));border:1px solid rgba(145,223,172,.25);box-shadow:0 0 24px rgba(117,215,150,.14)}
@@ -260,7 +247,6 @@ body.mode-2 .space-view::before{animation:none!important;opacity:.20!important}.
 .ency-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ency-section{padding:20px;border-radius:22px;background:linear-gradient(145deg,rgba(255,255,255,.025),rgba(0,0,0,.08));border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 30px rgba(0,0,0,.18)}.ency-section-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.ency-section-head>span{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.13);font-size:18px}.ency-section-head b{display:block;color:#ecd77f;font-size:17px}.ency-section-head small{display:block;color:#74827c;font-size:10px;margin-top:2px}.ency-section p,.ency-section li{color:#c5d0ca;font-size:14px;line-height:2.15;margin:0}.ency-section ol{margin:0;padding-right:20px}.ency-section li+li{margin-top:8px}.ency-section.highlight{border-color:rgba(77,194,107,.14);background:linear-gradient(145deg,rgba(77,194,107,.055),rgba(255,255,255,.01))}.ency-section.evidence{border-color:rgba(212,175,55,.18)}.ency-quote{padding:15px 17px;border-radius:18px;background:rgba(212,175,55,.055);border:1px solid rgba(212,175,55,.12);color:#eee3bb;font-family:Amiri,serif;font-size:20px;line-height:2.1}.ency-section.practice{margin-top:14px;background:linear-gradient(145deg,rgba(76,166,93,.055),rgba(255,255,255,.015));border-color:rgba(76,166,93,.14)}.ency-section.sources{margin-top:14px}.source-list{display:flex;gap:8px;flex-wrap:wrap}.source-list a{display:inline-flex;align-items:center;padding:9px 12px;border-radius:14px;background:rgba(117,215,150,.05);border:1px solid rgba(117,215,150,.14);color:#94e0ae;text-decoration:none;font-size:11px}.source-list a:hover{border-color:rgba(152,225,177,.4);background:rgba(117,215,150,.09)}.ency-related{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)}.ency-related-title{color:#f0d77a;font-weight:900;margin-bottom:10px}.ency-related-list{display:flex;gap:8px;flex-wrap:wrap}.ency-related-list button{padding:9px 12px;border-radius:999px;background:rgba(255,255,255,.02);border:1px solid rgba(212,175,55,.12);color:#cbd5cf;cursor:pointer}.ency-related-list button:hover{color:#f0d77a;border-color:rgba(212,175,55,.28)}
 @media(max-width:900px){.archive-head{flex-direction:column}.archive-head input{width:100%}.archive-shell{grid-template-columns:1fr}.archive-index{position:relative;top:auto;max-height:none}.archive-index-list{display:grid;grid-template-columns:1fr 1fr}.ency-grid{grid-template-columns:1fr}.ency-title-row{flex-direction:column}.ency-counter{align-self:flex-start}.archive-article{padding:18px}}
 @media(max-width:560px){.archive-index-list{grid-template-columns:1fr}.archive-head h2{font-size:22px}.ency-title-row h3{font-size:25px}.ency-section p,.ency-section li{font-size:13px}}
-
 
 .ency-section.lead-study{border-color:rgba(212,175,55,.22);background:linear-gradient(145deg,var(--goldDim),var(--surface3))}.ency-section.study-method{border-color:rgba(115,215,149,.22);background:linear-gradient(145deg,var(--infoBg),var(--surface3))}.ency-section.final-note,.ency-disclaimer{border:1px dashed rgba(212,175,55,.35);background:linear-gradient(145deg,var(--goldDim),var(--surface3));color:var(--muted)}.ency-disclaimer{padding:16px 18px;border-radius:18px;margin:0 0 16px}.ency-disclaimer b{color:var(--gold)}.ency-section p,.ency-section li{font-size:15px;line-height:2.05}.ency-section li{margin:7px 0}.source-list a{display:flex;flex-direction:column;gap:3px}.source-list a span{color:var(--muted);font-size:12px;line-height:1.6}.daily-tazkiyah{margin:0 0 18px;padding:22px;border-radius:24px;border:1px solid rgba(73,167,92,.28);background:linear-gradient(135deg,rgba(73,167,92,.10),rgba(212,175,55,.06),var(--surface));box-shadow:0 20px 60px rgba(73,167,92,.06)}.daily-kicker{display:inline-flex;padding:6px 10px;border-radius:999px;background:var(--successBg);border:1px solid rgba(73,167,92,.26);color:var(--success);font-size:12px;font-weight:800}.daily-tazkiyah h3{color:var(--gold);font-size:26px;margin:10px 0 14px}.daily-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.daily-grid>div{padding:15px;border:1px solid var(--border);border-radius:18px;background:var(--surface3)}.daily-grid b{color:var(--gold);display:block;margin-bottom:6px}.daily-grid p{margin:0;line-height:1.95}.daily-ayah{color:var(--gold);font-size:20px}.daily-archive{display:flex;gap:7px;flex-wrap:wrap;margin-top:14px}.daily-pill{padding:8px 11px;border-radius:999px;border:1px solid var(--border);background:var(--surface3);color:var(--muted)}.daily-pill.active{color:var(--gold);border-color:var(--gold);background:var(--goldDim)}
 @media(max-width:760px){.daily-grid{grid-template-columns:1fr}}
@@ -291,7 +277,6 @@ body.mode-2 .space-view::before{animation:none!important;opacity:.20!important}.
 .core-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;background:rgba(76,166,93,.09);border:1px solid rgba(76,166,93,.22);color:#a3dfa9;font-size:11px;font-weight:900;margin-top:8px}
 @media(max-width:760px){.space-internal-back{width:100%;justify-content:center;margin:0 0 14px}.archive-head{gap:14px}.archive-head>div{min-width:0;flex:1}.archive-head h2{overflow-wrap:anywhere}}
 
-
 /* V26 — Full Mushaf + dark ocean/space premium fixes */
 .archive-index,.space-topic-panel,.space-topic-btn,.archive-index-title,.archive-index-list{background-color:transparent!important}
 .archive-index{background:linear-gradient(180deg,rgba(8,27,14,.96),rgba(5,18,9,.96))!important;border:1px solid rgba(143,222,170,.20)!important;box-shadow:0 20px 60px rgba(0,0,0,.35),0 0 34px rgba(112,213,146,.06)!important}
@@ -318,8 +303,6 @@ body.mode-2 .space-view::before{animation:none!important;opacity:.20!important}.
 .mushaf-shell{display:grid;grid-template-columns:250px minmax(0,1fr);gap:16px;align-items:start}.mushaf-index{position:sticky;top:12px;max-height:calc(100vh - 30px);overflow:auto;padding:14px;border-radius:24px;background:linear-gradient(180deg,rgba(9,30,16,.94),rgba(6,20,11,.94));border:1px solid rgba(140,222,168,.18);box-shadow:0 18px 54px rgba(0,0,0,.30),0 0 30px rgba(110,213,145,.06)}.mushaf-index-head{display:flex;justify-content:space-between;align-items:center;color:#f1d97a;padding:4px 3px 10px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:10px}.mushaf-index input{background:rgba(0,0,0,.24)!important;border-color:rgba(143,222,170,.14)!important}.mushaf-surah-list{display:grid;gap:5px}.mushaf-surah-btn{display:grid;grid-template-columns:34px 1fr auto;gap:7px;align-items:center;text-align:right;width:100%;padding:10px;border-radius:14px;border:1px solid transparent;background:linear-gradient(135deg,rgba(9,30,16,.56),rgba(6,22,12,.25));color:#cfdbd3;cursor:pointer;transition:.22s;font:inherit}.mushaf-surah-btn:hover{transform:translateX(-2px);border-color:rgba(143,222,170,.18);box-shadow:0 0 22px rgba(115,215,149,.08)}.mushaf-surah-btn.active{border-color:rgba(212,175,55,.28);background:linear-gradient(135deg,rgba(212,175,55,.10),rgba(45,154,82,.12));color:#ffe6a0;box-shadow:0 0 26px rgba(212,175,55,.10)}.mushaf-surah-num{width:30px;height:30px;display:grid;place-items:center;border-radius:10px;border:1px solid rgba(144,223,171,.14);color:#92dfac;font-size:11px}.mushaf-surah-name{font-weight:800}.mushaf-surah-meta{font-size:10px;color:#71868d}.mushaf-main{min-width:0}.mushaf-toolbar{position:sticky;top:10px;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;margin-bottom:14px;border-radius:20px;background:rgba(7,22,12,.74);border:1px solid rgba(143,222,170,.16);backdrop-filter:blur(16px);box-shadow:0 14px 40px rgba(0,0,0,.24)}.mushaf-current{text-align:center}.mushaf-current b{display:block;color:#ffe4a0;font:700 24px Amiri,serif}.mushaf-current span{display:block;color:#80929a;font-size:11px}.mushaf-verses{display:grid;gap:12px}.mushaf-ayah{padding:20px;border-radius:22px;background:linear-gradient(145deg,rgba(12,43,23,.84),rgba(7,26,14,.72));border:1px solid rgba(144,223,171,.11);box-shadow:0 18px 48px rgba(0,0,0,.26),0 0 28px rgba(89,207,129,.045);transition:.25s}.mushaf-ayah:hover{border-color:rgba(212,175,55,.24);box-shadow:0 22px 58px rgba(0,0,0,.3),0 0 32px rgba(212,175,55,.08)}.mushaf-ayah.selected{border-color:rgba(212,175,55,.42);box-shadow:0 0 0 1px rgba(212,175,55,.13),0 22px 62px rgba(212,175,55,.10)}.mushaf-ayah-ref{color:#90dfab;font-size:12px;margin-bottom:9px}.mushaf-ayah-text{font-family:UthmanicHafs,Amiri,serif;font-size:30px;line-height:2.35;color:#f7edcf;cursor:pointer}.mushaf-ayah-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.ayah-study{margin-top:16px;padding:20px;border-radius:24px;background:linear-gradient(145deg,rgba(14,48,26,.92),rgba(7,23,12,.93));border:1px solid rgba(212,175,55,.20);box-shadow:0 24px 70px rgba(0,0,0,.32),0 0 35px rgba(212,175,55,.07)}.ayah-study h3{margin:0 0 8px;color:#f0d77a;font-size:25px}.ayah-study-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.ayah-study-tab{padding:9px 12px;border-radius:999px;border:1px solid rgba(144,223,171,.14);background:rgba(255,255,255,.02);color:#b9d8c4;cursor:pointer}.ayah-study-tab.active{color:#ffe4a0;border-color:rgba(212,175,55,.28);background:rgba(212,175,55,.09)}.ayah-taj-verse{font-family:UthmanicHafs,Amiri,serif;font-size:28px;line-height:2.35;padding:16px;border-radius:20px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.04)}.ayah-taj-letter{cursor:pointer;border-radius:5px;padding:1px 2px;transition:.18s}.ayah-taj-letter:hover{background:rgba(121,216,153,.16);color:#fff}.ayah-taj-letter[data-rules*='قلقلة']{text-shadow:0 0 8px rgba(255,180,80,.55)}.word-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.word-chip{padding:8px 11px;border-radius:14px;background:rgba(255,255,255,.025);border:1px solid rgba(144,223,171,.12);color:#e7f6ec;cursor:pointer;font-family:Amiri,serif;font-size:17px}.word-chip:hover{border-color:rgba(212,175,55,.30);box-shadow:0 0 20px rgba(212,175,55,.08)}.ayah-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}.ayah-detail{padding:14px;border-radius:18px;background:rgba(255,255,255,.018);border:1px solid rgba(255,255,255,.05)}.ayah-detail h4{margin:0 0 6px;color:#efd77b}.ayah-detail p{margin:0;color:#c5d0cc;line-height:2;font-size:14px}.source-badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.source-badges a{padding:8px 10px;border-radius:999px;border:1px solid rgba(115,215,149,.18);background:rgba(115,215,149,.06);color:#a6e5bb;text-decoration:none;font-size:11px}.mushaf-note{padding:12px 14px;border-radius:16px;border:1px dashed rgba(212,175,55,.20);background:rgba(212,175,55,.04);color:#d8cda5;font-size:12px;line-height:1.9;margin-bottom:14px}
 @media(max-width:900px){.mushaf-shell{grid-template-columns:1fr}.mushaf-index{position:relative;top:auto;max-height:none}.mushaf-surah-list{grid-template-columns:1fr 1fr;display:grid}.mushaf-ayah-text{font-size:25px}.ayah-detail-grid{grid-template-columns:1fr}}
 @media(max-width:560px){.mushaf-surah-list{grid-template-columns:1fr}.mushaf-toolbar{position:relative;top:auto}.mushaf-current b{font-size:21px}.mushaf-ayah-text,.ayah-taj-verse{font-size:22px}.mushaf-index{padding:10px}}
-
-
 
 /* V29 PERFORMANCE-FIRST PREMIUM ENGINE
    Premium is created mainly with gradients, borders and limited soft glows.
@@ -473,7 +456,6 @@ body.mode-3 .space-view::after{display:block!important;opacity:.18!important}
 @media(prefers-reduced-motion:reduce){#sceneTransition.play,.space-view.show,.space-view::before,.space-view::after,.space-planet,.space-moon,.ocean::before,.ocean::after{animation:none!important}}
 .method-outcome{margin-top:14px;padding:14px 16px;border-radius:16px;background:linear-gradient(145deg,rgba(212,175,55,.065),rgba(76,166,93,.045));border:1px solid rgba(212,175,55,.14)}
 .method-outcome b{color:var(--gold)}.method-outcome p{margin:5px 0 0}
-
 
 /* ========================= V31 PREMIUM REDESIGN ========================= */
 :root{
@@ -642,7 +624,6 @@ body.mode-3 .global-zad-ocean::before{animation:zadWater 16s ease-in-out infinit
 @media(max-width:900px){.card,.item,.panel,.quick-card,.hero,.command,.stat,.mission,.planbox,.quote,.schedule-day,.archive-article,.space-info-card{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.global-zad-ocean::before{animation:none!important}.global-zad-ocean::after{animation:none!important;opacity:.34}.global-zad-ocean .ocean-ray{filter:none!important;opacity:.12!important}.global-zad-ocean .ocean-depth{filter:blur(5px);animation:none}.global-zad-ocean .bubble:nth-child(n+8){display:none}.global-lanterns .ch-lantern{opacity:.45}.cl2,.cl4{display:none}.cl1{right:4%;transform:scale(.78)}.cl3{left:18%;transform:scale(.62)}.global-ocean-stars b:nth-child(n+6){display:none}.global-ocean-audio{left:12px;bottom:86px}}
 @media(max-width:600px){.global-lanterns{opacity:.85}.cl1{right:0}.cl3{left:10%}.global-ocean-audio .action{padding:10px 13px;font-size:12px}}
 
-
 /* V43 — ZAD MASTER OCEAN SHELL FOR EVERY PAGE */
 :root{
   --zad-ocean-ink:#07180d;
@@ -705,7 +686,6 @@ body.mode-3 .global-zad-ocean::before{animation:zadWater 16s ease-in-out infinit
 @media(max-width:900px){.zad-page-header{padding-inline:16px!important}.zad-page-content{width:calc(100% - 20px)}.zad-page-content .card,.zad-page-content .panel,.zad-page-content .stat,.zad-page-content .quote,.zad-page-content .planbox,.zad-page-content .mushaf-shell,.zad-page-content .mushaf-index,.zad-page-content .mushaf-reading{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}.zad-page-ocean::before{animation:none!important}.zad-page-ocean::after{animation:none!important;opacity:.32}.zad-page-ocean .page-ray{filter:none;opacity:.12}.zad-page-ocean .bubble:nth-child(n+9){display:none}}
 @media(max-width:600px){.zad-page-title{padding-inline:14px}.zad-page-title h2{font-size:28px}.zad-page-title p{font-size:12px}.zad-page-audio .action{padding:10px 12px;font-size:12px}}
 @media(prefers-reduced-motion:reduce){.zad-page-ocean::before,.zad-page-ocean::after,.zad-page-ocean .page-ray,.zad-page-ocean .page-depth,.zad-page-ocean .bubble{animation:none!important}}
-
 
 /* V58 — Finish Green + Gold identity on the main ZAD frame only. */
 .view.zad-page .zad-page-ocean{
@@ -784,7 +764,6 @@ body.mode-3 .global-zad-ocean::before{animation:zadWater 16s ease-in-out infinit
   .view.zad-page .zad-page-title h2{font-size:28px}
   .view.zad-page .premium-command-center{border-color:rgba(212,175,55,.22)!important}
 }
-
 
 .icon-sprite{display:none}
 .ui-icon,.portal-svg{display:block;width:1em;height:1em;fill:none;stroke:currentColor}
@@ -919,7 +898,6 @@ body[data-perf="lite"] .particle{display:none!important}
 body[data-perf="lite"] .archive-article,body[data-perf="lite"] .space-topic-panel,body[data-perf="lite"] .space-article-panel{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 body[data-perf="lite"] .bubble,body[data-perf="lite"] #globalOceanBubbles>span{animation:none!important;display:none!important}
 body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
-
 
 /* V61 — mobile spacing/stacking cleanup + remove duplicated side audio */
 @media (max-width:800px){
@@ -1057,7 +1035,6 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 @media(max-width:800px){.v60-grid2,.v60-grid3{grid-template-columns:1fr}.v60-float-flag{left:10px;top:20%;font-size:30px}.v60-actions button{width:100%}}
 </style>
 
-
 <style id="rafiq-v64-reader-css">
 .v64-reader{position:fixed;inset:0;z-index:9999;display:none;background:rgba(2,7,4,.86);backdrop-filter:blur(14px);padding:16px}
 .v64-reader.show{display:block}
@@ -1089,7 +1066,7 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 @media(max-width:800px){.v66-release-grid{grid-template-columns:1fr}}
 </style>
 
-</head>
+<style id="v68-cleanup-style">#sources{display:none!important}</style></head>
 <body class="mode-3">
 <svg aria-hidden="true" class="icon-sprite" width="0" height="0" style="position:absolute"><defs>
 <symbol id="i-today" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 3v4M17 3v4M3 9h18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 13h3M13 13h3M8 17h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
@@ -1125,11 +1102,11 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 </nav>
 <div aria-hidden="true" id="sceneTransition"></div>
 <main class="wrap">
-<section class="view active zad-page zad-depth-0" id="home"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1 id="greeting">صباح الهمة والبركة</h1><div class="tagline" id="dateLine">اليوم</div><div class="muted" id="hijriLine" style="margin-top:4px">التاريخ الهجري: —</div><div class="tagline">بنفس عالم زاد الحافظ — محتوى مختلف وتجربة واحدة.</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>1</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>صباح الهمة والبركة</h2><p class="ocean-subtitle">بنفس عالم زاد الحافظ — محتوى مختلف وتجربة واحدة.</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content">
-<div class="hero premium-command-center"><div class="hero-aura"></div><div class="hero-command-ribbon"><span class="pulse-dot"></span><b>مركز القيادة اليومي</b><span>كل ما تحتاجه الآن في مكان واحد</span></div><div class="hero-grid"><div><div class="badge gold">🎯 مركز القيادة اليومي</div><h2>اعرف بالضبط: ماذا تحفظ؟ ماذا تراجع؟ ومتى؟</h2><p class="tagline">الصفحة الرئيسية هي كل ما تحتاجه للوظيفة الأساسية. بقية الصفحات للتفاصيل والتوسّع.</p><div class="section-actions" style="margin-top:14px"><button class="main" id="startTodayBtn">▶ ابدأ جلسة اليوم</button><button class="action" id="addNewBtn">➕ أضف حفظًا جديدًا</button><button class="action" id="addOldBtn">📚 أضف محفوظًا سابقًا</button></div></div><div><div class="hero-ring" id="heroRing"><div class="hero-ring-inner"><b id="heroPct">0%</b><span class="small">إنجاز اليوم</span></div></div></div></div>
+<section class="view active zad-page zad-depth-0" id="home"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1 id="greeting">صباح الهمة والبركة</h1><div class="tagline" id="dateLine">اليوم</div><div class="muted" id="hijriLine" style="margin-top:4px">التاريخ الهجري: —</div><div class="tagline">نفس التجربة، وكل قسم له محتواه ووظيفته.</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>1</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>صباح الهمة والبركة</h2><p class="ocean-subtitle">نفس التجربة، وكل قسم له محتواه ووظيفته.</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content">
+<div class="hero premium-command-center"><div class="hero-aura"></div><div class="hero-command-ribbon"><span class="pulse-dot"></span><b>مساحة اليوم</b><span>ورد اليوم أولًا، ثم التفاصيل عند الحاجة</span></div><div class="hero-grid"><div><div class="badge gold">🎯 مساحة اليوم</div><h2>اعرف وردك اليوم، ومراجعاتك، وخطتك القادمة</h2><p class="tagline">الصفحة الرئيسية هي كل ما تحتاجه للوظيفة الأساسية. بقية الصفحات للتفاصيل والتوسّع.</p><div class="section-actions" style="margin-top:14px"><button class="main" id="startTodayBtn">▶ ابدأ جلسة اليوم</button><button class="action" id="addNewBtn">➕ أضف حفظًا جديدًا</button><button class="action" id="addOldBtn">📚 أضف محفوظًا سابقًا</button></div></div><div><div class="hero-ring" id="heroRing"><div class="hero-ring-inner"><b id="heroPct">0%</b><span class="small">إنجاز اليوم</span></div></div></div></div>
 <div class="mission-grid"><div class="mission"><div class="mission-head"><span>🔄 المراجعة</span><span id="missionReviewText">0/3</span></div><div class="mini-progress"><div id="missionReviewBar"></div></div></div><div class="mission"><div class="mission-head"><span>📿 التكرار</span><span id="missionRepText">0/10</span></div><div class="mini-progress"><div id="missionRepBar"></div></div></div><div class="mission"><div class="mission-head"><span>⏱️ التركيز</span><span id="missionFocusText">0/20د</span></div><div class="mini-progress"><div id="missionFocusBar"></div></div></div></div></div>
 <div class="command premium-now"><div class="now-kicker"><span class="pulse-dot gold-dot"></span><b>أول خطوة الآن</b></div><b>🧭 ماذا تفعل الآن؟</b><p id="homePriority">جارٍ إعداد خطة اليوم…</p><div class="home-flow"><span class="flow-step active">احفظ</span><i>→</i><span class="flow-step">كرّر</span><i>→</i><span class="flow-step">ثبّت</span><i>→</i><span class="flow-step">راجع</span></div></div>
-<div class="grid2"><div class="card"><h2>🆕 الحفظ الجديد اليوم</h2><div id="homeNewList"></div></div><div class="card"><h2 style="color:var(--warning)">⏰ مراجعات اليوم</h2><div id="homeDueList"></div></div></div>
+<div class="grid2"><div class="card"><h2>📖 حفظ اليوم</h2><div id="homeNewList"></div></div><div class="card"><h2 style="color:var(--warning)">⏰ مراجعات اليوم</h2><div id="homeDueList"></div></div></div>
 <div class="card"><h2>📚 المحفوظ السابق</h2><p class="tagline" id="homeOldSummary"></p><div id="homeOldList"></div></div>
 <div class="grid2"><div class="card"><h2>🗓️ جدول الأيام القادمة</h2><div class="schedule-list" id="homeSchedule"></div></div><div class="card"><h2>🌿 منهجيتك باختصار</h2><div id="homeMethod"></div><button class="action" id="openMethod2" style="width:100%;margin-top:10px">فتح المنهجية كاملة</button></div></div>
 <div class="card"><h2>🕌 اليوم الإيماني</h2><div class="grid2"><div><div class="muted">صلوات اليوم</div><div class="schedule-list" id="prayerChecklist"></div></div><div><div class="muted">أقرب تذكير</div><div class="command" id="nextReminder" style="margin-top:8px"></div><div class="muted">محتوى اليوم</div><div class="command" id="todaySpiritualNote" style="margin-top:8px"></div></div></div></div>
@@ -1191,7 +1168,7 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 <div class="space-content-wrap"><div id="spaceContent"></div></div>
 </div></section>
 <section class="view zad-page zad-depth-4" id="progress"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>📈 الأثر</h1><div class="tagline">الأثر هو ما تغيّر في رحلتك، لا مجرد أرقام</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>5</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>📈 الأثر</h2><p class="ocean-subtitle">الأثر هو ما تغيّر في رحلتك، لا مجرد أرقام</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content"><div class="summary-grid"><div class="stat"><b id="pStreak">0</b>🔥 يوم</div><div class="stat"><b id="pEntries">0</b>📋 ورد</div><div class="stat"><b id="pReviews">0</b>✅ مراجعة</div><div class="stat"><b id="pLetters">0</b>📖 حرف</div></div><div class="card" style="margin-top:18px"><h2>🎯 الهدف</h2><div class="progressbox"><div class="progress" id="goalProgress"></div></div><div id="goalText" style="margin-top:10px;text-align:center"></div></div><div class="desktop-grid"><div class="card"><h2>🗓️ التقويم</h2><div class="row" style="justify-content:space-between"><button class="action" id="prevMonth">‹</button><b id="calTitle">—</b><button class="action" id="nextMonth">›</button></div><div id="calendar" style="margin-top:12px"></div></div><div class="card"><h2>📈 النشاط</h2><canvas id="activityChart" style="width:100%;height:260px"></canvas></div></div><div class="card"><h2>🔥 خريطة الإنجاز</h2><div class="heatmap" id="heatmap"></div></div><div class="card"><h2>🌌 مجرة القرآن</h2><div class="constellation" id="constellation"></div></div><div class="card"><h2>🧠 تحليل السرعة</h2><div class="grid2" id="analytics"></div></div><div class="card"><h2>🧩 المتشابهات والزلات</h2><div id="mistakesList"></div></div></div></div></div></section>
-<section class="view zad-page zad-depth-5" id="explore"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>🌌 استكشف</h1><div class="tagline">كتب، مقاطع، تزكية، علوم، حياة، ومواد مساعدة</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>6</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>🌌 استكشف</h2><p class="ocean-subtitle">كتب، مقاطع، تزكية، علوم، حياة، ومواد مساعدة</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content"><div class="grid2"><div class="card"><h2>🎯 ترشيح مخصّص</h2><div class="grid2"><select id="feelSelect"><option>أشعر بالتشتت</option><option>متأخر وأريد الاستدراك</option><option>أحتاج تثبيت الحفظ</option><option>أريد أن أتعلم التجويد</option><option>أريد فقهًا أساسيًا</option><option>أحتاج دافعًا</option></select><select id="ageGroup"><option>طفل</option><option>شاب</option><option>بالغ</option><option>كبير سن</option></select></div><select id="roleSelect"><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفظ</option><option>ربة منزل</option><option>أب/أم</option><option>متفرغ</option></select><button class="main" id="recommendBtn">✨ رشّح لي شيئًا</button><div class="command" id="recommendation" style="margin-top:12px"></div></div><div class="card"><h2>📌 كلمات البحث</h2><div class="section-actions" id="keywordChips"></div><p class="muted" style="margin-top:10px">عند عدم وجود فيديو مباشر، استخدم الكلمة المقترحة وافتح البحث. التطبيق يبقى مفيدًا أوفلاين حتى لو لم يتوفر الفيديو.</p></div></div><div class="grid3"><div class="card"><h2>🏃 الحركة</h2><p>ابدأ بالأبسط: مشي، ضغط، أو تمارين بسيطة. اجعل القوة والعناية بالجسم جزءًا من الاستقامة لا سببًا للغفلة.</p></div><div class="card"><h2>🎓 الدراسة والعمل</h2><p>انشغالك بالقرآن لا يعني ترك دراستك أو عملك. إتقان مسؤوليتك جزء من الأمانة.</p></div><div class="card"><h2>🧼 النظافة</h2><p>النظافة الشخصية والعامة، تقليم الأظافر، والاهتمام بالمظهر من أبواب العناية التي لا تُهمل.</p></div></div><div class="card"><h2>🌱 تزكية اليوم</h2><div class="quote" id="tazkiyahText"></div></div></div></div></div></section>
+<section class="view zad-page zad-depth-5" id="explore"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>🌌 استكشف</h1><div class="tagline">كتب، مقاطع، تزكية، علوم، حياة، ومواد مساعدة</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>6</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>🌌 استكشف</h2><p class="ocean-subtitle">كتب، مقاطع، تزكية، علوم، حياة، ومواد مساعدة</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content"><div class="grid2"><div class="card"><h2>🎯 ترشيح مخصّص</h2><div class="grid2"><select id="feelSelect"><option>أشعر بالتشتت</option><option>متأخر وأريد الاستدراك</option><option>أحتاج تثبيت الحفظ</option><option>أريد أن أتعلم التجويد</option><option>أريد فقهًا أساسيًا</option><option>أحتاج دافعًا</option></select><select id="ageGroup"><option>طفل</option><option>شاب</option><option>بالغ</option><option>كبير سن</option></select></div><select id="roleSelect"><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفظ</option><option>ربة منزل</option><option>أب/أم</option><option>متفرغ</option></select><button class="main" id="recommendBtn">✨ رشّح لي شيئًا</button><div class="command" id="recommendation" style="margin-top:12px"></div></div><div class="card"><h2>📌 كلمات البحث</h2><div class="section-actions" id="keywordChips"></div><p class="muted" style="margin-top:10px">عند عدم وجود فيديو مباشر، استخدم الكلمة المقترحة وافتح البحث. التطبيق يبقى مفيدًا أوفلاين حتى لو لم يتوفر الفيديو.</p></div></div><div class="grid3"><div class="card"><h2>🏃 الحركة</h2><p>ابدأ بالأبسط: مشي أو تمارين بسيطة، ثم زد بحسب قدرتك. اجعل القوة والعناية بالجسم جزءًا من الاستقامة لا سببًا للغفلة.</p></div><div class="card"><h2>🎓 الدراسة والعمل</h2><p>انشغالك بالقرآن لا يعني ترك دراستك أو عملك. إتقان مسؤوليتك جزء من الأمانة.</p></div><div class="card"><h2>🧼 النظافة</h2><p>النظافة الشخصية والعامة، تقليم الأظافر، والاهتمام بالمظهر من أبواب العناية التي لا تُهمل.</p></div></div><div class="card"><h2>🌱 تزكية اليوم</h2><div class="quote" id="tazkiyahText"></div></div></div></div></div></section>
 <section class="view zad-page zad-depth-6" id="settings"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>⚙️ الإعدادات</h1><div class="tagline">تحكم كامل — بدون تعقيد</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>7</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>⚙️ الإعدادات</h2><p class="ocean-subtitle">تحكم كامل — بدون تعقيد</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content"><div class="desktop-grid"><div><div class="card"><h2>🎨 التجربة والجرافيك</h2><label class="small">مستوى الأداء</label><select id="graphicsSelect"><option value="1">🟢 خفيف — موبايل اقتصادي</option><option value="2">🟡 متوازن — تابلت</option><option value="3">🔴 Ultra — لاب/كمبيوتر قوي</option></select><label class="small">المظهر</label><select id="themeSelect"><option value="dark">🌑 داكن</option><option value="light">☀️ فاتح</option><option value="sepia">📜 مخطوطات</option></select></div><div class="card"><h2>👤 ملفك</h2><input id="profileName" placeholder="الاسم" autocomplete="name"/><input id="profileAge" max="110" min="3" placeholder="العمر" type="number" inputmode="numeric"/><button class="action" id="saveProfileBtn">حفظ البيانات</button><div class="muted" id="profileMessage" style="margin-top:8px"></div></div><div class="card"><h2>🕌 الصلاة والمواقيت</h2><div class="grid2"><select id="calcMethod"><option value="5">الهيئة المصرية</option><option value="2">ISNA</option><option value="3">Muslim World League</option></select><select id="asrMethod"><option value="0">العصر — قياسي</option><option value="1">العصر — حنفي</option></select></div><input id="cityInput" placeholder="المحافظة/المدينة (مثال: أسيوط)"/><button class="action" id="locBtn">📍 استخدم موقعي</button><div class="command" id="prayerSettingsStatus" style="margin-top:10px"></div></div></div><div><div class="card"><h2>🔊 الصوت</h2><label class="small">الشيخ</label><select id="reciterSelect"><option value="Husary_128kbps">الحصري</option><option value="Fares_Abbad_64kbps">فارس عباد</option><option value="Minshawy_Murattal_128kbps">المنشاوي</option></select><label class="small">صوت التلاوة</label><input id="volumeRange" max="1" min="0" step=".05" type="range"/><div class="row"><button class="action" id="ambientQuranBtn">▶ قرآن هادئ</button><button class="action" id="testSoundBtn">✨ اختبار Shine</button></div><div class="small" style="margin-top:8px">تشغيل الخلفية يعتمد على الآية/الورد المتاح محليًا أو عند الاتصال.</div></div><div class="card"><h2>🔔 التذكيرات</h2><label class="row"><input id="notifyToggle" style="width:18px" type="checkbox"/> إشعارات التطبيق</label><label class="small">الساعة الافتراضية</label><input id="notifyHour" max="23" min="0" type="number" value="20"/><button class="action" id="saveNotifyBtn">حفظ</button><div class="muted" style="margin-top:8px">التطبيق يقدّم تذكيرات للصلوات، الشفع والوتر، قيام الليل، الجمعة والمواسم. الإشعارات الحقيقية تعتمد على دعم المتصفح وفتح التطبيق/خدمات النظام.</div></div><div class="card"><h2>💾 البيانات</h2><div class="row"><button class="action" id="backupBtn">📥 نسخة احتياطية</button><label class="action">📤 استرجاع<input accept=".json" id="restoreInput" style="display:none" type="file"/></label></div><button class="action danger" id="resetBtn" style="width:100%;margin-top:10px">🗑️ تصفير التطبيق</button></div><div class="card"><h2>📲 تثبيت التطبيق</h2><button class="main" id="installBtn">تثبيت رفيق القرآن</button><div class="muted" id="installStatus" style="margin-top:8px"></div></div></div></div></div></div></div></section>
 <div class="small" style="margin:18px 0 8px;color:var(--muted)">مصادر قرآنية داخلية/موثقة: نص المصحف Uthmani محليًا، التفسير الميسر ومعاني الكلمات عبر QuranEnc عند أول تحميل، والتحليل اللغوي عبر Quranic Arabic Corpus.</div></main>
 <button class="fab" id="sadaqahFab">🤲 صدقة ودعاء</button>
@@ -1618,7 +1595,6 @@ function stopOceanSound(){if(!oceanSound)return;try{oceanSound.__rafiqLfo?.stop(
 function initOceanExplorer(){createOceanBubbles();const sound=$('oceanSoundBtn'),silence=$('oceanSilenceBtn');if(sound)sound.onclick=()=>oceanSound?stopOceanSound():startOceanSound();if(silence)silence.onclick=stopOceanSound;document.querySelectorAll('.floating-card').forEach(card=>{card.addEventListener('pointerenter',()=>{if(state.soundEnabled)beep('shine')},{passive:true});card.addEventListener('pointermove',e=>{if(window.matchMedia('(max-width:800px)').matches||state.graphics<3)return;const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.setProperty('--mx',(x*8).toFixed(1)+'px');card.style.setProperty('--my',(y*6).toFixed(1)+'px')},{passive:true});card.addEventListener('pointerleave',()=>{card.style.setProperty('--mx','0px');card.style.setProperty('--my','0px')},{passive:true})})}
   const scene=$('ocean'); if(scene){scene.addEventListener('pointermove',e=>{if(state.graphics<3||window.matchMedia('(max-width:800px)').matches)return;const r=scene.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;scene.style.setProperty('--sceneX',(px*18).toFixed(1)+'px');scene.style.setProperty('--sceneY',(py*14).toFixed(1)+'px')},{passive:true});scene.addEventListener('pointerleave',()=>{scene.style.setProperty('--sceneX','0px');scene.style.setProperty('--sceneY','0px')},{passive:true})}
 
-
 const TAZKIYAH_DAYS=[
   {day:1,title:'ابدأ ولا تنتظر المثالية',reflection:'ليس المطلوب أن تبدأ بأكبر خطة؛ المطلوب أن تبدأ بخطوة صادقة قابلة للاستمرار. قد تكون آية واحدة محفوظة بإتقان أفضل من صفحة مخطط لها لم تُحفظ.',action:'احفظ آية واحدة أو راجع وردًا واحدًا، ثم سجّل ما أنجزته بدلًا من التفكير في كل ما لم تنجزه.',question:'ما أصغر خطوة أستطيع تنفيذها اليوم فعلًا؟',ayah:'وَقُل رَّبِّ زِدْنِي عِلْمًا'},
   {day:2,title:'الاستدراك بعد الانقطاع',reflection:'انقطاعك لا يمحو ما سبق. لا تجعل الشعور بالذنب يتحول إلى تأجيل جديد.',action:'ارجع إلى آخر ورد مستحق، وأنجز مراجعة واحدة قبل أي تعديل كبير للخطة.',question:'هل أحتاج إصلاح الواقع أم تصميم خطة أجمل فقط؟',ayah:'فَإِنَّ مَعَ الْعُسْرِ يُسْرًا'},
@@ -1764,7 +1740,6 @@ const DEEP={
     ]
   }
 };
-
 
 const ARCHIVE_META={
   adhkar:{title:'موسوعة الأذكار',intro:'منهج عملي مرتب للأذكار: ما ثبت، متى يقال، كيف تبني وردًا واقعيًا، وكيف تفرق بين الذكر المأثور والدعاء العام.',icon:'🤲'},
@@ -2068,11 +2043,6 @@ init();
       {t:'الفقه الميسر',d:'بعد الأساسيات ينتقل المستخدم إلى أبواب الفقه التي يحتاجها في حياته.',src:'مراجع فقهية موثوقة'},
       {t:'تمييز الأحكام',d:'الفرض والواجب والسنة والمستحب والمكروه والحرام، مع توضيح أن بعض الاصطلاحات تختلف باختلاف المذهب.',src:'مراجع الفقه المقارن'}
     ]},
-    {cat:'العقيدة',icon:'🧭',items:[
-      {t:'أركان الإسلام',d:'بناء المسار على الفرائض الأساسية وما يحتاج المسلم إلى تعلمه عنها.',src:'حديث جبريل'},
-      {t:'أركان الإيمان',d:'الإيمان بالله وملائكته وكتبه ورسله واليوم الآخر والقدر.',src:'حديث جبريل'},
-      {t:'العلم والعمل',d:'المعلومة لا تجعل صاحبها متصدرًا؛ التطبيق والتثبت من حدود العلم جزء من الرحلة.',src:'أدب طلب العلم'}
-    ]},
     {cat:'الطهارة والنظافة',icon:'🧼',items:[
       {t:'الوضوء',d:'تعلم الأركان والسنن والنواقض بطريقة تناسب المبتدئ مع الإحالة للمذهب والمصدر.',src:'مراجع الفقه'},
       {t:'الغسل',d:'شرح مبسط للغسل ومتى يجب وماذا يلزم مع التفريق بين الواجب والمستحب.',src:'مراجع الفقه'},
@@ -2208,7 +2178,6 @@ init();
 })();
 </script>
 
-
 <style id="rafiq-v62-layer">
 /* RAFIQ V62 — Curriculum / Tadabbur & Amal / Offline content / personalization */
 .v62-nav-item{position:relative}.v62-nav-item::after{display:none}
@@ -2222,20 +2191,20 @@ init();
 <div class="v62-palestine" aria-hidden="true"><div class="b"></div><div class="b"></div><div class="b"></div></div>
 <section class="view zad-page zad-depth-8" id="library">
   <header class="header zad-header zad-page-header">
-    <div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>📚 المكتبة والمسارات</h1><div class="tagline">كتب كاملة كمسارات مستقلة، ورد يومي، علم، سيرة، عقيدة، لغة عربية، وتزكية عملية.</div></div>
-    <div class="zad-header-actions"><div class="zad-mini-stat"><b>V62</b><span>مسارات</span></div><div class="zad-mini-stat"><b>∞</b><span>توسّع</span></div></div>
+    <div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>📚 المكتبة والمسارات</h1><div class="tagline">كتب كاملة ومسارات متدرجة، مع ورد يومي وتطبيق عملي ومكتبة قابلة للتنزيل.</div></div>
+    <div class="zad-header-actions"><div class="zad-mini-stat"><b>مسارات</b><span>متدرجة</span></div><div class="zad-mini-stat"><b>متاح</b><span>للتوسع</span></div></div>
   </header>
   <div class="zad-page-shell v62-shell">
     <div class="ocean zad-page-ocean">
       <div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div>
-      <div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 من البحر إلى الفضاء</div><h2>اختر طريقك، والتطبيق يرتّبه لك</h2><p class="ocean-subtitle">مسارات علمية وعملية متدرجة، مع كتب ومصادر وحزم قابلة للتنزيل والتوسع.</p></div>
+      <div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 من البحر إلى الفضاء</div><h2>اختر طريقك، والتطبيق يرتّبه لك</h2><p class="ocean-subtitle">كتب ومسارات مرتبة، مع تنزيل مباشر للمصادر التي تحتاجها.</p></div>
       <div class="zad-page-content">
       <div class="v66-release-card" id="v66ReleaseCard">
         <div class="v66-release-head">
           <div>
             <div class="v66-tag">📦 المحتوى الكامل</div>
             <h3 style="margin:9px 0 4px;color:var(--gold)">مكتبة رفيق القرآن</h3>
-            <div class="v62-muted">الكتب والتلاوات الموجودة في النسخة المنشورة. نزّل ما تحتاجه مرة واحدة ليعمل على جهازك بدون إنترنت.</div>
+            <div class="v62-muted">الكتب والتلاوات المتاحة للتنزيل. بعد تنزيل أي محتوى يُحفظ على جهازك ليعمل دون اتصال.</div>
           </div>
           <button class="action info" id="v66RefreshRelease">🔄 تحديث المحتوى</button>
         </div>
@@ -2244,19 +2213,19 @@ init();
       </div>
 
         <div class="v62-hero">
-          <div class="row" style="justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap"><div><div class="v62-kicker">🧭 اليوم الشرعي</div><h2 id="v62ReligiousTitle" style="margin:10px 0 4px;color:var(--gold);font-size:28px">جارٍ حساب اليوم…</h2><div class="v62-muted" id="v62ReligiousSub">اليوم يبدأ عند المغرب ويُبنى عليه الورد والتنبيهات.</div></div><div class="v62-status"><span class="v62-offline" id="v62NetBadge">...</span><span class="v62-badge local">✓ Core محلي</span></div></div>
+          <div class="row" style="justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap"><div><div class="v62-kicker">🧭 اليوم الشرعي</div><h2 id="v62ReligiousTitle" style="margin:10px 0 4px;color:var(--gold);font-size:28px">جارٍ حساب اليوم…</h2><div class="v62-muted" id="v62ReligiousSub">اليوم يبدأ عند المغرب ويُبنى عليه الورد والتنبيهات.</div></div><div class="v62-status"><span class="v62-offline" id="v62NetBadge">...</span></div></div>
           <div class="v62-grid3" style="margin-top:16px"><div class="v62-card"><div class="v62-badge">📖 ورد القرآن</div><h3 id="v62TodayQuran">لم يُحدد</h3><div class="v62-muted" id="v62TodayQuranSub"></div></div><div class="v62-card"><div class="v62-badge">📚 ورد العلم</div><h3 id="v62TodayStudy">لم يُحدد</h3><div class="v62-muted">أولًا: ما لا يسع المسلم جهله، ثم الفقه الميسر، ثم بقية المسارات بالتدرج.</div></div><div class="v62-card"><div class="v62-badge">🌱 ورد التزكية</div><h3 id="v62TodayTazkiyah">لم يُحدد</h3><div class="v62-muted" id="v62TodayTazkiyahSub"></div></div></div>
         </div>
         <div class="v62-grid">
           <div>
-            <div class="v62-card"><div class="v62-section-title"><h3>📚 ترتيب السلاسل</h3><span class="v62-badge">منهج متدرج</span></div><div class="v62-muted" style="margin-bottom:12px">هذه ليست مقالات مختصرة لنفس العناوين. كل كتاب/سلسلة له مسار مستقل، وبعده ينتقل المستخدم للسلسلة التالية.</div><div class="v62-track" id="v62CurriculumTrack"></div></div>
-            <div class="v62-card v62-section"><div class="v62-section-title"><h3 id="v62ActiveSeriesTitle">الوحدة الحالية</h3><span class="v62-badge" id="v62ActiveSeriesBadge"></span></div><div id="v62ActiveLesson"></div></div>
-            <div class="v62-card v62-section"><div class="v62-section-title"><h3>📖 مصحف تدبر وعمل</h3><span class="v62-badge local">متصل بالمصحف</span></div><div class="v62-muted">بدل أن يتوقف التطبيق عند «ما معنى الآية؟»، يضيف طبقة: ماذا فهمت؟ وما العمل الأصغر الذي سأفعله؟</div><div class="v62-ayah-panel"><div class="v62-ayah-box"><h4>الآية المختارة</h4><div id="v62TadabburAyah" class="quran" style="font-size:22px">افتح آية من المصحف لإدخال تدبرك وعملك.</div><div class="v62-muted" id="v62TadabburRef"></div></div><div class="v62-ayah-box"><h4>تدبر وعمل</h4><textarea class="v62-ayah-note" id="v62TadabburNote" placeholder="ماذا فهمت؟ وما العمل الذي ستجربه اليوم؟"></textarea><div class="row" style="margin-top:8px"><button class="main" id="v62SaveTadabbur">حفظ</button><button class="action" id="v62MarkAction">✅ أتممت العمل</button></div></div></div></div>
+            <div class="v62-card"><div class="v62-section-title"><h3>📚 ترتيب السلاسل</h3><span class="v62-badge">منهج متدرج</span></div><div class="v62-muted" style="margin-bottom:12px">كل كتاب في مسار مستقل. يبدأ لك ورد يومي منه، ثم تنتقل للمسار التالي بعد إتمامه.</div><div class="v62-track" id="v62CurriculumTrack"></div></div>
+            <div class="v62-card v62-section"><div class="v62-section-title"><h3 id="v62ActiveSeriesTitle">الورد الحالي</h3><span class="v62-badge" id="v62ActiveSeriesBadge"></span></div><div id="v62ActiveLesson"></div></div>
+            <div class="v62-card v62-section"><div class="v62-section-title"><h3>📖 مصحف تدبر وعمل</h3><span class="v62-badge local">متصل بالمصحف</span></div><div class="v62-muted">معنى الآية أولًا، ثم سؤالان عمليان: ماذا فهمت؟ وما العمل الذي سأطبقه؟</div><div class="v62-ayah-panel"><div class="v62-ayah-box"><h4>الآية المختارة</h4><div id="v62TadabburAyah" class="quran" style="font-size:22px">افتح آية من المصحف لإدخال تدبرك وعملك.</div><div class="v62-muted" id="v62TadabburRef"></div></div><div class="v62-ayah-box"><h4>تدبر وعمل</h4><textarea class="v62-ayah-note" id="v62TadabburNote" placeholder="ماذا فهمت؟ وما العمل الذي ستجربه اليوم؟"></textarea><div class="row" style="margin-top:8px"><button class="main" id="v62SaveTadabbur">حفظ</button><button class="action" id="v62MarkAction">✅ أتممت العمل</button></div></div></div></div>
           </div>
           <aside>
             <div class="v62-card"><div class="v62-section-title"><h3>🌱 التزكية: علم + عمل</h3><span class="v62-badge">يومي</span></div><div id="v62TazkiyahBody"></div></div>
-            <div class="v62-card v62-section"><div class="v62-section-title"><h3>🎧 أصوات هادئة</h3><span class="v62-badge local">تعمل محليًا</span></div><div class="v62-noise-grid" id="v62NoiseGrid"></div><div class="v62-muted" style="margin-top:9px">بحر، مطر، رياح وWhite Noise. لا تُستخدم بدل القرآن، ويمكن إيقافها في أي وقت.</div></div>
-            <div class="v62-card v62-section"><div class="v62-section-title"><h3>📦 حزم الكتب والمحتوى</h3><span class="v62-badge pack">Download once</span></div><div class="v62-muted">البنية هنا تفصل بين «الكتاب نفسه» وبين الملخصات والمحتوى الإرشادي. لا أضع نص كتاب كامل غير مُقدَّم لنا أو غير متاح بإذن مناسب. عند توفير ملف الكتاب، يُستورد كحزمة ويبقى أوفلاين.</div><input id="v62PackInput" type="file" accept=".json,application/json" style="display:none"><div class="row"><button class="action" id="v62PackBtn">📥 استيراد حزمة كتاب JSON</button><button class="action" id="v62PackListBtn">📚 الحزم المحفوظة</button></div><div id="v62PackStatus" class="v62-status"></div></div>
+            <div class="v62-card v62-section"><div class="v62-section-title"><h3>🎧 أصوات هادئة</h3><span class="v62-badge local">تعمل محليًا</span></div><div class="v62-noise-grid" id="v62NoiseGrid"></div><div class="v62-muted" style="margin-top:9px">أصوات هادئة للتركيز: بحر، مطر، رياح وضوضاء بيضاء. هذه أصوات مساعدة وليست بديلًا عن التلاوة.</div></div>
+            
             <div class="v62-card v62-section"><div class="v62-section-title"><h3>🧠 ماذا أتعلم أيضًا؟</h3><span class="v62-badge">كلها متصلة</span></div><div class="v62-seq" id="v62TopicCards"></div></div>
           </aside>
         </div>
@@ -2275,25 +2244,24 @@ init();
   const day=()=>typeof ritualKey==='function'?ritualKey():new Date().toISOString().slice(0,10);
   const now=new Date();
   const SERIES=[
-    {id:'mlaysam',order:1,title:'ما لا يسع المسلم جهله',kind:'كتاب/سلسلة أساسية',desc:'مسار تأسيسي يومي: ما يحتاج المسلم إلى معرفته في الاعتقاد والطهارة والصلاة والآداب ونحوها.',status:'pack',source:'يُحمَّل كنص كامل من حزمة الكتاب المصرّح بها.'},
-    {id:'fiqh',order:2,title:'الفقه الميسر',kind:'كتاب/سلسلة',desc:'بعد الأساسيات: أبواب الفقه التي يحتاجها المسلم في حياته، مع توضيح الفروق الاصطلاحية ومواطن الخلاف.',status:'pack',source:'حزمة الكتاب الكاملة عند توفيرها.'},
-    {id:'aqeedah',order:3,title:'العقيدة',kind:'مسار علمي',desc:'أصول الاعتقاد، أركان الإيمان، التوحيد، وأدب العلم والعمل.',status:'local',source:'محتوى تأسيسي داخل التطبيق، مع مصادر للتوسع.'},
-    {id:'seerah',order:4,title:'السيرة والأنبياء والصحابة',kind:'مسار علمي',desc:'سيرة النبي ﷺ، الأنبياء، الصحابة وأمهات المؤمنين، مع فصل الثابت عن الروايات التي تحتاج تحققًا.',status:'local',source:'محتوى داخلي ومصادر توسع.'},
-    {id:'tafsir',order:5,title:'التفسير وعلوم القرآن',kind:'مسار علمي',desc:'التفسير الميسر، سياق السورة، المكي والمدني، أسباب النزول، والتدبر والعمل.',status:'mixed',source:'جزء محلي + توسع من المصادر.'},
-    {id:'tajweed',order:6,title:'التجويد',kind:'مسار مهاري',desc:'شرح من الصفر حتى التطبيق على الورد، بما في ذلك «حركتان» وكيف يعرفها المبتدئ.',status:'local',source:'أساسيات داخل التطبيق + حزم توسع.'},
-    {id:'arabic',order:7,title:'اللغة العربية',kind:'مسار علمي',desc:'المفردات، الصرف، النحو، الإعراب، والجذر مع ربطها بالقرآن دون اختزال المعنى في الجذر.',status:'local',source:'مدخل لغوي داخل التطبيق + مصادر.'},
-    {id:'tazkiyah',order:8,title:'التزكية',kind:'محتوى + تطبيق عملي',desc:'تزكية يومية مرتبطة بحال المستخدم: معرفة قصيرة، ثم عمل صغير قابل للتنفيذ، ثم أثر.',status:'local',source:'محتوى تطبيقي داخل التطبيق.'},
-    {id:'adab',order:9,title:'الآداب والأخلاق والحياة',kind:'مسار عملي',desc:'اللسان، البر، الأمانة، الدراسة والعمل، النظافة، الرياضة، العادات، والاستدراك.',status:'local',source:'محتوى داخلي موثق وموسّع.'}
+    {id:'mlaysam',order:1,title:'ما لا يسع المسلم جهله',kind:'سلسلة تأسيسية',desc:'ورد يومي يضع الأساس الذي يحتاجه المسلم في عبادته وعلاقته بربه وبالناس.',status:'pack',source:'الكتاب الكامل في مكتبة رفيق القرآن.'},
+    {id:'fiqh',order:2,title:'الفقه الميسر',kind:'سلسلة فقهية',desc:'بعد الأساسيات: أحكام الطهارة والصلاة وسائر ما يحتاجه المسلم في حياته، ثم المعاملات.',status:'pack',source:'الكتاب الكامل في مكتبة رفيق القرآن.'},
+    {id:'hadith',order:3,title:'الحديث',kind:'سلسلة علمية',desc:'الأربعون النووية، رياض الصالحين، الأدب المفرد، ثم مدخل إلى مصطلح الحديث.',status:'pack',source:'كتب كاملة في مكتبة رفيق القرآن.'},
+    {id:'seerah',order:4,title:'السيرة والأنبياء والصحابة',kind:'سلسلة علمية',desc:'السيرة النبوية، قصص الأنبياء، وحياة الصحابة من المصادر التي أضفتها للمكتبة.',status:'pack',source:'كتب كاملة في مكتبة رفيق القرآن.'},
+    {id:'tafsir',order:5,title:'التفسير وعلوم القرآن',kind:'سلسلة علمية',desc:'التفسير الميسر، سياق الآيات، علوم القرآن، ومعاني الكلمات مع ربطها بالحفظ والتدبر.',status:'pack',source:'كتب كاملة في مكتبة رفيق القرآن.'},
+    {id:'tajweed',order:6,title:'التجويد',kind:'سلسلة مهارية',desc:'التجويد من القواعد الأساسية إلى التطبيق على الورد، مع الاستماع والتصحيح.',status:'pack',source:'مواد التجويد في مكتبة رفيق القرآن.'},
+    {id:'tazkiyah',order:7,title:'التزكية',kind:'علم + عمل',desc:'معرفة مختصرة، ثم خطوة عملية، ثم متابعة الأثر؛ مع الاستفادة من كتب التزكية الكاملة.',status:'pack',source:'كتب كاملة + تطبيقات يومية.'},
+    {id:'adab',order:8,title:'الآداب والحياة',kind:'سلسلة عملية',desc:'اللسان، بر الوالدين، الأمانة، الدراسة والعمل، النظافة، العادات، والاستدراك.',status:'pack',source:'كتب ومحتوى عملي في مكتبة رفيق القرآن.'}
   ];
   const TOPICS=[
-    ['🎓','الدراسة والعمل','اتقان المذاكرة والعمل جزء من المسؤولية، وليس بديلًا عن العبادة ولا منافسًا لها.'],
-    ['🧼','النظافة والفطرة','العناية بالبدن والمظهر والبيئة عادة دائمة، مع عرض الحكم ومصدره.'],
-    ['🏃','الجسد والحركة','ابدأ بالممكن: مشي، ضغط، ثم جيم أو تدريب حسب القدرة.'],
-    ['🤲','الدعاء والمواسم','أدعية القرآن والأنبياء، الجمعة، رمضان، العشر الأواخر، عرفة وغيرها.'],
-    ['🗣️','اللسان','قبل الكلام: هل هو خير؟ وهل يستحق أن أدخل في الموضوع أصلًا؟'],
-    ['🧭','الاستدراك','لا تنتظر الإجازة؛ ارجع بأصغر خطوة حتى لو تأخرت سنوات.'],
-    ['📚','طلب العلم','تعلم ما تحتاجه، ولا تتصدر فيما لا تعلم.'],
-    ['🌍','المواقف القرآنية','ربط مواقف مثل الثلاثة الذين خُلّفوا ومن المؤمنين رجال ومن يشري نفسه بسياقها وثمرتها العملية.']
+    ['🎓','الدراسة والعمل','خطّة عملية للمذاكرة والعمل مع المحافظة على الورد والصلوات، دون تحميل اليوم فوق طاقته.'],
+    ['🧼','النظافة والعناية','عادات النظافة والعناية الشخصية والبيئة مع إحالة الحكم الشرعي إلى مصدره عند الحاجة.'],
+    ['🏃','الجسد والحركة','خطوات بسيطة للحركة والرياضة والنوم والعناية بالجسد بما يناسب القدرة والوقت.'],
+    ['🤲','الدعاء والمواسم','أدعية القرآن والأنبياء، وأعمال الجمعة ورمضان والعشر الأواخر وعرفة والمواسم المشروعة.'],
+    ['🗣️','اللسان','الغيبة والنميمة والخصومة وحسن الكلام، مع تحويل المعرفة إلى تدريب يومي صغير.'],
+    ['🧭','الاستدراك','إذا فاتك يوم أو أكثر، ارجع بخطوة قابلة للاستمرار بدل خطة تعويض مرهقة.'],
+    ['📚','طلب العلم','تعلم ما تحتاجه أولًا، واعرف حدود ما تعلمه، وارجع للمصادر وأهل العلم في المسائل الدقيقة.'],
+    ['🌍','المواقف القرآنية','قصص ومواقف قرآنية موثقة، ثم سؤال: ماذا تعلّمت؟ وما الذي أطبقه اليوم؟']
   ];
   const TZ=[
     {t:'لا تؤجل البداية',know:'الكمالية قد تجعل الخطوة الممكنة تبدو قليلة، فيترك الإنسان العمل كله.',act:'احفظ أو راجع آية واحدة الآن قبل أي مهمة كبيرة.',q:'آية واحدة اليوم خير من خطة مثالية لا تبدأ.',source:'No Zero Days — مبدأ عملي'},
@@ -2315,8 +2283,23 @@ init();
   function religiousDay(){const k=day();const h=typeof hijri==='function'?hijri(new Date()):'';q('v62ReligiousTitle').textContent=`اليوم الشرعي: ${h||k}`;q('v62ReligiousSub').textContent='بداية اليوم الشرعي عند المغرب، وبداية الليلة لليوم الهجري التالي. مواقيت الصلاة المخزنة هي المرجع المحلي للتذكيرات.'}
   function currentSeries(){const idx=Math.min(SERIES.length-1,Number(V.learning.seriesIndex||0));return SERIES[idx]}
   function renderTrack(){const box=q('v62CurriculumTrack');if(!box)return;const idx=Number(V.learning.seriesIndex||0);box.innerHTML=SERIES.map((s,i)=>`<div class="v62-track-item ${i===idx?'active':''}" data-v62-series="${i}"><span class="v62-track-no">${s.order}</span><div class="grow"><b>${v62esc(s.title)}</b><small>${v62esc(s.kind)} • ${v62esc(s.desc)}</small></div><span class="v62-badge ${s.status==='local'?'local':s.status==='mixed'?'online':'pack'}">${s.status==='local'?'محلي':s.status==='mixed'?'مختلط':'حزمة كتاب'}</span></div>`).join('');box.querySelectorAll('[data-v62-series]').forEach(x=>x.onclick=()=>{V.learning.seriesIndex=+x.dataset.v62Series;V.learning.lesson=0;save();renderV62()})}
-  function lessonFor(s){const pack=V.contentPacks[s.id];if(pack?.lessons?.length)return pack.lessons[Math.min(Number(V.learning.lesson||0),pack.lessons.length-1)];return {title:`الوحدة ${Number(V.learning.lesson||0)+1}`,text:s.status==='pack'?'هذه السلسلة تحتاج نص الكتاب الكامل في حزمة محتوى محلية. بعد استيراد JSON الكتاب سيصبح الدرس نفسه متاحًا أوفلاين.':'المحتوى الأساسي لهذا المسار موجود على هيئة منهج داخل التطبيق، ويمكن التوسع عبر المصادر الموثوقة.',summary:s.desc,source:s.source,actions:['أكمل قراءة الوحدة','اكتب فائدة واحدة','طبّق خطوة واحدة اليوم']}}
-  function renderLesson(){const s=currentSeries();q('v62ActiveSeriesTitle').textContent=s.title;const badge=q('v62ActiveSeriesBadge');badge.textContent=s.status==='pack'?'يتطلب حزمة الكتاب الكاملة':s.status==='mixed'?'محلي + Online':'محلي';badge.className='v62-badge '+(s.status==='pack'?'pack':s.status==='mixed'?'online':'local');const l=lessonFor(s);const n=Number(V.learning.lesson||0);q('v62ActiveLesson').innerHTML=`<div class="v62-lesson"><div class="v62-badge">الدرس ${n+1}</div><h3 style="color:var(--gold);margin:9px 0 5px">${v62esc(l.title||'الوحدة')}</h3><div class="v62-muted">${v62esc(l.text||l.summary||'')}</div>${l.summary?`<div class="command" style="margin-top:10px"><b>الفكرة</b><p>${v62esc(l.summary)}</p></div>`:''}<div class="v62-muted">المصدر: ${v62esc(l.source||s.source||'مصدر المسار')}</div><div class="v62-lesson-actions"><button class="main" id="v62LessonDone">✅ أتممت الوحدة</button><button class="action" id="v62NextLesson">التالي</button><button class="action" id="v62OpenSource">🔗 تفاصيل المصدر</button></div></div>`;q('v62LessonDone').onclick=()=>{V.learning.completed=V.learning.completed||{};V.learning.completed[`${s.id}:${n}`]=true;save();lampBoost(1);toast('تم تسجيل إنجاز الوحدة ✅');renderV62()};q('v62NextLesson').onclick=()=>{V.learning.lesson=n+1;save();renderV62()};q('v62OpenSource').onclick=()=>toast(s.status==='pack'?'أضف حزمة الكتاب الكاملة أو افتح المصدر الموثوق المدرج داخل التطبيق.':'افتح قسم المصادر للتوسع في هذا المسار.')}
+  function lessonFor(s){
+    try{
+      const a=window.rafiqRelease?.seriesAsset?.(s.id);
+      if(a)return {title:a._title||a.title||'الكتاب',text:'الكتاب الكامل متاح في مكتبة رفيق القرآن. ابدأ بوردك اليوم، ثم تابع من الموضع الذي توقفت عنده.',summary:'قراءة الكتاب الأصلي مع متابعة التقدم والعودة إليه عند المراجعة.',source:a._title||a.title||a.name,assetId:a.id};
+    }catch{}
+    return {title:'المحتوى المتاح لهذا المسار',text:'افتح المكتبة لتنزيل المصدر الكامل لهذا المسار. بعد التنزيل يمكنك قراءته دون اتصال.',summary:s.desc,source:s.source,actions:['افتح المكتبة','نزّل المصدر','ابدأ القراءة']};
+  }
+  function renderLesson(){
+    const s=currentSeries();q('v62ActiveSeriesTitle').textContent=s.title;
+    const badge=q('v62ActiveSeriesBadge');badge.textContent='مسار';badge.className='v62-badge local';
+    const l=lessonFor(s);
+    q('v62ActiveLesson').innerHTML=`<div class="v62-lesson"><div class="v62-badge">ورد العلم</div><h3 style="color:var(--gold);margin:9px 0 5px">${v62esc(l.title||'المصدر')}</h3><div class="v62-muted">${v62esc(l.text||l.summary||'')}</div>${l.summary?`<div class="command" style="margin-top:10px"><b>كيف تستخدمه اليوم؟</b><p>${v62esc(l.summary)}</p></div>`:''}<div class="v62-muted">${l.source?`المصدر: ${v62esc(l.source)}`:''}</div><div class="v62-lesson-actions">${l.assetId?`<button class="main" id="v62OpenCurrentBook">📖 افتح الكتاب</button>`:`<button class="main" id="v62OpenLibrary">📚 افتح المكتبة</button>`}</div></div>`;
+    const openBook=q('v62OpenCurrentBook');
+    if(openBook)openBook.onclick=()=>window.rafiqRelease?.open?.(l.assetId);
+    const openLib=q('v62OpenLibrary');
+    if(openLib)openLib.onclick=()=>window.switchView?.('library');
+  }
   function renderTazkiyah(){const i=Math.floor(Date.now()/86400000)%TZ.length;const key=`${day()}:${i}`,x=TZ[i],done=!!V.tazkiyah[key];q('v62TazkiyahBody').innerHTML=`<div class="v62-badge">${v62esc(x.t)}</div><h3 style="margin-top:9px">المعرفة</h3><p class="v62-muted">${v62esc(x.know)}</p><h3>التطبيق اليوم</h3><div class="v62-check"><input id="v62TazAction" type="checkbox" ${done?'checked':''}><div><b>${v62esc(x.act)}</b><div class="v62-muted" style="margin-top:4px">${v62esc(x.q)}</div></div></div><div class="v62-muted" style="margin-top:9px">المصدر/التصنيف: ${v62esc(x.source)}</div>`;q('v62TazAction').onchange=e=>{V.tazkiyah[key]=e.target.checked;save();if(e.target.checked)lampBoost(1);toast(e.target.checked?'تم تسجيل العمل ✅':'أزيلت علامة الإنجاز')};q('v62TodayTazkiyah').textContent=x.t;q('v62TodayTazkiyahSub').textContent=x.act}
   function renderNoise(){q('v62NoiseGrid').innerHTML=noise.map((n,i)=>`<button class="v62-noise ${V.audio.noise===String(i)?'active':''}" data-noise="${i}">${n}</button>`).join('');q('v62NoiseGrid').querySelectorAll('[data-noise]').forEach(b=>b.onclick=()=>toggleNoise(+b.dataset.noise))}
   function toggleNoise(i){V.audio.noise=String(i);V.audio.playing=!V.audio.playing;save();if(!V.audio.playing){stopNoise();toast('تم إيقاف الصوت');return}startNoise(i);renderNoise();}
@@ -2327,31 +2310,30 @@ init();
   function renderTadabbur(){const active=V.tadabbur.active;const a=active?.text||'';q('v62TadabburAyah').textContent=a||'افتح آية من المصحف لإدخال تدبرك وعملك.';q('v62TadabburRef').textContent=active?.ref||'';q('v62TadabburNote').value=active?(V.tadabbur.notes?.[active.key]||''):''}
   function bindTadabbur(){q('v62SaveTadabbur').onclick=()=>{if(!V.tadabbur.active)return toast('افتح آية من المصحف أولًا');V.tadabbur.notes=V.tadabbur.notes||{};V.tadabbur.notes[V.tadabbur.active.key]=q('v62TadabburNote').value.trim();save();lampBoost(1);toast('حُفظ التدبر ✅')};q('v62MarkAction').onclick=()=>{if(!V.tadabbur.active)return toast('افتح آية من المصحف أولًا');V.tadabbur.actions=V.tadabbur.actions||{};V.tadabbur.actions[V.tadabbur.active.key]=true;save();lampBoost(2);toast('تم تسجيل العمل بالآية ✅')}}
   function lampBoost(n){try{state.v60=state.v60||{};state.v60.lamp=state.v60.lamp||{level:0,missedDays:0,lastActivity:''};state.v60.lamp.level=Math.min(100,(state.v60.lamp.level||0)+n);state.v60.lamp.lastActivity=new Date().toISOString();save()}catch{}}
-  function dailyStudy(){const s=currentSeries();q('v62TodayStudy').textContent=s.title;q('v62TodayQuran').textContent=state.dailyPlan?`جديد: ${state.dailyPlan} ${state.goalUnit||'وحدة'}`:'حسب خطتك';q('v62TodayQuranSub').textContent='مع مراجعة القريب والبعيد والتثبيت والتربيط والمتشابهات حسب حالتك.'}
+  function dailyStudy(){const s=currentSeries();let title=s.title,sub='الورد اليومي من هذا المسار.';try{const a=window.rafiqRelease?.seriesAsset?.(s.id);if(a){title=a._title||a.title||title;sub='اقرأ من الكتاب، ثم سجّل ما تعلمته وما ستطبقه اليوم.'}}catch{}q('v62TodayStudy').textContent=title;q('v62TodayStudySub').textContent=sub;q('v62TodayQuran').textContent=state.dailyPlan?`جديد: ${state.dailyPlan} ${state.goalUnit||'وحدة'}`:'حسب خطتك';q('v62TodayQuranSub').textContent='مع مراجعة القريب والبعيد والتثبيت والتربيط والمتشابهات حسب حالتك.'}
   function renderV62(){deep();profileHydrate();showNetwork();religiousDay();renderTrack();renderLesson();renderTazkiyah();renderNoise();renderTopics();renderTadabbur();bindTadabbur();dailyStudy()}
   function addNav(){const nav=q('topNav');if(!nav||nav.querySelector('[data-view="library"]'))return;const b=document.createElement('button');b.className='nav-item v62-nav-item';b.dataset.view='library';b.innerHTML='<span class="ico">📚</span><span>المكتبة</span>';nav.appendChild(b);b.onclick=()=>window.switchView&&window.switchView('library')}
   function hookMushaf(){const old=window.openAyahStudy;window.openAyahStudy=function(s,a){if(typeof old==='function')old(s,a);try{const key=`${s}:${a}`;const text=document.querySelector(`.mushaf-ayah[data-ayah="${a}"] .mushaf-ayah-text`)?.textContent||'';V.tadabbur.active={key,text,ref:`${surahs[s-1]||'السورة'}: ${a}`};save();renderTadabbur()}catch{}}}
   function hookPrayer(){const old=window.renderPrayerChecklist; if(typeof old==='function'){window.renderPrayerChecklist=function(){old(); showNetwork(); const p=state.prayerToday; if(!p)return; const f=p.Fajr,m=p.Maghrib,i=p.Isha; const now=new Date(); const msg=[]; if(i){const ih=+i.split(':')[0],im=+i.split(':')[1]; if(now.getHours()>ih || (now.getHours()===ih&&now.getMinutes()>=im))msg.push('🕯️ بعد العشاء: الشفع والوتر');} if(now.getHours()>=0&&now.getHours()<12)msg.push('🌌 بعد منتصف الليل: قيام الليل والاستغفار والدعاء'); if(m&&f)msg.push('🌓 الثلث الأخير يُحسب من المغرب إلى الفجر حسب المواقيت المخزنة'); const el=q('nextReminder');if(el&&msg.length)el.textContent=msg.join(' • ');}}
   }
   function hookProfile(){ensureWelcomeFields();const start=q('welcomeStartBtn');if(start&&!start.dataset.v62Hook){start.dataset.v62Hook='1';start.addEventListener('click',()=>setTimeout(saveProfileV,30));}}
-  function init(){addNav();ensureWelcomeFields();hookProfile();hookMushaf();hookPrayer();renderV62();q('v62PackBtn').onclick=()=>q('v62PackInput').click();q('v62PackInput').onchange=e=>e.target.files?.[0]&&packImport(e.target.files[0]);q('v62PackListBtn').onclick=()=>{const ks=Object.values(V.contentPacks||{});toast(ks.length?`محفوظ محليًا: ${ks.map(x=>x.title||x.id).join('، ')}`:'لا توجد حزم مستوردة بعد')};window.addEventListener('online',showNetwork);window.addEventListener('offline',showNetwork);window.renderV62=renderV62;}
+  function init(){addNav();ensureWelcomeFields();hookProfile();hookMushaf();hookPrayer();renderV62();if(q('v62PackBtn'))q('v62PackBtn').onclick=()=>q('v62PackInput')?.click();if(q('v62PackInput'))q('v62PackInput').onchange=e=>e.target.files?.[0]&&packImport(e.target.files[0]);if(q('v62PackListBtn'))q('v62PackListBtn').onclick=()=>{const ks=Object.values(V.contentPacks||{});toast(ks.length?`محفوظة على الجهاز: ${ks.map(x=>x.title||x.id).join('، ')}`:'لا توجد حزم محلية بعد')};window.addEventListener('online',showNetwork);window.addEventListener('offline',showNetwork);window.renderV62=renderV62;}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
 
-
 <!-- RAFIQ V64 — Source catalog, robust daily boundary, local-book/audio preparation -->
 <section class="view zad-page zad-depth-9" id="sources">
   <header class="header zad-header zad-page-header">
-    <div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>🗂️ مصادر رفيق القرآن</h1><div class="tagline">المصادر التي بُني عليها المحتوى، مصنفة وواضحة قبل أن تتحول إلى ورد ومسارات.</div></div>
-    <div class="zad-header-actions"><div class="zad-mini-stat"><b>V64</b><span>مصادر</span></div><div class="zad-mini-stat"><b>Offline</b><span>Core</span></div></div>
+    <div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>🗂️ مصادر رفيق القرآن</h1><div class="tagline">المصادر التي يعتمد عليها المحتوى، مرتبة بحسب المجال.</div></div>
+    
   </header>
   <div class="zad-page-shell v62-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div>
     <div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 مكتبة المصدر</div><h2>كل مصدر في مكانه</h2><p class="ocean-subtitle">الكتاب الكامل يظل كتابًا مستقلًا، والمعلومات اليومية والتطبيقات تُبنى فوقه.</p></div>
     <div class="zad-page-content">
-      <div class="v62-card" style="margin-bottom:14px"><div class="row" style="justify-content:space-between;gap:12px;flex-wrap:wrap"><div><b>الحالة الحالية</b><div class="v62-muted" id="v63SourceStatus">جارٍ تجهيز الفهرس…</div></div><span class="v62-badge local">✓ بنية محلية</span></div></div>
+      <div class="v62-card" style="margin-bottom:14px"><div class="row" style="justify-content:space-between;gap:12px;flex-wrap:wrap"><div><b>الحالة الحالية</b><div class="v62-muted" id="v63SourceStatus">جارٍ تجهيز الفهرس…</div></div></div></div>
       <div class="v62-grid3" id="v63SourceGrid"></div>
-      <div class="v62-card" style="margin-top:14px"><h3 style="color:var(--gold);margin-top:0">📦 الحزم</h3><div class="v62-muted">الكتب الكاملة تُحمّل عند الحاجة وتُحفظ على جهازك لتقرأها بدون إنترنت. والتلاوات حزم مستقلة.</div><div class="v62-grid3" style="margin-top:12px"><div class="v62-card"><b>📚 الكتب</b><div class="v62-muted">ورد يومي + متابعة الوحدة + مصدر كامل.</div></div><div class="v62-card"><b>🎧 التلاوة</b><div class="v62-muted">حزمة الحصري منفصلة؛ تنزيل السور حسب اختيار المستخدم.</div></div><div class="v62-card"><b>📖 المصحف</b><div class="v62-muted">Uthmani JSON محلي هو أساس العرض، ويُحفظ في Core.</div></div></div></div>
+      <div class="v62-card" style="margin-top:14px"><h3 style="color:var(--gold);margin-top:0">📦 الحزم</h3><div class="v62-muted">الكتب والتلاوات تُنزل عند الحاجة وتُحفظ على جهازك.</div><div class="v62-grid3" style="margin-top:12px"><div class="v62-card"><b>📚 الكتب</b><div class="v62-muted">ورد يومي + متابعة الوحدة + مصدر كامل.</div></div><div class="v62-card"><b>🎧 التلاوة</b><div class="v62-muted">حزمة الحصري منفصلة؛ تنزيل السور حسب اختيار المستخدم.</div></div><div class="v62-card"><b>📖 المصحف</b><div class="v62-muted">Uthmani JSON محلي هو أساس العرض، ويُحفظ في Core.</div></div></div></div>
     </div>
   </div></div>
 </section>
@@ -2359,18 +2341,18 @@ init();
 (function(){
   const q=id=>document.getElementById(id);
   const SOURCES=[
-    {cat:'القرآن',icon:'📖',items:['quran-uthmani.json — نص المصحف المحلي','القرآن تدبر وعمل كاملا — مصدر التدبر والعمل','التفسير الميسر — التفسير الأساسي','مباحث في علوم القرآن — علوم القرآن','السراج في بيان غريب القرآن — معاني الكلمات']},
-    {cat:'ما لا يسع المسلم جهله والفقه',icon:'🕌',items:['ما لا يسع المسلم جهله — سلسلة تأسيسية مستقلة','الفقه الميسر في ضوء الكتاب والسنة — سلسلة مستقلة','فقه المعاملات المالية المعاصرة','مرجع أصولي للمعاملات المالية']},
+    {cat:'القرآن',icon:'📖',items:['المصحف العثماني المحلي','القرآن تدبر وعمل']},
+    {cat:'ما لا يسع المسلم جهله والفقه',icon:'🕌',items:['ما لا يسع المسلم جهله','الفقه الميسر في ضوء الكتاب والسنة','فقه المعاملات المالية المعاصرة','القواعد الأصولية للمعاملات المالية المعاصرة']},
     {cat:'الحديث',icon:'📜',items:['الأربعون النووية','رياض الصالحين','الأدب المفرد','تيسير مصطلح الحديث']},
-    {cat:'السيرة',icon:'🕊️',items:['الرحيق المختوم','السيرة النبوية لابن كثير','قصص الأنبياء لابن كثير','صور من حياة الصحابة']},
-    {cat:'التجويد',icon:'🎙️',items:['تحفة الأطفال','المقدمة الجزرية ضمن حزمة التجويد','طيبة النشر وموادها المرتبطة']},
+    {cat:'السيرة',icon:'🕊️',items:['الرحيق المختوم','السيرة النبوية لابن كثير','قصص الأنبياء — ابن كثير','صور من حياة الصحابة','أسد الغابة']},
+    {cat:'التفسير وعلوم القرآن',icon:'📚',items:['التفسير الميسر','مباحث في علوم القرآن','السراج في بيان غريب القرآن']},
+    {cat:'التجويد',icon:'🎙️',items:['الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال','مواد التجويد المرتبطة بها']},
     {cat:'التزكية',icon:'🌱',items:['مدارج السالكين','الداء والدواء','مختصر منهاج القاصدين']},
-    {cat:'الآداب والحياة',icon:'🌿',items:['خلق المسلم','بر الوالدين','جوامع الآداب']},
-    {cat:'العقيدة',icon:'🧭',items:['عقيدة المؤمن','كتاب التوحيد','مسار عقيدة متدرج قابل للتعمق']},
-    {cat:'اختياري',icon:'✨',items:['لأنك الله','مراجع إضافية تُعرض ككتب توسع لا كـCore']},
+    {cat:'الآداب والحياة',icon:'🌿',items:['خلق المسلم','بر الوالدين في ضوء الكتاب والسنة','جوامع الآداب']},
+    {cat:'كتب للتوسع',icon:'✨',items:['عقيدة المؤمن','كتاب التوحيد','لأنك الله']}
   ];
   function render(){const box=q('v63SourceGrid');if(!box)return;box.innerHTML=SOURCES.map(x=>`<div class="v62-card"><div style="font-size:28px">${x.icon}</div><h3 style="color:var(--gold)">${x.cat}</h3><ul style="margin:8px 0 0;padding-right:18px">${x.items.map(i=>`<li class="v62-muted" style="margin:4px 0">${i}</li>`).join('')}</ul></div>`).join('');q('v63SourceStatus').textContent='تم تجهيز الفهرس: 9 مجموعات مصدرية، مع فصل الكتب الكاملة عن Core والصوتيات عن المكتبة النصية.'}
-  function addNav(){const nav=q('topNav');if(!nav||nav.querySelector('[data-view="sources"]'))return;const b=document.createElement('button');b.className='nav-item v62-nav-item';b.dataset.view='sources';b.innerHTML='<span class="ico">🗂️</span><span>المصادر</span>';nav.appendChild(b);b.onclick=()=>window.switchView&&window.switchView('sources')}
+  function addNav(){}
   const oldSwitch=window.switchView; if(typeof oldSwitch==='function'&&!oldSwitch.__v63){const sw=function(id){oldSwitch(id);if(id==='sources')render()};sw.__v63=true;window.switchView=sw}
   function boot(){addNav();render();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
@@ -2385,7 +2367,6 @@ init();
   </div>
 </div>
 
-
 <script id="rafiq-v64-content-script">
 (function(){
   'use strict';
@@ -2396,16 +2377,14 @@ init();
   let localManifest=[]; let readerBlobUrl=null; let currentPdfUrl=''; let currentPage=1;
   const SERIES_MAP={
     mlaysam:['ما لا يسع المسلم جهله','mlaysam','basic'],
-    fiqh:['الفقه الميسر','الفقه الميسر','basic'],
-    aqeedah:['العقيدة','عقيدة','التوحيد','aqeedah'],
-    hadith:['الحديث','الأربع','رياض','الأدب المفرد','hadith'],
-    seerah:['السيرة','الرحيق','صور من حياة الصحابة','قصص الأنبياء','seerah'],
-    tafsir:['التفسير','علوم القرآن','أسباب النزول','غريب القرآن','tafsir'],
+    fiqh:['الفقه الميسر','معاملات','57052','basic'],
+    hadith:['الأربع','رياض','الأدب المفرد','مصطلح الحديث','hadith'],
+    seerah:['الرحيق','السيرة','قصص الأنبياء','صور من حياة الصحابة','أسد الغابة','asnz','seerah'],
+    tafsir:['تفسير','علوم القرآن','غريب القرآن','5769','tafsir'],
     tajweed:['تجويد','تحفة','جزرية','طيبة','tajweed'],
-    arabic:['لغة','نحو','صرف','آجرومية','arabic'],
-    tazkiyah:['تزكية','مدارج','الداء والدواء','منهاج القاصدين','tazkiyah'],
-    adab:['أدب','أخلاق','بر الوالدين','خلق المسلم','adab'],
-    optional:['لأنك الله','optional']
+    tazkiyah:['مدارج','الداء والدواء','منهاج القاصدين','tazkiyah'],
+    adab:['أدب','أخلاق','بر الوالدين','خلق المسلم','جوامع الآداب','adab'],
+    optional:['لأنك الله','عقيدة المؤمن','كتاب التوحيد','optional']
   };
   function esc(s){const d=document.createElement('div');d.textContent=s??'';return d.innerHTML}
   function dbOpen(){return new Promise((res,rej)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE,{keyPath:'id'});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
@@ -2426,9 +2405,9 @@ init();
   async function addUi(){
     const lib=q('library');if(!lib||q('v64ContentCard'))return;
     const host=lib.querySelector('.zad-page-content')||lib.querySelector('.zad-page-shell');if(!host)return;
-    const card=document.createElement('div');card.id='v64ContentCard';card.className='v62-card';card.style.marginBottom='16px';card.innerHTML=`<div class="v62-section-title"><h3>📚 المحتوى الفعلي — الكتب والمصادر</h3><span class="v62-badge local">يعمل محليًا</span></div><div class="v62-muted">دي مش فهرسة فقط: هنا تقدر تفتح ملفات الكتب الفعلية داخل التطبيق، وتستورد بقية ملفات PDF من مكتبتك. الكتب المستوردة تُحفظ في الجهاز وتبقى متاحة أوفلاين.</div><div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="main" id="v64ImportPdfs">📥 استيراد كتب PDF</button><button class="action" id="v64RefreshSources">🔄 تحديث المكتبة</button><input id="v64PdfInput" type="file" accept="application/pdf,.pdf" multiple style="display:none"></div><div id="v64SeriesSources"></div><div class="v64-source-grid" id="v64Sources"></div>`;
+    const card=document.createElement('div');card.id='v64ContentCard';card.className='v62-card';card.style.marginBottom='16px';card.innerHTML=`<div class="v62-section-title"><h3>📚 المحتوى الفعلي — الكتب والمصادر</h3><span class="v62-badge local">متاح للقراءة</span></div><div class="v62-muted">يمكنك فتح الكتب داخل التطبيق، وتنزيل المصادر المنشورة من مكتبة رفيق القرآن والاحتفاظ بها على جهازك للقراءة دون اتصال.</div><div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="main" id="v64ImportPdfs">📥 استيراد كتب PDF</button><button class="action" id="v64RefreshSources">🔄 تحديث المكتبة</button><input id="v64PdfInput" type="file" accept="application/pdf,.pdf" multiple style="display:none"></div><div id="v64SeriesSources"></div><div class="v64-source-grid" id="v64Sources"></div>`;
     host.prepend(card);
-    q('v64ImportPdfs').onclick=()=>q('v64PdfInput').click();q('v64PdfInput').onchange=e=>e.target.files?.length&&importPdfs(e.target.files);q('v64RefreshSources').onclick=()=>{renderLibrary();renderSeriesBookStatus()};
+    q('v64ImportPdfs')?.addEventListener('click',()=>q('v64PdfInput')?.click());q('v64PdfInput')?.addEventListener('change',e=>e.target.files?.length&&importPdfs(e.target.files));q('v64RefreshSources')?.addEventListener('click',()=>{renderLibrary();renderSeriesBookStatus()});
     await renderLibrary();await renderSeriesBookStatus();
   }
   async function patchLessonFor(){
@@ -2464,16 +2443,16 @@ init();
   wrapped.__v64=true;window.renderV62=wrapped;
 })();
 </script>
-<script>window.__RAFIQ_CONTENT_META=[{"category":"quran","name":"quran-uthmani.json","size":1556453,"archive":"01-QURAN(5).rar"},{"category":"quran","name":"5769.pdf","size":3739736,"archive":"01-QURAN(6).rar"},{"category":"quran","name":"asnz.pdf","size":7779833,"archive":"01-QURAN(6).rar"},{"category":"quran","name":"التفسير الميسر_73731_Foulabook.com_.pdf","size":24890541,"archive":"01-QURAN(6).rar"},{"category":"quran","name":"القرآن تدبر وعمل كاملا.pdf","size":52637057,"archive":"01-QURAN(6).rar"},{"category":"quran","name":"كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf","size":8090011,"archive":"01-QURAN(6).rar"},{"category":"basic","name":"01_57052.pdf","size":7889435,"archive":"02-BASIC-DIN(1).rar"},{"category":"basic","name":"الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf","size":7245818,"archive":"02-BASIC-DIN(1).rar"},{"category":"basic","name":"فقه المعاملات المالية المعاصرة.pdf","size":4391705,"archive":"02-BASIC-DIN(1).rar"},{"category":"basic","name":"ما_لا_يسع_المسلم_جهله.pdf","size":5427007,"archive":"02-BASIC-DIN(1).rar"},{"category":"hadith","name":"الأدب المفرد للإمام البخاري.pdf","size":215180747,"archive":"03-HADITH(1).rar"},{"category":"hadith","name":"الأربعين النووية.pdf","size":4987848,"archive":"03-HADITH(1).rar"},{"category":"hadith","name":"تيسير مصطلح الحديث مكتبة الحرمين.pdf","size":119684355,"archive":"03-HADITH(1).rar"},{"category":"hadith","name":"رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf","size":29096112,"archive":"03-HADITH(1).rar"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal.pdf","size":3335461,"archive":"06-TAJWEED(1).rar"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal1.pdf","size":497629,"archive":"06-TAJWEED(1).rar"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal2.pdf","size":1066274,"archive":"06-TAJWEED(1).rar"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal3.pdf","size":3982902,"archive":"06-TAJWEED(1).rar"},{"category":"tazkiyah","name":"madarej_1.pdf","size":9398568,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"madarej_2.pdf","size":9542933,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"madarej_3.pdf","size":8194983,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"madarej_4.pdf","size":11165679,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"madarej_p.pdf","size":1680897,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"الداء والدواء - ت. أسامة العتيبي.pdf","size":21765797,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"مختصر منهاج القاصدين - ط الحجاز.pdf","size":29648193,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"مختصر منهاج القاصين - ط الحجاز.pdf","size":39378866,"archive":"07-TAZKIYAH(1).rar"},{"category":"tazkiyah","name":"مدارج السالكين_Foulabook.com_.pdf","size":5708719,"archive":"07-TAZKIYAH(1).rar"},{"category":"adab","name":"الشيخ محمد الغزالي خلق المسلم.pdf","size":5669376,"archive":"8-ADAB-LIFE(1).rar"},{"category":"adab","name":"بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf","size":4557275,"archive":"8-ADAB-LIFE(1).rar"},{"category":"adab","name":"جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf","size":2718166,"archive":"8-ADAB-LIFE(1).rar"},{"category":"optional","name":"lianak allah موقع جديد بدف.pdf","size":3782197,"archive":"9-OPTIONAL(1).rar"},{"category":"optional","name":"عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf","size":13384110,"archive":"9-OPTIONAL(1).rar"},{"category":"optional","name":"كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf","size":3062241,"archive":"9-OPTIONAL(1).rar"}];</script>
+<script>window.__RAFIQ_CONTENT_META=[{"category":"quran","name":"quran-uthmani.json","size":1556453,"archive":"01-QURAN(5).rar","title":"المصحف العثماني — نص القرآن","seriesTitle":"القرآن"},{"category":"tafsir","name":"5769.pdf","size":3739736,"archive":"01-QURAN(6).rar","title":"السراج في بيان غريب القرآن — معاني الكلمات","seriesTitle":"القرآن"},{"category":"seerah","name":"asnz.pdf","size":7779833,"archive":"01-QURAN(6).rar","title":"أسد الغابة في معرفة الصحابة","seriesTitle":"القرآن"},{"category":"tafsir","name":"التفسير الميسر_73731_Foulabook.com_.pdf","size":24890541,"archive":"01-QURAN(6).rar","title":"التفسير الميسر","seriesTitle":"القرآن"},{"category":"quran","name":"القرآن تدبر وعمل كاملا.pdf","size":52637057,"archive":"01-QURAN(6).rar","title":"القرآن تدبر وعمل","seriesTitle":"القرآن"},{"category":"tafsir","name":"كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf","size":8090011,"archive":"01-QURAN(6).rar","title":"مباحث في علوم القرآن — مناع القطان","seriesTitle":"القرآن"},{"category":"basic","name":"01_57052.pdf","size":7889435,"archive":"02-BASIC-DIN(1).rar","title":"القواعد الأصولية للمعاملات المالية المعاصرة","seriesTitle":"ما لا يسع المسلم جهله والفقه"},{"category":"basic","name":"الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf","size":7245818,"archive":"02-BASIC-DIN(1).rar","title":"الفقه الميسر في ضوء الكتاب والسنة","seriesTitle":"ما لا يسع المسلم جهله والفقه"},{"category":"basic","name":"فقه المعاملات المالية المعاصرة.pdf","size":4391705,"archive":"02-BASIC-DIN(1).rar","title":"فقه المعاملات المالية المعاصرة","seriesTitle":"ما لا يسع المسلم جهله والفقه"},{"category":"basic","name":"ما_لا_يسع_المسلم_جهله.pdf","size":5427007,"archive":"02-BASIC-DIN(1).rar","title":"ما لا يسع المسلم جهله","seriesTitle":"ما لا يسع المسلم جهله والفقه"},{"category":"hadith","name":"الأدب المفرد للإمام البخاري.pdf","size":215180747,"archive":"03-HADITH(1).rar","title":"الأدب المفرد — الإمام البخاري","seriesTitle":"الحديث"},{"category":"hadith","name":"الأربعين النووية.pdf","size":4987848,"archive":"03-HADITH(1).rar","title":"الأربعون النووية","seriesTitle":"الحديث"},{"category":"hadith","name":"تيسير مصطلح الحديث مكتبة الحرمين.pdf","size":119684355,"archive":"03-HADITH(1).rar","title":"تيسير مصطلح الحديث","seriesTitle":"الحديث"},{"category":"hadith","name":"رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf","size":29096112,"archive":"03-HADITH(1).rar","title":"رياض الصالحين — النووي","seriesTitle":"الحديث"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal.pdf","size":3335461,"archive":"06-TAJWEED(1).rar","title":"الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal1.pdf","size":497629,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 1","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal2.pdf","size":1066274,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 2","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal3.pdf","size":3982902,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 3","seriesTitle":"التجويد"},{"category":"tazkiyah","name":"madarej_1.pdf","size":9398568,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الأول","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_2.pdf","size":9542933,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثاني","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_3.pdf","size":8194983,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثالث","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_4.pdf","size":11165679,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الرابع","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_p.pdf","size":1680897,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — المقدمة","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"الداء والدواء - ت. أسامة العتيبي.pdf","size":21765797,"archive":"07-TAZKIYAH(1).rar","title":"الداء والدواء — تحقيق أسامة العتيبي","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصدين - ط الحجاز.pdf","size":29648193,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 1","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصين - ط الحجاز.pdf","size":39378866,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 2","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مدارج السالكين_Foulabook.com_.pdf","size":5708719,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — نسخة أخرى","seriesTitle":"التزكية"},{"category":"adab","name":"الشيخ محمد الغزالي خلق المسلم.pdf","size":5669376,"archive":"8-ADAB-LIFE(1).rar","title":"خلق المسلم — محمد الغزالي","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf","size":4557275,"archive":"8-ADAB-LIFE(1).rar","title":"بر الوالدين في ضوء الكتاب والسنة","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf","size":2718166,"archive":"8-ADAB-LIFE(1).rar","title":"جوامع الآداب في أخلاق الأنجاب — جمال الدين القاسمي","seriesTitle":"الآداب والحياة"},{"category":"optional","name":"lianak allah موقع جديد بدف.pdf","size":3782197,"archive":"9-OPTIONAL(1).rar","title":"لأنك الله","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf","size":13384110,"archive":"9-OPTIONAL(1).rar","title":"عقيدة المؤمن","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf","size":3062241,"archive":"9-OPTIONAL(1).rar","title":"كتاب التوحيد — محمد بن عبدالوهاب","seriesTitle":"كتب مفيدة"},{"category":"seerah","name":"sealed_nectar.pdf","title":"الرحيق المختوم","seriesTitle":"السيرة"},{"category":"seerah","name":"shs.pdf","title":"صور من حياة الصحابة","seriesTitle":"السيرة"},{"category":"seerah","name":"السيرة النبوية لإبن کثیر.pdf","title":"السيرة النبوية لابن كثير — المجلد الأول","seriesTitle":"السيرة"},{"category":"seerah","name":"قصص_الأنبياء_ابن_كثير.pdf","title":"قصص الأنبياء — ابن كثير","seriesTitle":"السيرة"},{"category":"audio","name":"Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar","title":"تلاوة الحصري — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"MINSHAWY.1.rar","title":"تلاوة المنشاوي — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"FARES-ABBAD.rar","title":"تلاوة فارس عباد — الحزمة المتاحة","seriesTitle":"التلاوات"}];</script>
 
 <script id="rafiq-v66-release-script">
 (function(){
   'use strict';
   const q=id=>document.getElementById(id);
   const API='https://api.github.com/repos/mustafahossameldin66-dotcom/Test-Rafiq/releases/tags/content-v1';
-  const CACHE='rafiq-release-assets-v66';
-  const META_KEY='rafiq-release-meta-v66';
-  const dbName='rafiq-release-v66';
+  const CACHE='rafiq-release-assets-v67';
+  const META_KEY='rafiq-release-meta-v67';
+  const dbName='rafiq-release-v67';
   const bookMeta=(typeof window.__RAFIQ_CONTENT_META==='object'&&window.__RAFIQ_CONTENT_META)||[];
   let assets=[];
   const esc=s=>{const d=document.createElement('div');d.textContent=s??'';return d.innerHTML};
@@ -2481,34 +2460,84 @@ init();
   const sizeMB=n=>(Number(n||0)/1048576).toFixed(Number(n||0)>=104857600?0:1)+' MB';
   const isAudio=n=>/\.(rar|zip|7z|mp3|m4a|ogg|wav)$/i.test(n);
   const isBook=n=>/\.pdf$/i.test(n);
-  const titleFromAsset=a=>{
-    const n=norm(a.name);
-    let best=null,score=0;
-    for(const m of bookMeta){
-      const candidates=[m.name,m.name?.replace(/\.pdf$/i,''),m.archive];
-      for(const c of candidates){const t=norm(c); if(!t)continue; if(n===t||n.includes(t)||t.includes(n)){const s=Math.min(t.length,n.length); if(s>score){best=m;score=s}}}
-    }
-    if(best)return best.name.replace(/\.pdf$/i,'');
-    const aliases={
-      'sealed_nectar':'الرحيق المختوم','shs':'صور من حياة الصحابة','seerah ibn kathir':'السيرة النبوية لابن كثير — المجلد الأول','qisas al anbiya ibn kathir':'قصص الأنبياء — ابن كثير',
-      'ar tuhf at al atfal':'التجويد — تحفة الأطفال والجزرية','default':'كتاب من المكتبة'
-    };
-    const key=n.replace(/\.pdf$/,'');
-    if(aliases[key])return aliases[key];
-    return a.name.replace(/\.[^.]+$/,'').replace(/_/g,' ');
+  const isTechnical=n=>/\.json$/i.test(n);
+  const HIDDEN_NAMES=new Set(['مدارج السالكين_Foulabook.com_.pdf','مختصر منهاج القاصين - ط الحجاز.pdf']);
+  const isDisplayable=a=>!isTechnical(a.name)&&!HIDDEN_NAMES.has(a.name)&&(isBook(a.name)||isAudio(a.name));
+
+  const TITLE_OVERRIDES = {
+    'quran-uthmani.json':'المصحف العثماني',
+    '5769.pdf':'السراج في بيان غريب القرآن — معاني الكلمات',
+    'asnz.pdf':'أسد الغابة في معرفة الصحابة',
+    'التفسير الميسر_73731_Foulabook.com_.pdf':'التفسير الميسر',
+    'القرآن تدبر وعمل كاملا.pdf':'القرآن تدبر وعمل',
+    'كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf':'مباحث في علوم القرآن — مناع القطان',
+    '01_57052.pdf':'القواعد الأصولية للمعاملات المالية المعاصرة',
+    'الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf':'الفقه الميسر في ضوء الكتاب والسنة',
+    'فقه المعاملات المالية المعاصرة.pdf':'فقه المعاملات المالية المعاصرة',
+    'ما_لا_يسع_المسلم_جهله.pdf':'ما لا يسع المسلم جهله',
+    'الأدب المفرد للإمام البخاري.pdf':'الأدب المفرد — الإمام البخاري',
+    'الأربعين النووية.pdf':'الأربعون النووية',
+    'تيسير مصطلح الحديث مكتبة الحرمين.pdf':'تيسير مصطلح الحديث',
+    'رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf':'رياض الصالحين — النووي',
+    'ar_Tuhfat_Alatfal.pdf':'الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال',
+    'madarej_1.pdf':'مدارج السالكين — الجزء الأول',
+    'madarej_2.pdf':'مدارج السالكين — الجزء الثاني',
+    'madarej_3.pdf':'مدارج السالكين — الجزء الثالث',
+    'madarej_4.pdf':'مدارج السالكين — الجزء الرابع',
+    'madarej_p.pdf':'مدارج السالكين — المقدمة',
+    'الداء والدواء - ت. أسامة العتيبي.pdf':'الداء والدواء — تحقيق أسامة العتيبي',
+    'مختصر منهاج القاصدين - ط الحجاز.pdf':'مختصر منهاج القاصدين',
+    'مختصر منهاج القاصين - ط الحجاز.pdf':'مختصر منهاج القاصدين',
+    'مدارج السالكين_Foulabook.com_.pdf':'مدارج السالكين — نسخة كاملة',
+    'الشيخ محمد الغزالي خلق المسلم.pdf':'خلق المسلم — محمد الغزالي',
+    'بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf':'بر الوالدين في ضوء الكتاب والسنة',
+    'جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf':'جوامع الآداب في أخلاق الأنجاب — جمال الدين القاسمي',
+    'lianak allah موقع جديد بدف.pdf':'لأنك الله',
+    'عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf':'عقيدة المؤمن',
+    'كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf':'كتاب التوحيد — محمد بن عبدالوهاب',
+    'sealed_nectar.pdf':'الرحيق المختوم',
+    'shs.pdf':'صور من حياة الصحابة',
+    'السيرة النبوية لإبن کثیر.pdf':'السيرة النبوية لابن كثير — المجلد الأول',
+    'قصص_الأنبياء_ابن_كثير.pdf':'قصص الأنبياء — ابن كثير',
+    'Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar':'تلاوة الحصري',
+    'MINSHAWY.1.rar':'تلاوة المنشاوي',
+    'FARES-ABBAD.rar':'تلاوة فارس عباد'
   };
-  const seriesFrom=m=>{
-    const n=norm(m.name+' '+(m.title||''));
-    if(/ما لا يسع|الفقه الميسر|معاملات|57052/.test(n))return 'basic';
-    if(/الادب المفرد|الاربع|رياض الصالحين|مصطلح الحديث/.test(n))return 'hadith';
-    if(/الرحيق|السيرة|قصص الانبياء|صور من حياة الصحابة|asnz/.test(n))return 'seerah';
-    if(/تفسير|علوم القران|اسباب النزول|غريب القران|5769/.test(n))return 'tafsir';
-    if(/تحفة|جزرية|طيبة/.test(n))return 'tajweed';
-    if(/مدارج|الداء والدواء|منهاج القاصدين/.test(n))return 'tazkiyah';
-    if(/خلق المسلم|بر الوالدين|جوامع الاداب/.test(n))return 'adab';
-    if(/عقيدة|التوحيد/.test(n))return 'aqeedah';
-    if(/لأنك الله|لاني الله|لian/.test(n))return 'optional';
-    return isAudio(m.name)?'audio':'optional';
+  const SERIES_LABELS = {
+    quran:"القرآن",
+    basic:"ما لا يسع المسلم جهله والفقه",
+    hadith:"الحديث",
+    seerah:"السيرة",
+    tafsir:"التفسير وعلوم القرآن",
+    tajweed:"التجويد",
+    tazkiyah:"التزكية",
+    adab:"الآداب والحياة",
+    aqeedah:"العقيدة",
+    optional:"كتب مفيدة",
+    audio:"التلاوات"
+  };
+  const titleFromAsset=a=>{const m=bookMeta.find(x=>x.name===a.name);return TITLE_OVERRIDES[a.name] || m?.title || a.title || 'محتوى من مكتبة رفيق القرآن'};
+  const seriesFrom=a=>{
+    const m=bookMeta.find(x=>x.name===a.name);
+    if(m?.category==='basic')return 'ما لا يسع المسلم جهله والفقه';
+    if(m?.category==='hadith')return 'الحديث';
+    if(m?.category==='seerah')return 'السيرة';
+    if(m?.category==='tafsir')return 'التفسير وعلوم القرآن';
+    if(m?.category==='tajweed')return 'التجويد';
+    if(m?.category==='tazkiyah')return 'التزكية';
+    if(m?.category==='adab')return 'الآداب والحياة';
+    if(m?.category==='optional')return 'كتب للتوسع';
+    if(m?.category==='audio')return 'التلاوات';
+    const n=norm(a.name);
+    if(/الادب المفرد|الاربع|رياض الصالحين|مصطلح الحديث/.test(n))return 'الحديث';
+    if(/الرحيق|السيرة|قصص الانبياء|صور من حياة الصحابة|اسد الغابة|asnz/.test(n))return 'السيرة';
+    if(/تفسير|علوم القران|غريب القران|5769/.test(n))return 'التفسير وعلوم القرآن';
+    if(/تحفة|جزرية|طيبة/.test(n))return 'التجويد';
+    if(/مدارج|الداء والدواء|منهاج القاصدين/.test(n))return 'التزكية';
+    if(/خلق المسلم|بر الوالدين|جوامع الاداب/.test(n))return 'الآداب والحياة';
+    if(/عقيدة|التوحيد|لأنك الله|لاني الله|lian/.test(n))return 'كتب للتوسع';
+    if(/ما لا يسع|الفقه الميسر|معاملات|57052/.test(n))return 'ما لا يسع المسلم جهله والفقه';
+    return isAudio(a.name)?'التلاوات':'القرآن';
   };
   function storageKey(id){return '/__rafiq_release__/'+encodeURIComponent(String(id));}
   async function cacheStore(){return await caches.open(CACHE)}
@@ -2521,12 +2550,13 @@ init();
       const r=await fetch(API,{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});
       if(!r.ok)throw new Error('release '+r.status);
       const j=await r.json();
-      assets=(j.assets||[]).filter(a=>a&&a.browser_download_url);
+      assets=(j.assets||[]).filter(a=>a&&a.browser_download_url&&isDisplayable(a)).map(a=>({...a,_title:titleFromAsset(a)}));
       await saveMeta();
-      if(status)status.textContent=`متاح الآن: ${assets.filter(a=>isBook(a.name)).length} كتاب/مصدر و${assets.filter(a=>isAudio(a.name)).length} حزمة صوتية.`;
+      if(status)status.textContent=`متاح الآن: ${assets.filter(a=>isBook(a.name)).length} كتابًا ومصدرًا و${assets.filter(a=>isAudio(a.name)).length} حزم تلاوة.`;
       renderAssets();
+      try{window.renderV62?.()}catch{}
     }catch(e){
-      try{assets=JSON.parse(localStorage.getItem(META_KEY)||'[]')}catch{assets=[]}
+      try{assets=JSON.parse(localStorage.getItem(META_KEY)||'[]').map(a=>({...a,_title:titleFromAsset(a)}))}catch{assets=[]}
       if(status)status.textContent=assets.length?'تعذر تحديث القائمة الآن؛ نستخدم آخر قائمة محفوظة.':'لا يمكن الوصول إلى مكتبة المحتوى الآن. افتح التطبيق متصلًا بالإنترنت ثم حدّث القائمة.';
       renderAssets();
     }
@@ -2539,11 +2569,21 @@ init();
   }
   async function renderAssets(){
     const wrap=q('v66ReleaseBooks'); if(!wrap)return;
-    if(!assets.length){wrap.innerHTML='<div class="v62-empty">لا توجد ملفات متاحة حاليًا.</div>';return}
-    const sorted=[...assets].sort((a,b)=>{const aa=isBook(a.name)?0:1,bb=isBook(b.name)?0:1;return aa-bb||String(a.name).localeCompare(String(b.name))});
-    const cards=[];
-    for(const a of sorted){const cached=await isCached(a);const title=titleFromAsset(a);const series=seriesFrom(a);cards.push(`<div class="v66-asset" data-asset-card="${esc(a.id)}"><div class="v66-tag">${isBook(a.name)?'📖 كتاب':'🎧 تلاوة'}</div><h4>${esc(title)}</h4><div class="v66-meta"><span>${esc(a.name)}</span><span>${sizeMB(a.size)}</span></div><div class="v66-meta" style="margin-top:4px"><span>${cached?'✅ محفوظ Offline':'☁️ متاح للتنزيل'}</span><span>${esc(series)}</span></div><div class="v66-actions">${actionHtml(a,cached)}</div><div class="v66-progress"><i></i></div></div>`)}
-    wrap.innerHTML=`<div class="v62-muted" style="margin:14px 0 8px">الكتب تُفتح داخل رفيق القرآن بعد تنزيلها. حزم الصوت تُحفظ على الجهاز للتشغيل عندما تكون بصيغة مدعومة.</div><div class="v66-release-grid">${cards.join('')}</div>`;
+    if(!assets.length){wrap.innerHTML='<div class="v62-empty">لا توجد مواد متاحة حاليًا. افتح التطبيق متصلًا بالإنترنت ثم حدّث المكتبة.</div>';return}
+    const order=['ما لا يسع المسلم جهله والفقه','الحديث','السيرة','التفسير وعلوم القرآن','التجويد','التزكية','الآداب والحياة','كتب للتوسع','القرآن','التلاوات'];
+    const groups=new Map(order.map(k=>[k,[]]));
+    for(const a of assets){const s=seriesFrom(a);if(!groups.has(s))groups.set(s,[]);groups.get(s).push(a)}
+    let html='';
+    for(const series of order){
+      const items=groups.get(series)||[]; if(!items.length)continue;
+      html+=`<section class="v66-group"><div class="v66-group-head"><h3>${esc(series)}</h3><span class="v62-badge">${items.length} ${items.length===1?'مادة':'مواد'}</span></div><div class="v66-release-grid">`;
+      for(const a of items){
+        const cached=await isCached(a);
+        html+=`<div class="v66-asset" data-asset-card="${esc(a.id)}"><div class="v66-tag">${isBook(a.name)?'📖 كتاب':'🎧 تلاوة'}</div><h4>${esc(titleFromAsset(a))}</h4><div class="v66-meta"><span>${isBook(a.name)?'كتاب كامل':'حزمة تلاوة'}</span><span>${sizeMB(a.size)}</span></div><div class="v66-meta" style="margin-top:4px"><span>${cached?'✅ محفوظ على الجهاز':'☁️ متاح للتنزيل'}</span></div><div class="v66-actions">${actionHtml(a,cached)}</div><div class="v66-progress"><i></i></div></div>`;
+      }
+      html+='</div></section>';
+    }
+    wrap.innerHTML=`<div class="v62-muted" style="margin:14px 0 8px">اختر ما تحتاجه. الكتاب يُحفظ على جهازك بعد التنزيل ويمكن قراءته دون اتصال.</div>${html}`;
     bindAssetButtons();
   }
   function assetById(id){return assets.find(a=>String(a.id)===String(id))}
@@ -2560,7 +2600,7 @@ init();
         const reader=res.body.getReader();let loaded=0;while(true){const {done,value}=await reader.read();if(done)break;loaded+=value?.byteLength||0;if(prog&&total)prog.style.width=Math.min(100,loaded/total*100).toFixed(1)+'%';}
       }
       if(prog)prog.style.width='100%';
-      toast(isBook(a.name)?'تم تنزيل الكتاب وحفظه Offline ✅':'تم تنزيل حزمة التلاوة وحفظها Offline ✅');
+      toast(isBook(a.name)?'تم تنزيل الكتاب وحفظه على الجهاز ✅':'تم تنزيل حزمة التلاوة وحفظها على الجهاز ✅');
       await renderAssets();
     }catch(e){
       console.error(e);
@@ -2569,13 +2609,13 @@ init();
     }
   }
   async function openAsset(a){
-    if(!isBook(a.name))return toast('هذه حزمة صوتية. تنزيلها يتم من هنا، وتشغيلها يحتاج ملفات صوتية بصيغة قابلة للتشغيل.');
+    if(!isBook(a.name))return toast('هذه حزمة تلاوة. نزّلها لتحتفظ بها على جهازك.');
     let blob=await getCachedBlob(a);
     if(!blob){
       if(!navigator.onLine)return toast('الكتاب غير محفوظ على الجهاز وأنت أوفلاين. نزّله أولًا أثناء الاتصال.');
       const r=await fetch(a.browser_download_url);if(!r.ok)return toast('تعذر فتح الكتاب الآن');blob=await r.blob();
     }
-    if(releaseReaderUrl)URL.revokeObjectURL(releaseReaderUrl); const url=URL.createObjectURL(blob);releaseReaderUrl=url;releaseReaderPage=1;q('v64ReaderTitle').textContent=titleFromAsset(a);q('v64ReaderSub').textContent='كتاب كامل داخل رفيق القرآن — محفوظ محليًا بعد التنزيل.';q('v64PdfFrame').src=url+'#page=1';q('v64PageLabel').textContent='صفحة 1';q('v64Reader').classList.add('show');q('v64Reader').setAttribute('aria-hidden','false');bindReleaseReader();
+    if(releaseReaderUrl)URL.revokeObjectURL(releaseReaderUrl); const url=URL.createObjectURL(blob);releaseReaderUrl=url;releaseReaderPage=1;q('v64ReaderTitle').textContent=titleFromAsset(a);q('v64ReaderSub').textContent='كتاب كامل — متاح للقراءة دون إنترنت بعد التنزيل.';q('v64PdfFrame').src=url+'#page=1';q('v64PageLabel').textContent='صفحة 1';q('v64Reader').classList.add('show');q('v64Reader').setAttribute('aria-hidden','false');bindReleaseReader();
   }
   async function deleteAsset(a){try{const c=await cacheStore();await c.delete(storageKey(a.id));toast('تم حذف النسخة المحلية ✅');await renderAssets()}catch{toast('تعذر حذف النسخة المحلية')}}
   function bindAssetButtons(){
@@ -2608,7 +2648,7 @@ init();
     loadAssets();
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.rafiqRelease={refresh:loadAssets,assets:()=>assets,download:id=>{const a=assetById(id);return a&&downloadAsset(a,null)}};
+  window.rafiqRelease={refresh:loadAssets,assets:()=>assets,download:id=>{const a=assetById(id);return a&&downloadAsset(a,null)},open:id=>{const a=assetById(id);return a&&openAsset(a)},seriesAsset:seriesId=>{const map={mlaysam:'ما لا يسع المسلم جهله والفقه',fiqh:'ما لا يسع المسلم جهله والفقه',hadith:'الحديث',seerah:'السيرة',tafsir:'التفسير وعلوم القرآن',tajweed:'التجويد',tazkiyah:'التزكية',adab:'الآداب والحياة'};const title=map[seriesId]||'';return assets.find(a=>seriesFrom(a)===title)||null}};
 })();
 </script>
 

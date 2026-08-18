@@ -2,7 +2,6 @@
 
 <html dir="rtl" lang="ar">
 <head>
-RAFIQ BUILD: V79-ARCHITECTURE-REFactor-20260818
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#07100b" name="theme-color"/>
@@ -26,7 +25,7 @@ RAFIQ BUILD: V79-ARCHITECTURE-REFactor-20260818
 
 
 
-<link href="./assets/css/app.css" rel="stylesheet"/></head>
+<link href="./app.css" rel="stylesheet"/></head>
 <body class="mode-3">
 <svg aria-hidden="true" class="icon-sprite" height="0" style="position:absolute" width="0"><defs>
 <symbol id="i-today" viewbox="0 0 24 24"><rect fill="none" height="16" rx="3" stroke="currentColor" stroke-width="1.8" width="18" x="3" y="5"></rect><path d="M7 3v4M17 3v4M3 9h18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path><path d="M8 13h3M13 13h3M8 17h3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.8"></path></symbol>
@@ -80,7 +79,7 @@ RAFIQ BUILD: V79-ARCHITECTURE-REFactor-20260818
 <input aria-label="البحث عن سورة" id="mushafSearch" placeholder="ابحث عن سورة..." type="text"/>
 <div class="mushaf-surah-list" id="mushafSurahList"></div>
 </aside>
-<section aria-label="المصحف" class="mushaf-main">
+<div aria-label="المصحف" class="mushaf-main" role="region">
 <div class="mushaf-toolbar"><button class="action" id="mushafPrev" type="button">← السابقة</button><div class="mushaf-current"><b id="mushafSurahTitle">الفاتحة</b><span id="mushafSurahMeta">1 • مكية • 7 آيات</span></div><button class="action" id="mushafNext" type="button">التالية →</button></div>
 <div class="command" id="mushafLoading" style="display:none">⏳ جاري تجهيز المصحف… إذا لم يوجد الملف المحلي سيُنزَّل مرة واحدة ثم يُحفظ داخل الجهاز للعمل أوفلاين.</div>
 <div class="mushaf-verses" id="mushafVerses"></div>
@@ -203,5 +202,5 @@ RAFIQ BUILD: V79-ARCHITECTURE-REFactor-20260818
 
 
 
-<script defer src="./assets/js/storage.js"></script><script defer src="./assets/js/prayer.js"></script><script defer src="./assets/js/data-loader.js"></script><script defer src="./assets/js/app.js"></script></body>
+<script src="./storage.js"></script><script src="./prayer.js"></script><script src="./app.js"></script><script src="./data-loader.js"></script></body>
 </html>

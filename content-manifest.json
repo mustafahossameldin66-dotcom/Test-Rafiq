@@ -1,5 +1,5 @@
 {
-  "version": "V69",
+  "version": "V70",
   "release": {
     "repo": "mustafahossameldin66-dotcom/Test-Rafiq",
     "tag": "content-v1",
@@ -324,5 +324,6 @@
     "الآداب والحياة",
     "كتب للتوسع",
     "التلاوات"
-  ]
+  ],
+  "releaseTag": "content-v1"
 }

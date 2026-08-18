@@ -1,5 +1,5 @@
 {
-  "version": "V68",
+  "version": "V69",
   "release": {
     "repo": "mustafahossameldin66-dotcom/Test-Rafiq",
     "tag": "content-v1",
@@ -7,7 +7,7 @@
   },
   "items": [
     {
-      "category": "quran",
+      "category": "system",
       "name": "quran-uthmani.json",
       "size": 1556453,
       "archive": "01-QURAN(5).rar",
@@ -15,12 +15,12 @@
       "seriesTitle": "القرآن"
     },
     {
-      "category": "tafsir",
+      "category": "quran",
       "name": "5769.pdf",
       "size": 3739736,
       "archive": "01-QURAN(6).rar",
       "title": "السراج في بيان غريب القرآن — معاني الكلمات",
-      "seriesTitle": "التفسير وعلوم القرآن"
+      "seriesTitle": "القرآن"
     },
     {
       "category": "seerah",
@@ -55,36 +55,36 @@
       "seriesTitle": "التفسير وعلوم القرآن"
     },
     {
-      "category": "basic",
+      "category": "muamalat",
       "name": "01_57052.pdf",
       "size": 7889435,
       "archive": "02-BASIC-DIN(1).rar",
       "title": "القواعد الأصولية للمعاملات المالية المعاصرة",
-      "seriesTitle": "ما لا يسع المسلم جهله والفقه"
+      "seriesTitle": "العلم الشرعي"
     },
     {
-      "category": "basic",
+      "category": "fiqh",
       "name": "الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf",
       "size": 7245818,
       "archive": "02-BASIC-DIN(1).rar",
       "title": "الفقه الميسر في ضوء الكتاب والسنة",
-      "seriesTitle": "ما لا يسع المسلم جهله والفقه"
+      "seriesTitle": "العلم الشرعي"
     },
     {
-      "category": "basic",
+      "category": "muamalat",
       "name": "فقه المعاملات المالية المعاصرة.pdf",
       "size": 4391705,
       "archive": "02-BASIC-DIN(1).rar",
       "title": "فقه المعاملات المالية المعاصرة",
-      "seriesTitle": "ما لا يسع المسلم جهله والفقه"
+      "seriesTitle": "العلم الشرعي"
     },
     {
-      "category": "basic",
+      "category": "basic-foundation",
       "name": "ما_لا_يسع_المسلم_جهله.pdf",
       "size": 5427007,
       "archive": "02-BASIC-DIN(1).rar",
       "title": "ما لا يسع المسلم جهله",
-      "seriesTitle": "ما لا يسع المسلم جهله والفقه"
+      "seriesTitle": "العلم الشرعي"
     },
     {
       "category": "hadith",
@@ -315,7 +315,7 @@
   ],
   "ui_categories": [
     "القرآن",
-    "ما لا يسع المسلم جهله والفقه",
+    "العلم الشرعي",
     "الحديث",
     "السيرة",
     "التفسير وعلوم القرآن",

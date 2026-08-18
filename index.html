@@ -12,7 +12,7 @@
 <meta content="yes" name="mobile-web-app-capable"/>
 <meta content="رفيق القرآن" name="application-name"/>
 <meta content="رفيق القرآن" name="apple-mobile-web-app-title"/>
-<title>رفيق القرآن — Mega V63</title>
+<title>رفيق القرآن — Mega V64</title>
 <link href="./icon.svg" rel="icon" type="image/svg+xml"/>
 <link href="./manifest.webmanifest" rel="manifest"/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
@@ -1057,6 +1057,23 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 @media(max-width:800px){.v60-grid2,.v60-grid3{grid-template-columns:1fr}.v60-float-flag{left:10px;top:20%;font-size:30px}.v60-actions button{width:100%}}
 </style>
 
+
+<style id="rafiq-v64-reader-css">
+.v64-reader{position:fixed;inset:0;z-index:9999;display:none;background:rgba(2,7,4,.86);backdrop-filter:blur(14px);padding:16px}
+.v64-reader.show{display:block}
+.v64-reader-box{height:100%;max-width:1280px;margin:auto;background:var(--surface2);border:1px solid var(--border);border-radius:24px;overflow:hidden;box-shadow:0 30px 100px rgba(0,0,0,.55);display:flex;flex-direction:column}
+.v64-reader-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border-bottom:1px solid var(--border);background:var(--surface)}
+.v64-reader-toolbar{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:9px;border-bottom:1px solid var(--border);background:var(--surface)}
+.v64-reader iframe{width:100%;height:100%;border:0;background:#fff}
+.v64-source-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.v64-source-card{background:var(--surface3);border:1px solid var(--border);border-radius:20px;padding:15px}
+.v64-source-card h4{margin:0 0 6px;color:var(--gold)}
+.v64-source-status{font-size:12px;color:var(--muted);min-height:42px}
+.v64-source-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.v64-series-reader{margin-top:12px;padding:14px;border:1px dashed var(--border);border-radius:16px;background:var(--surface3)}
+@media(max-width:900px){.v64-source-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.v64-source-grid{grid-template-columns:1fr}.v64-reader{padding:5px}.v64-reader-box{border-radius:16px}}
+</style>
 </head>
 <body class="mode-3">
 <svg aria-hidden="true" class="icon-sprite" width="0" height="0" style="position:absolute"><defs>
@@ -2295,11 +2312,11 @@ init();
 </script>
 
 
-<!-- RAFIQ V63 — Source catalog, robust daily boundary, local-book/audio preparation -->
+<!-- RAFIQ V64 — Source catalog, robust daily boundary, local-book/audio preparation -->
 <section class="view zad-page zad-depth-9" id="sources">
   <header class="header zad-header zad-page-header">
     <div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>🗂️ مصادر رفيق القرآن</h1><div class="tagline">المصادر التي بُني عليها المحتوى، مصنفة وواضحة قبل أن تتحول إلى ورد ومسارات.</div></div>
-    <div class="zad-header-actions"><div class="zad-mini-stat"><b>V63</b><span>مصادر</span></div><div class="zad-mini-stat"><b>Offline</b><span>Core</span></div></div>
+    <div class="zad-header-actions"><div class="zad-mini-stat"><b>V64</b><span>مصادر</span></div><div class="zad-mini-stat"><b>Offline</b><span>Core</span></div></div>
   </header>
   <div class="zad-page-shell v62-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div>
     <div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 مكتبة المصدر</div><h2>كل مصدر في مكانه</h2><p class="ocean-subtitle">الكتاب الكامل يظل كتابًا مستقلًا، والمعلومات اليومية والتطبيقات تُبنى فوقه.</p></div>
@@ -2310,7 +2327,7 @@ init();
     </div>
   </div></div>
 </section>
-<script id="rafiq-v63-layer-script">
+<script id="rafiq-v64-layer-script">
 (function(){
   const q=id=>document.getElementById(id);
   const SOURCES=[
@@ -2329,6 +2346,94 @@ init();
   const oldSwitch=window.switchView; if(typeof oldSwitch==='function'&&!oldSwitch.__v63){const sw=function(id){oldSwitch(id);if(id==='sources')render()};sw.__v63=true;window.switchView=sw}
   function boot(){addNav();render();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
+</script>
+
+<div class="v64-reader" id="v64Reader" aria-hidden="true">
+  <div class="v64-reader-box">
+    <div class="v64-reader-head"><div><b id="v64ReaderTitle">المصدر</b><div class="v62-muted" id="v64ReaderSub"></div></div><button class="close" id="v64ReaderClose" aria-label="إغلاق">✕</button></div>
+    <div class="v64-reader-toolbar"><button class="action" id="v64PrevPage">‹ الصفحة السابقة</button><span class="v62-badge" id="v64PageLabel">صفحة 1</span><button class="action" id="v64NextPage">الصفحة التالية ›</button><button class="action info" id="v64OpenNew">↗ فتح في نافذة</button></div>
+    <iframe id="v64PdfFrame" title="قارئ الكتاب" loading="lazy"></iframe>
+  </div>
+</div>
+
+
+<script id="rafiq-v64-content-script">
+(function(){
+  'use strict';
+  const q=id=>document.getElementById(id);
+  const KEY='rafiq-content-library-v64';
+  const DB='rafiq-content-v64';
+  const STORE='pdfs';
+  let localManifest=[]; let readerBlobUrl=null; let currentPdfUrl=''; let currentPage=1;
+  const SERIES_MAP={
+    mlaysam:['ما لا يسع المسلم جهله','mlaysam','basic'],
+    fiqh:['الفقه الميسر','الفقه الميسر','basic'],
+    aqeedah:['العقيدة','عقيدة','التوحيد','aqeedah'],
+    hadith:['الحديث','الأربع','رياض','الأدب المفرد','hadith'],
+    seerah:['السيرة','الرحيق','صور من حياة الصحابة','قصص الأنبياء','seerah'],
+    tafsir:['التفسير','علوم القرآن','أسباب النزول','غريب القرآن','tafsir'],
+    tajweed:['تجويد','تحفة','جزرية','طيبة','tajweed'],
+    arabic:['لغة','نحو','صرف','آجرومية','arabic'],
+    tazkiyah:['تزكية','مدارج','الداء والدواء','منهاج القاصدين','tazkiyah'],
+    adab:['أدب','أخلاق','بر الوالدين','خلق المسلم','adab'],
+    optional:['لأنك الله','optional']
+  };
+  function esc(s){const d=document.createElement('div');d.textContent=s??'';return d.innerHTML}
+  function dbOpen(){return new Promise((res,rej)=>{const r=indexedDB.open(DB,1);r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains(STORE))r.result.createObjectStore(STORE,{keyPath:'id'});};r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)})}
+  async function dbPut(obj){const db=await dbOpen();return new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(obj);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)})}
+  async function dbAll(){try{const db=await dbOpen();return await new Promise((res,rej)=>{const r=db.transaction(STORE,'readonly').objectStore(STORE).getAll();r.onsuccess=()=>res(r.result||[]);r.onerror=()=>rej(r.error)})}catch{return[]}}
+  async function loadManifest(){try{const r=await fetch('./content-local-manifest.json',{cache:'no-store'});if(r.ok){const j=await r.json();localManifest=j.bundled||[]}}catch{} }
+  function matchSeries(name){const n=String(name||'').toLowerCase();let best=null;let score=0;for(const [id,arr] of Object.entries(SERIES_MAP)){for(const token of arr){if(n.includes(String(token).toLowerCase())){const sc=token.length;if(sc>score){score=sc;best=id}}}}return best||'optional'}
+  async function library(){const imported=await dbAll();return [...localManifest.map(x=>({...x,kind:'bundled'})),...imported.map(x=>({...x,kind:'imported',path:null}))]}
+  async function renderLibrary(){const wrap=q('v64Sources');if(!wrap)return;const items=await library();wrap.innerHTML=items.length?items.map(x=>`<div class="v64-source-card"><h4>${esc(x.title||x.id)}</h4><div class="v64-source-status">${x.kind==='bundled'?'📦 موجود داخل النسخة الحالية ويمكن فتحه أوفلاين بعد أول فتح.':'💾 مستورد محليًا: '+esc(x.fileName||'PDF')}</div><div class="v64-source-actions"><button class="action info" data-v64-open="${esc(x.id)}">📖 فتح المحتوى</button><button class="action" data-v64-series="${esc(x.series||matchSeries(x.title||x.fileName))}">🎯 هذا مساري</button></div></div>`).join(''):'<div class="v62-muted">لا توجد مصادر قابلة للقراءة بعد. استورد PDF أو حزمة المحتوى.</div>';
+    wrap.querySelectorAll('[data-v64-open]').forEach(b=>b.onclick=async()=>{const id=b.dataset.v64Open;const item=(await library()).find(x=>x.id===id);if(item)openPdf(item)});
+    wrap.querySelectorAll('[data-v64-series]').forEach(b=>b.onclick=()=>{const id=b.dataset.v64Series;window.v64SelectedSeries=id;toast('تم اختيار المصدر لهذا المسار ✅');});
+  }
+  function openPdf(item){closeReader(false);let url=item.path?new URL(item.path,location.href).href:'';if(!url&&item.blob){readerBlobUrl=URL.createObjectURL(item.blob);url=readerBlobUrl}if(!url){toast('المصدر غير متاح حاليًا');return}currentPdfUrl=url;currentPage=1;q('v64ReaderTitle').textContent=item.title||item.fileName||'المصدر';q('v64ReaderSub').textContent='قراءة المصدر الفعلي داخل رفيق القرآن — المصدر يبقى مستقلًا عن Core التطبيق.';q('v64PdfFrame').src=url+'#page=1';q('v64PageLabel').textContent='صفحة 1';q('v64Reader').classList.add('show');q('v64Reader').setAttribute('aria-hidden','false')}
+  function closeReader(revoke=true){q('v64Reader')?.classList.remove('show');q('v64Reader')?.setAttribute('aria-hidden','true');if(q('v64PdfFrame'))q('v64PdfFrame').src='about:blank';if(revoke&&readerBlobUrl){URL.revokeObjectURL(readerBlobUrl);readerBlobUrl=null}}
+  function movePage(n){currentPage=Math.max(1,currentPage+n);if(currentPdfUrl){q('v64PdfFrame').src=currentPdfUrl+'#page='+currentPage;q('v64PageLabel').textContent='صفحة '+currentPage}}
+  async function importPdfs(files){let done=0;for(const file of [...files]){if(!/\.pdf$/i.test(file.name))continue;const buf=await file.arrayBuffer();const id='pdf:'+crypto.randomUUID();const item={id,fileName:file.name,title:file.name.replace(/\.pdf$/i,''),series:matchSeries(file.name),size:file.size,importedAt:new Date().toISOString(),blob:new Blob([buf],{type:'application/pdf'})};await dbPut(item);done++}toast(done?`تم استيراد ${done} كتاب PDF وحفظه محليًا ✅`:'لم أجد ملفات PDF');await renderLibrary();renderSeriesBookStatus()}
+  async function renderSeriesBookStatus(){const box=q('v64SeriesSources');if(!box)return;const items=await library();const bySeries={};for(const x of items){(bySeries[x.series] ||= []).push(x)};box.innerHTML=Object.entries(bySeries).map(([s,arr])=>`<div class="v64-series-reader"><b style="color:var(--gold)">${esc(s)}</b><div class="v62-muted" style="margin-top:4px">المصادر الفعلية المتاحة: ${arr.map(x=>esc(x.title||x.fileName)).join('، ')}</div></div>`).join('')||''}
+  async function addUi(){
+    const lib=q('library');if(!lib||q('v64ContentCard'))return;
+    const host=lib.querySelector('.zad-page-content')||lib.querySelector('.zad-page-shell');if(!host)return;
+    const card=document.createElement('div');card.id='v64ContentCard';card.className='v62-card';card.style.marginBottom='16px';card.innerHTML=`<div class="v62-section-title"><h3>📚 المحتوى الفعلي — الكتب والمصادر</h3><span class="v62-badge local">يعمل محليًا</span></div><div class="v62-muted">دي مش فهرسة فقط: هنا تقدر تفتح ملفات الكتب الفعلية داخل التطبيق، وتستورد بقية ملفات PDF من مكتبتك. الكتب المستوردة تُحفظ في الجهاز وتبقى متاحة أوفلاين.</div><div class="row" style="margin-top:10px;flex-wrap:wrap"><button class="main" id="v64ImportPdfs">📥 استيراد كتب PDF</button><button class="action" id="v64RefreshSources">🔄 تحديث المكتبة</button><input id="v64PdfInput" type="file" accept="application/pdf,.pdf" multiple style="display:none"></div><div id="v64SeriesSources"></div><div class="v64-source-grid" id="v64Sources"></div>`;
+    host.prepend(card);
+    q('v64ImportPdfs').onclick=()=>q('v64PdfInput').click();q('v64PdfInput').onchange=e=>e.target.files?.length&&importPdfs(e.target.files);q('v64RefreshSources').onclick=()=>{renderLibrary();renderSeriesBookStatus()};
+    await renderLibrary();await renderSeriesBookStatus();
+  }
+  async function patchLessonFor(){
+    if(typeof window.__v64BaseLessonFor!=='undefined')return;
+    window.__v64BaseLessonFor=window.lessonFor;
+    if(typeof window.lessonFor!=='function')return;
+    window.lessonFor=async function(s){const items=await library();const match=items.find(x=>x.series===s.id);if(match){return {title:`${s.title} — المحتوى الفعلي`,text:`المصدر الكامل متاح داخل التطبيق: ${match.title||match.fileName}. ابدأ من ورد اليوم ثم سجّل تقدمك.`,summary:'قراءة المصدر الأصلي + ورد يومي + إتمام الوحدة.',source:match.title||match.fileName,actions:['افتح المصدر','حدد ورد اليوم','سجّل الإنجاز'],__source:match}}return window.__v64BaseLessonFor(s)}
+  }
+  function addReaderBindings(){q('v64ReaderClose').onclick=()=>closeReader();q('v64PrevPage').onclick=()=>movePage(-1);q('v64NextPage').onclick=()=>movePage(1);q('v64OpenNew').onclick=()=>{if(currentPdfUrl)window.open(currentPdfUrl,'_blank','noopener')};q('v64Reader').addEventListener('click',e=>{if(e.target===q('v64Reader'))closeReader()})}
+  async function init(){await loadManifest();addReaderBindings();await addUi();window.v64OpenSource=async id=>{const item=(await library()).find(x=>x.id===id);if(item)openPdf(item)};window.v64ImportPdfs=importPdfs}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
+<script id="rafiq-v64-lesson-patch">
+(function(){
+  const q=id=>document.getElementById(id);
+  const old=window.renderV62;
+  if(typeof old!=='function') return;
+  if(old.__v64)return;
+  const wrapped=function(){old();setTimeout(async()=>{try{
+    if(typeof window.__v64BaseLessonFor==='undefined' || typeof window.lessonFor==='function'){
+      const s=typeof currentSeries==='function'?currentSeries():null;const root=q('v62ActiveLesson');
+      if(s&&root&&window.v64OpenSource){
+        const srcs=[];try{const r=await fetch('./content-local-manifest.json',{cache:'no-store'});if(r.ok){const j=await r.json();srcs.push(...(j.bundled||[]))}}catch{}
+        const src=srcs.find(x=>x.series===s.id);
+        if(src&&!root.querySelector('[data-v64-readsource]')){
+          const bar=document.createElement('div');bar.className='v64-series-reader';bar.innerHTML=`<b style="color:var(--gold)">📖 المحتوى الفعلي متاح</b><div class="v62-muted" style="margin-top:4px">${src.title}</div><button class="action info" data-v64-readsource style="margin-top:8px">فتح الكتاب</button>`;root.appendChild(bar);bar.querySelector('button').onclick=()=>window.v64OpenSource(src.id);
+        }
+      }
+    }
+  }catch{}} ,60)};
+  wrapped.__v64=true;window.renderV62=wrapped;
 })();
 </script>
 </body>

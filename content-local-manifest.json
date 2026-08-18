@@ -1,9 +1,4 @@
 {
-  "version": "V64",
-  "bundled": [
-    {"id":"sealed_nectar","series":"seerah","title":"الرحيق المختوم","path":"content/seerah/alraheeq-almakhtoom.pdf"},
-    {"id":"sahaba","series":"seerah","title":"صور من حياة الصحابة","path":"content/seerah/sowar-min-hayat-al-sahaba.pdf"},
-    {"id":"seerah_ibn_kathir","series":"seerah","title":"السيرة النبوية لابن كثير — المجلد الأول","path":"content/seerah/seerah-ibn-kathir-vol1.pdf"},
-    {"id":"qisas_anbiya","series":"seerah","title":"قصص الأنبياء — ابن كثير","path":"content/seerah/qisas-al-anbiya-ibn-kathir.pdf"}
-  ]
+  "version": "V66",
+  "bundled": []
 }

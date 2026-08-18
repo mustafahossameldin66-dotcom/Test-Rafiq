@@ -1,8 +1,8 @@
 {
-  "version": "V63",
+  "version": "V66",
   "generated": "2026-08-18",
   "source_count": 33,
-  "note": "Index of source files supplied by the user; full book texts are kept as source assets and are not embedded into the Core unless converted to an appropriate local pack.",
+  "note": "Published source assets are discovered from Rafiq Content v1. Books are downloaded and cached locally; the Uthmani Quran JSON remains part of Core.",
   "items": [
     {
       "category": "quran",
@@ -202,5 +202,10 @@
       "size": 3062241,
       "archive": "9-OPTIONAL(1).rar"
     }
-  ]
+  ],
+  "release": {
+    "repo": "mustafahossameldin66-dotcom/Test-Rafiq",
+    "tag": "content-v1",
+    "endpoint": "https://api.github.com/repos/mustafahossameldin66-dotcom/Test-Rafiq/releases/tags/content-v1"
+  }
 }

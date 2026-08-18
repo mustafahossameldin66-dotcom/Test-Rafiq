@@ -1,5 +1,5 @@
-const CACHE='rafiq-v60-shell-v1';
-const API_CACHE='rafiq-v60-api-v1';
+const CACHE='rafiq-v63-shell-v1';
+const API_CACHE='rafiq-v63-api-v1';
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./'])).catch(()=>{}).then(()=>self.skipWaiting()));
 });

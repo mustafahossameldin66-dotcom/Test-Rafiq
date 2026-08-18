@@ -1,0 +1,9 @@
+رفيق القرآن — V63
+
+- V63 fixes the daily welcome/ayah splash so it does not force-open every app launch.
+- The splash is shown once per religious-day boundary.
+- The welcome profile remains first-run only unless app data are reset.
+- quran-uthmani.json should be placed beside index.html for fully local Quran data.
+- Large books are treated as source assets / Book Packs rather than being bundled into the Core shell.
+- Recitation audio is a separate pack; the supplied project does not bundle the large audio set into the Core.
+- content-manifest.json lists the source files supplied for the current project build.

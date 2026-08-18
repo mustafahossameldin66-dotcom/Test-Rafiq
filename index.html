@@ -1150,6 +1150,9 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 @media(max-width:720px){.v70-release-grid{grid-template-columns:1fr}.v70-actions .action{flex:1 1 145px}}
 </style><style id="rafiq-v78-content-actions">
 .v70-release-item .v70-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}.v70-release-item .v70-actions .action{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;min-height:44px;padding:9px 15px;border-radius:14px;font-weight:700}.v70-release-item .v70-actions .action.info{border-color:rgba(201,166,64,.55);box-shadow:0 0 0 1px rgba(201,166,64,.08) inset}
+
+/* V89 content engine: legacy standalone release widgets are intentionally hidden; content lives inside Zاد الحافظ doors. */
+#v66ReleaseCard,#v69Doors,#v66ReleaseBooks{display:none!important}
 </style></head>
 <body class="mode-3">
 <svg aria-hidden="true" class="icon-sprite" height="0" style="position:absolute" width="0"><defs>
@@ -1614,7 +1617,7 @@ async function installApp(){
 
 function setupEvents(){
   const bind=(id,event,fn)=>{const el=$(id);if(el)el[event]=fn;};
-  document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>{try{switchView(b.dataset.view)}catch(e){console.error('Navigation error',e)}});
+  document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>switchView(b.dataset.view));
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeModal(b.dataset.close));
   bind('welcomeStartBtn','onclick',saveWelcome);
   bind('themeBtn','onclick',()=>{state.theme=state.theme==='dark'?'light':state.theme==='light'?'sepia':'dark';save();applyGraphics();renderAll()});
@@ -2017,7 +2020,7 @@ function renderAll(){
   if(active==='explore' && typeof renderExplore==='function') renderExplore();
   renderAdhkar();
 }
-function init(){setupEvents();try{load()}catch(e){console.error('Rafiq load failed',e)}try{setTimeGlow();applyGraphics()}catch(e){console.error('Rafiq visual init failed',e)}try{initGlobalOcean()}catch(e){console.error('Rafiq ocean init failed',e)}try{initOceanExplorer()}catch(e){console.error('Rafiq explorer init failed',e)}try{renderAll()}catch(e){console.error('Rafiq render failed',e)}if(!state.name)openModal('welcomeModal');try{refreshPrayer().then(()=>{if(state.name)showDailySplash(false)}).catch(()=>{if(state.name)showDailySplash(false)})}catch{}if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon))setTimeout(()=>locate(true),900);if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js?v=72',{updateViaCache:'none'}).catch(()=>{});window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;renderSettings()});let resizeRaf=0,lastLayoutBucket=Math.floor(window.innerWidth/120);window.addEventListener('resize',()=>{if(resizeRaf)return;resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;const bucket=Math.floor(window.innerWidth/120);if(bucket!==lastLayoutBucket){lastLayoutBucket=bucket;applyGraphics();if($('spiritual')?.classList.contains('active'))createOceanBubbles();createGlobalOceanBubbles();}if($('progress')?.classList.contains('active'))drawChart()})},{passive:true});window.addEventListener('orientationchange',()=>{setTimeout(()=>{applyGraphics();createGlobalOceanBubbles();},180)},{passive:true});window.addEventListener('online',()=>{document.body.dataset.net='online';refreshPrayer();toast('عاد الاتصال بالإنترنت ✅')});window.addEventListener('offline',()=>{document.body.dataset.net='offline';toast('أنت أوفلاين — البيانات المحلية متاحة ✅')});setInterval(()=>{setTimeGlow();const g=$('greeting');if(g&&state.name)g.textContent=greeting();checkBoundaryAndSplash();},60000)}
+function init(){load();setTimeGlow();applyGraphics();initGlobalOcean();setupEvents();initOceanExplorer();renderAll();if(!state.name)openModal('welcomeModal');refreshPrayer().then(()=>{if(state.name)showDailySplash(false)}).catch(()=>{if(state.name)showDailySplash(false)});if(!Number.isFinite(state.lat)||!Number.isFinite(state.lon))setTimeout(()=>locate(true),900);if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js?v=72',{updateViaCache:'none'}).catch(()=>{});window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;renderSettings()});let resizeRaf=0,lastLayoutBucket=Math.floor(window.innerWidth/120);window.addEventListener('resize',()=>{if(resizeRaf)return;resizeRaf=requestAnimationFrame(()=>{resizeRaf=0;const bucket=Math.floor(window.innerWidth/120);if(bucket!==lastLayoutBucket){lastLayoutBucket=bucket;applyGraphics();if($('spiritual')?.classList.contains('active'))createOceanBubbles();createGlobalOceanBubbles();}if($('progress')?.classList.contains('active'))drawChart()})},{passive:true});window.addEventListener('orientationchange',()=>{setTimeout(()=>{applyGraphics();createGlobalOceanBubbles();},180)},{passive:true});window.addEventListener('online',()=>{document.body.dataset.net='online';refreshPrayer();toast('عاد الاتصال بالإنترنت ✅')});window.addEventListener('offline',()=>{document.body.dataset.net='offline';toast('أنت أوفلاين — البيانات المحلية متاحة ✅')});setInterval(()=>{setTimeGlow();const g=$('greeting');if(g&&state.name)g.textContent=greeting();checkBoundaryAndSplash();},60000)}
 function checkBoundaryAndSplash(){const key=ritualKey();if(state.lastDailyBoundary!==key){state.lastDailyBoundary=key;save();if(state.name)showDailySplash(false)}}
 
 (function(){
@@ -2171,9 +2174,9 @@ init();
   function profileRole(){const p=getV().profile;return p.role||'عام'}
   function greetingV(){const p=getV().profile,n=p.name||'يا رفيق القرآن',role=p.role||'عام',h=now().getHours();const roleText=ROLES[role]||ROLES['عام'];let base=h<6?'وقت الخلوات والهدوء':h<12?'صباح الهمة والبركة':h<17?'طاب يومك':h<22?'مساء الهدوء':'ليلة مباركة';return `${base} يا ${n} 🌙 — ${roleText}`}
 
-  function injectOnboarding(){const box=q('welcomeModal')?.querySelector('.box');if(!box||box.dataset.v60Done)return;if(!q('welcomeRole')){const ref=q('welcomeStyle');const wrap=document.createElement('div');wrap.className='v60-grid2';wrap.style.marginTop='8px';wrap.innerHTML=`<select id="welcomeRole"><option value="">المهنة/الدور</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>ربة منزل</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)" autocomplete="organization-title"/></div>`;ref?.insertAdjacentElement('afterend',wrap)}box.dataset.v60Done='1'}
+  function injectOnboarding(){const box=q('welcomeModal')?.querySelector('.box');if(!box||box.dataset.v60Done)return;if(!q('welcomeRole')){const ref=q('welcomeStyle');const wrap=document.createElement('div');wrap.className='v60-grid2';wrap.style.marginTop='8px';wrap.innerHTML=`<select id="welcomeRole"><option value="">المهنة/الدور</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>ربة منزل</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)" autocomplete="organization-title"/></div>`;ref?.insertAdjacentElement('afterend',wrap);const d=document.createElement('select');d.id='welcomeDialect';d.innerHTML='<option value="ar">العربية الفصحى الجميلة</option><option value="ar-eg">لهجة مصرية</option>';ref?.insertAdjacentElement('afterend',d)}box.dataset.v60Done='1'}
 
-  function patchWelcomeSave(){if(!q('welcomeStartBtn'))return;q('welcomeStartBtn').onclick=()=>{const n=q('welcomeName')?.value.trim();const age=+q('welcomeAge')?.value||'';if(!n)return toast('اكتب اسمك أولًا');if(age&&(age<3||age>110))return toast('العمر من 3 إلى 110 سنة');profileSave(n,age);const v=getV();v.profile.name=n;v.profile.age=age;v.profile.role=q('welcomeRole')?.value||'';v.profile.study=q('welcomeStudy')?.value.trim()||'';const style=q('welcomeStyle')?.value;if(style==='lite'||style==='auto')state.graphics=1;else if(style==='balanced')state.graphics=2;else if(style==='ultra')state.graphics=3;v.lamp.level=Math.max(v.lamp.level||0,.08);v.lamp.lastActivity=Date.now();saveV();applyGraphics?.();q('welcomeModal')?.classList.remove('show');renderAll?.();setTimeout(()=>RafiqV60.showSplash(),220);setTimeout(()=>RafiqV60.syncLocationAndPrayer(false),650)}}
+  function patchWelcomeSave(){if(!q('welcomeStartBtn'))return;q('welcomeStartBtn').onclick=()=>{const n=q('welcomeName')?.value.trim();const age=+q('welcomeAge')?.value||'';if(!n)return toast('اكتب اسمك أولًا');if(age&&(age<3||age>110))return toast('العمر من 3 إلى 110 سنة');profileSave(n,age);const v=getV();v.profile.name=n;v.profile.age=age;v.profile.role=q('welcomeRole')?.value||'';v.profile.study=q('welcomeStudy')?.value.trim()||'';v.profile.dialect=q('welcomeDialect')?.value||'ar';const style=q('welcomeStyle')?.value;if(style==='lite'||style==='auto')state.graphics=1;else if(style==='balanced')state.graphics=2;else if(style==='ultra')state.graphics=3;v.lamp.level=Math.max(v.lamp.level||0,.08);v.lamp.lastActivity=Date.now();saveV();applyGraphics?.();q('welcomeModal')?.classList.remove('show');renderAll?.();setTimeout(()=>RafiqV60.showSplash(),220);setTimeout(()=>RafiqV60.syncLocationAndPrayer(false),650)}}
 
   function localizeRoleUi(){if(q('greeting'))q('greeting').textContent=greetingV();const p=getV().profile;const label=q('dateLine');if(label)label.title=`${p.study||''} ${p.role||''}`.trim()}
 
@@ -2347,9 +2350,10 @@ init();
   ];
   const noise=['🌧️ مطر','🌊 بحر','🌬️ رياح','🤍 White Noise'];
   const audioCtx={ctx:null,source:null,gain:null};
-  function profileHydrate(){V.profile={name:state.name||'',age:state.age||'',role:state.role||'',study:V.profile.study||''};return V.profile}
-  function ensureWelcomeFields(){const box=q('welcomeModal')?.querySelector('.box'); if(!box||q('welcomeRole'))return;const btn=q('welcomeStartBtn');const div=document.createElement('div');div.innerHTML=`<select id="welcomeRole" aria-label="المهنة أو الدور"><option value="">المهنة/الدور (اختياري)</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)"/>`;box.insertBefore(div,btn);profileHydrate();q('welcomeRole').value=V.profile.role||state.role||'';q('welcomeStudy').value=V.profile.study||''}
-  function saveProfileV(){profileHydrate();V.profile.role=q('welcomeRole')?.value||V.profile.role||state.role||'';V.profile.study=q('welcomeStudy')?.value||V.profile.study||'';state.role=V.profile.role;V.profile.name=state.name;V.profile.age=state.age;save()}
+  function profileHydrate(){V.profile={name:state.name||'',age:state.age||'',role:state.role||'',study:V.profile.study||'',dialect:V.profile.dialect||'ar'};return V.profile}
+  function ensureWelcomeFields(){const box=q('welcomeModal')?.querySelector('.box'); if(!box||q('welcomeRole'))return;const btn=q('welcomeStartBtn');const div=document.createElement('div');div.innerHTML=`<select id="welcomeRole" aria-label="المهنة أو الدور"><option value="">المهنة/الدور (اختياري)</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)"/><select id="welcomeDialect"><option value="ar">العربية الفصحى</option><option value="ar-eg">العربية المصرية</option></select>`;box.insertBefore(div,btn);profileHydrate();q('welcomeRole').value=V.profile.role||state.role||'';q('welcomeStudy').value=V.profile.study||'';q('welcomeDialect').value=V.profile.dialect||'ar'}
+  function saveProfileV(){profileHydrate();V.profile.role=q('welcomeRole')?.value||V.profile.role||state.role||'';V.profile.study=q('welcomeStudy')?.value||V.profile.study||'';V.profile.dialect=q('welcomeDialect')?.value||V.profile.dialect||'ar';state.role=V.profile.role;V.profile.name=state.name;V.profile.age=state.age;save()}
+  function dialect(text){if((V.profile.dialect||'ar')!=='ar-eg')return text;return String(text).replaceAll('ابدأ','يلا ابدأ').replaceAll('اليوم','النهارده').replaceAll('الآن','دلوقتي').replaceAll('مراجعة','مراجعة').replaceAll('حفظ','حفظ')}
   function showNetwork(){const b=q('v62NetBadge');if(!b)return;const on=navigator.onLine;b.className='v62-offline '+(on?'on':'off');b.textContent=on?'🟢 متصل — يمكن تنزيل الحزم':'🟠 أوفلاين — الـCore المحلي شغال'}
   function religiousDay(){const k=day();const h=typeof hijri==='function'?hijri(new Date()):'';q('v62ReligiousTitle').textContent=`اليوم الشرعي: ${h||k}`;q('v62ReligiousSub').textContent='بداية اليوم الشرعي عند المغرب، وبداية الليلة لليوم الهجري التالي. مواقيت الصلاة المخزنة هي المرجع المحلي للتذكيرات.'}
   function currentSeries(){const idx=Math.min(SERIES.length-1,Number(V.learning.seriesIndex||0));return SERIES[idx]}
@@ -2389,7 +2393,7 @@ init();
   }
   function hookProfile(){ensureWelcomeFields();const start=q('welcomeStartBtn');if(start&&!start.dataset.v62Hook){start.dataset.v62Hook='1';start.addEventListener('click',()=>setTimeout(saveProfileV,30));}}
   function init(){addNav();ensureWelcomeFields();hookProfile();hookMushaf();hookPrayer();renderV62();
-  try{const fg=document.querySelector('#ocean .float-grid');if(fg&&!fg.querySelector('[data-space="tajweed"]')){fg.insertAdjacentHTML('beforeend',`<button type="button" aria-label="التجويد" class="floating-card" data-space="tajweed"><span class="ico">🎙️</span><span class="floating-title">التجويد</span><span class="small">تعلم ثم طبّق على وردك</span></button><button type="button" aria-label="التلاوات" class="floating-card" data-space="audio"><span class="ico">🎧</span><span class="floating-title">التلاوات</span><span class="small">الحصري والحزم المتاحة</span></button>`);}}catch{}if(q('v62PackBtn'))q('v62PackBtn').onclick=()=>q('v62PackInput')?.click();if(q('v62PackInput'))q('v62PackInput').onchange=e=>e.target.files?.[0]&&packImport(e.target.files[0]);if(q('v62PackListBtn'))q('v62PackListBtn').onclick=()=>{const ks=Object.values(V.contentPacks||{});toast(ks.length?`محفوظة على الجهاز: ${ks.map(x=>x.title||x.id).join('، ')}`:'لا توجد حزم محلية بعد')};window.addEventListener('online',showNetwork);window.addEventListener('offline',showNetwork);window.renderV62=renderV62; window.__rafiqReleaseState={getAssets:()=>window.__rafiqAssets||[],refresh:()=>window.__rafiqRefresh?.(),download:(...a)=>window.__rafiqDownload?.(...a),open:(...a)=>window.__rafiqOpen?.(...a),isCached:(...a)=>window.__rafiqIsCached?.(...a),seriesAsset:(...a)=>window.__rafiqSeriesAsset?.(...a)};}
+  try{const fg=document.querySelector('#ocean .float-grid');if(fg&&!fg.querySelector('[data-space="tajweed"]')){fg.insertAdjacentHTML('beforeend',`<button type="button" aria-label="التجويد" class="floating-card" data-space="tajweed"><span class="ico">🎙️</span><span class="floating-title">التجويد</span><span class="small">تعلم ثم طبّق على وردك</span></button><button type="button" aria-label="التلاوات" class="floating-card" data-space="audio"><span class="ico">🎧</span><span class="floating-title">التلاوات</span><span class="small">الحصري والحزم المتاحة</span></button>`);}}catch{}if(q('v62PackBtn'))q('v62PackBtn').onclick=()=>q('v62PackInput')?.click();if(q('v62PackInput'))q('v62PackInput').onchange=e=>e.target.files?.[0]&&packImport(e.target.files[0]);if(q('v62PackListBtn'))q('v62PackListBtn').onclick=()=>{const ks=Object.values(V.contentPacks||{});toast(ks.length?`محفوظة على الجهاز: ${ks.map(x=>x.title||x.id).join('، ')}`:'لا توجد حزم محلية بعد')};window.addEventListener('online',showNetwork);window.addEventListener('offline',showNetwork);window.renderV62=renderV62; window.__rafiqReleaseState={getAssets:()=>assets,refresh:loadAssets,download,open:openBook,isCached};}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
 </script>
@@ -2400,84 +2404,7 @@ init();
 <iframe id="v64PdfFrame" loading="lazy" title="قارئ الكتاب"></iframe>
 </div>
 </div>
-<script>window.__RAFIQ_CONTENT_META=[{"category":"system","name":"quran-uthmani.json","size":1556453,"archive":"01-QURAN(5).rar","title":"المصحف العثماني — نص القرآن","seriesTitle":"القرآن"},{"category":"quran","name":"5769.pdf","size":3739736,"archive":"01-QURAN(6).rar","title":"السراج في بيان غريب القرآن — معاني الكلمات","seriesTitle":"القرآن"},{"category":"seerah","name":"asnz.pdf","size":7779833,"archive":"01-QURAN(6).rar","title":"أسد الغابة في معرفة الصحابة","seriesTitle":"السيرة"},{"category":"tafsir","name":"التفسير الميسر_73731_Foulabook.com_.pdf","size":24890541,"archive":"01-QURAN(6).rar","title":"التفسير الميسر","seriesTitle":"التفسير وعلوم القرآن"},{"category":"quran","name":"القرآن تدبر وعمل كاملا.pdf","size":52637057,"archive":"01-QURAN(6).rar","title":"القرآن تدبر وعمل","seriesTitle":"القرآن"},{"category":"tafsir","name":"كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf","size":8090011,"archive":"01-QURAN(6).rar","title":"مباحث في علوم القرآن — مناع القطان","seriesTitle":"التفسير وعلوم القرآن"},{"category":"muamalat","name":"01_57052.pdf","size":7889435,"archive":"02-BASIC-DIN(1).rar","title":"القواعد الأصولية للمعاملات المالية المعاصرة","seriesTitle":"العلم الشرعي"},{"category":"fiqh","name":"الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf","size":7245818,"archive":"02-BASIC-DIN(1).rar","title":"الفقه الميسر في ضوء الكتاب والسنة","seriesTitle":"العلم الشرعي"},{"category":"muamalat","name":"فقه المعاملات المالية المعاصرة.pdf","size":4391705,"archive":"02-BASIC-DIN(1).rar","title":"فقه المعاملات المالية المعاصرة","seriesTitle":"العلم الشرعي"},{"category":"basic-foundation","name":"ما_لا_يسع_المسلم_جهله.pdf","size":5427007,"archive":"02-BASIC-DIN(1).rar","title":"ما لا يسع المسلم جهله","seriesTitle":"العلم الشرعي"},{"category":"hadith","name":"الأدب المفرد للإمام البخاري.pdf","size":215180747,"archive":"03-HADITH(1).rar","title":"الأدب المفرد — الإمام البخاري","seriesTitle":"الحديث"},{"category":"hadith","name":"الأربعين النووية.pdf","size":4987848,"archive":"03-HADITH(1).rar","title":"الأربعون النووية","seriesTitle":"الحديث"},{"category":"hadith","name":"تيسير مصطلح الحديث مكتبة الحرمين.pdf","size":119684355,"archive":"03-HADITH(1).rar","title":"تيسير مصطلح الحديث","seriesTitle":"الحديث"},{"category":"hadith","name":"رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf","size":29096112,"archive":"03-HADITH(1).rar","title":"رياض الصالحين — النووي","seriesTitle":"الحديث"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal.pdf","size":3335461,"archive":"06-TAJWEED(1).rar","title":"الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal1.pdf","size":497629,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 1","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal2.pdf","size":1066274,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 2","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal3.pdf","size":3982902,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 3","seriesTitle":"التجويد"},{"category":"tazkiyah","name":"madarej_1.pdf","size":9398568,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الأول","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_2.pdf","size":9542933,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثاني","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_3.pdf","size":8194983,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثالث","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_4.pdf","size":11165679,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الرابع","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_p.pdf","size":1680897,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — المقدمة","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"الداء والدواء - ت. أسامة العتيبي.pdf","size":21765797,"archive":"07-TAZKIYAH(1).rar","title":"الداء والدواء — تحقيق أسامة العتيبي","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصدين - ط الحجاز.pdf","size":29648193,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 1","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصين - ط الحجاز.pdf","size":39378866,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 2","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مدارج السالكين_Foulabook.com_.pdf","size":5708719,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — نسخة أخرى","seriesTitle":"التزكية"},{"category":"adab","name":"الشيخ محمد الغزالي خلق المسلم.pdf","size":5669376,"archive":"8-ADAB-LIFE(1).rar","title":"خلق المسلم — محمد الغزالي","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf","size":4557275,"archive":"8-ADAB-LIFE(1).rar","title":"بر الوالدين في ضوء الكتاب والسنة","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf","size":2718166,"archive":"8-ADAB-LIFE(1).rar","title":"جوامع الآداب في أخلاق الأنجاب — جمال الدين القاسمي","seriesTitle":"الآداب والحياة"},{"category":"optional","name":"lianak allah موقع جديد بدف.pdf","size":3782197,"archive":"9-OPTIONAL(1).rar","title":"لأنك الله","seriesTitle":"كتب للتوسع"},{"category":"optional","name":"عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf","size":13384110,"archive":"9-OPTIONAL(1).rar","title":"عقيدة المؤمن","seriesTitle":"كتب للتوسع"},{"category":"optional","name":"كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf","size":3062241,"archive":"9-OPTIONAL(1).rar","title":"كتاب التوحيد — محمد بن عبدالوهاب","seriesTitle":"كتب للتوسع"},{"category":"seerah","name":"sealed_nectar.pdf","title":"الرحيق المختوم","seriesTitle":"السيرة"},{"category":"seerah","name":"shs.pdf","title":"صور من حياة الصحابة","seriesTitle":"السيرة"},{"category":"seerah","name":"السيرة النبوية لإبن کثیر.pdf","title":"السيرة النبوية لابن كثير — المجلد الأول","seriesTitle":"السيرة"},{"category":"seerah","name":"قصص_الأنبياء_ابن_كثير.pdf","title":"قصص الأنبياء — ابن كثير","seriesTitle":"السيرة"},{"category":"audio","name":"Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar","title":"تلاوة الحصري — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"MINSHAWY.1.rar","title":"تلاوة المنشاوي — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"FARES-ABBAD.rar","title":"تلاوة فارس عباد — الحزمة المتاحة","seriesTitle":"التلاوات"}];</script>
-<script id="rafiq-content-engine-v88">
-(function(){
-'use strict';
-const q=id=>document.getElementById(id);
-const esc=s=>{const d=document.createElement('div');d.textContent=s??'';return d.innerHTML};
-const RELEASE='https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/download/content-v1/';
-const items=(window.__RAFIQ_CONTENT_META||[]).map((x,i)=>({
-  ...x,
-  id:'content-'+i,
-  title:x.title||x.name,
-  section:(x.seriesTitle==='العلم الشرعي'||x.seriesTitle==='ما لا يسع المسلم جهله'||x.seriesTitle==='الفقه الميسر'||x.seriesTitle==='فقه المعاملات'||x.seriesTitle==='القواعد الأصولية للمعاملات المالية المعاصرة')?'العلم الشرعي':
-         x.seriesTitle==='القرآن'?'القرآن':x.seriesTitle==='السيرة'?'السيرة':x.seriesTitle==='الحديث'?'الحديث':
-         x.seriesTitle==='التجويد'?'التجويد':x.seriesTitle==='التزكية'?'التزكية':x.seriesTitle==='الآداب والحياة'?'الآداب والحياة':
-         x.seriesTitle==='كتب للتوسع'?'كتب للتوسع':x.seriesTitle==='التلاوات'?'التلاوات':x.category==='system'?'القرآن':'القرآن'
-}));
-// Only expose recitation packages that were confirmed available by the user: Husary.
-const visibleItems=items.filter(x=>x.category!=='audio' || /hosary|الحصري|Mahmoud_Al-Hosary/i.test(x.name||''));
-const byTitle=t=>visibleItems.find(x=>x.title===t||x.name===t);
-const directUrl=a=>a?RELEASE+encodeURIComponent(a.name):'';
-const size=n=>{n=Number(n||0);if(!n)return '';if(n>=1073741824)return (n/1073741824).toFixed(1)+' GB';return (n/1048576).toFixed(n>=104857600?0:1)+' MB'};
-const isAudio=a=>a.section==='التلاوات' || /\.(rar|zip|7z|mp3|m4a|ogg|wav)$/i.test(a.name||'');
-const title=a=>a.title||a.name;
-const track=a=>a.seriesTitle||a.title;
-const seriesMap={
- 'mlaysam':'ما لا يسع المسلم جهله',
- 'fiqh':'الفقه الميسر في ضوء الكتاب والسنة',
- 'muamalat':'فقه المعاملات المالية المعاصرة',
- 'usulmuamalat':'القواعد الأصولية للمعاملات المالية المعاصرة',
- 'hadith':'الحديث', 'seerah':'السيرة', 'tafsir':'التفسير وعلوم القرآن', 'tajweed':'التجويد', 'tazkiyah':'التزكية', 'adab':'الآداب والحياة'
-};
-function assetForTrack(id){const t=seriesMap[id]||id;if(t==='الفقه الميسر في ضوء الكتاب والسنة')return byTitle(t);if(t==='ما لا يسع المسلم جهله')return byTitle(t);if(t==='فقه المعاملات المالية المعاصرة')return byTitle(t);if(t==='القواعد الأصولية للمعاملات المالية المعاصرة')return byTitle(t);return null}
-function cacheName(a){return 'rafiq-content-v88-'+a.id}
-async function isCached(a){try{return !!(await caches.match(directUrl(a)))}catch{return false}}
-async function saveToDevice(a){
-  const url=directUrl(a); if(!url)return false;
-  try{const res=await fetch(url,{mode:'cors',cache:'no-store'});if(!res.ok)throw new Error(String(res.status));const c=await caches.open(cacheName(a));await c.put(url,res.clone());toast('تم حفظ '+title(a)+' على الجهاز ✅');return true}catch(e){toast('تعذر الحفظ التلقائي؛ استخدم «تنزيل الكتاب» لتنزيله مباشرة.');return false}
-}
-function openDirect(a){const url=directUrl(a);if(url)window.open(url,'_blank','noopener');}
-function groupsForSection(sec){return visibleItems.filter(a=>a.section===sec && a.category!=='system')}
-function actions(a){const url=directUrl(a),audio=isAudio(a),label=audio?'تنزيل التلاوة':'تنزيل الكتاب';return `<div class="v70-actions"><a class="action info" href="${esc(url)}" target="_blank" rel="noopener">⬇️ ${label}</a><a class="action" href="${esc(url)}" target="_blank" rel="noopener">${audio?'🎧 تشغيل الحزمة':'📖 فتح الكتاب'}</a><button type="button" class="action success" data-save-content="${esc(a.id)}">💾 حفظ أوفلاين</button></div>`}
-function card(a){return `<article class="v66-asset" data-asset-id="${esc(a.id)}"><div class="v66-tag">${isAudio(a)?'🎧 تلاوة':'📖 كتاب'}</div><h4>${esc(title(a))}</h4><div class="v69-order">${esc(track(a)||'')}</div><div class="v66-meta"><span>${isAudio(a)?'حزمة صوتية':'كتاب كامل'}</span>${size(a.size)?`<span>${size(a.size)}</span>`:''}</div>${actions(a)}</article>`}
-function linkedItems(spaceKey){
- let arr=[];
- if(spaceKey==='knowledge')arr=['ما لا يسع المسلم جهله','الفقه الميسر في ضوء الكتاب والسنة','فقه المعاملات المالية المعاصرة','القواعد الأصولية للمعاملات المالية المعاصرة'].map(byTitle).filter(Boolean);
- else if(spaceKey==='prophets')arr=groupsForSection('السيرة');
- else if(spaceKey==='tafsir'||spaceKey==='asbab')arr=visibleItems.filter(a=>['التفسير الميسر','مباحث في علوم القرآن — مناع القطان'].includes(title(a)));
- else if(spaceKey==='words')arr=[byTitle('السراج في بيان غريب القرآن — معاني الكلمات')].filter(Boolean);
- else if(spaceKey==='practice')arr=[byTitle('القرآن تدبر وعمل')].filter(Boolean);
- else if(spaceKey==='tajweed')arr=groupsForSection('التجويد');
- else if(spaceKey==='tazkiyah')arr=groupsForSection('التزكية');
- else if(spaceKey==='adab')arr=groupsForSection('الآداب والحياة');
- else if(spaceKey==='resources')arr=groupsForSection('كتب للتوسع');
- else if(spaceKey==='audio')arr=groupsForSection('التلاوات');
- return arr;
-}
-function renderLinkedContent(spaceKey){
- const host=q('zadContentSources');if(!host)return;
- const arr=linkedItems(spaceKey);
- const labels={knowledge:'العلم الشرعي',prophets:'السيرة والأنبياء والصحابة',tafsir:'التفسير وعلوم القرآن',asbab:'أسباب النزول ومصادرها',words:'معاني الكلمات',practice:'العمل بالقرآن',tajweed:'التجويد',tazkiyah:'التزكية',adab:'الآداب والحياة',resources:'كتب للتوسع',audio:'التلاوات'};
- const intro=spaceKey==='knowledge'?'المسار الأساسي مرتب بالترتيب: ما لا يسع المسلم جهله، ثم الفقه الميسر، ثم المعاملات والتوسع.':'كل مصدر هنا مرتبط مباشرة بالباب الذي فتحته داخل زاد الحافظ.';
- host.innerHTML=`<section class="content-door-section"><div class="content-door-head"><div><div class="badge gold">📚 محتوى زاد الحافظ</div><h3>${esc(labels[spaceKey]||'المحتوى')}</h3><p>${esc(intro)}</p></div><span class="v69-pill">${arr.length} مصدر</span></div>${arr.length?`<div class="v70-release-grid">${arr.map(card).join('')}</div>`:'<div class="muted">لا يوجد مصدر مُسجّل لهذا الباب حتى الآن.</div>'}</section>`;
- host.querySelectorAll('[data-save-content]').forEach(b=>b.onclick=()=>{const a=visibleItems.find(x=>x.id===b.dataset.saveContent);if(a)saveToDevice(a)});
-}
-function ensureHost(){if(q('zadContentSources'))return;const article=q('spaceContent');if(!article)return;const h=document.createElement('div');h.id='zadContentSources';h.className='zad-content-sources';article.appendChild(h)}
-function setup(){
- ensureHost();
- window.__rafiqAssets=visibleItems;
- window.__rafiqSeriesAsset=assetForTrack;
- window.__rafiqReleaseState={getAssets:()=>visibleItems,seriesAsset:assetForTrack,refresh:()=>renderLinkedContent(window.__rafiqCurrentSpaceKey||'knowledge'),download:(id)=>{const a=visibleItems.find(x=>x.id===id);if(a)openDirect(a)},open:(id)=>{const a=visibleItems.find(x=>x.id===id);if(a)openDirect(a)},isCached};
- window.__rafiqOpen=openDirect;window.__rafiqIsCached=isCached;window.__rafiqDownload=(a)=>openDirect(a);window.__rafiqRefresh=()=>renderLinkedContent(window.__rafiqCurrentSpaceKey||'knowledge');
- window.rafiqRelease={assets:()=>visibleItems,seriesAsset:assetForTrack,open:id=>{const a=visibleItems.find(x=>x.id===id);if(a)openDirect(a)},download:id=>{const a=visibleItems.find(x=>x.id===id);if(a)openDirect(a)},isCached};
- window.__rafiqRenderReleaseForSpace=renderLinkedContent;
- document.addEventListener('click',ev=>{const b=ev.target.closest('[data-save-content]');if(!b)return;const a=visibleItems.find(x=>x.id===b.dataset.saveContent);if(a)saveToDevice(a)},true);
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
-})();
-</script>
+<script>window.__RAFIQ_CONTENT_META=[{"category":"quran","name":"quran-uthmani.json","size":1556453,"archive":"01-QURAN(5).rar","title":"المصحف العثماني — نص القرآن","seriesTitle":"القرآن"},{"category":"tafsir","name":"5769.pdf","size":3739736,"archive":"01-QURAN(6).rar","title":"السراج في بيان غريب القرآن — معاني الكلمات","seriesTitle":"القرآن"},{"category":"seerah","name":"asnz.pdf","size":7779833,"archive":"01-QURAN(6).rar","title":"أسد الغابة في معرفة الصحابة","seriesTitle":"السيرة"},{"category":"tafsir","name":"التفسير الميسر_73731_Foulabook.com_.pdf","size":24890541,"archive":"01-QURAN(6).rar","title":"التفسير الميسر","seriesTitle":"القرآن"},{"category":"quran","name":"القرآن تدبر وعمل كاملا.pdf","size":52637057,"archive":"01-QURAN(6).rar","title":"القرآن تدبر وعمل","seriesTitle":"القرآن"},{"category":"tafsir","name":"كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf","size":8090011,"archive":"01-QURAN(6).rar","title":"مباحث في علوم القرآن — مناع القطان","seriesTitle":"القرآن"},{"category":"basic","name":"01_57052.pdf","size":7889435,"archive":"02-BASIC-DIN(1).rar","title":"القواعد الأصولية للمعاملات المالية المعاصرة","seriesTitle":"فقه المعاملات"},{"category":"basic","name":"الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf","size":7245818,"archive":"02-BASIC-DIN(1).rar","title":"الفقه الميسر في ضوء الكتاب والسنة","seriesTitle":"الفقه الميسر"},{"category":"basic","name":"فقه المعاملات المالية المعاصرة.pdf","size":4391705,"archive":"02-BASIC-DIN(1).rar","title":"فقه المعاملات المالية المعاصرة","seriesTitle":"فقه المعاملات"},{"category":"basic","name":"ما_لا_يسع_المسلم_جهله.pdf","size":5427007,"archive":"02-BASIC-DIN(1).rar","title":"ما لا يسع المسلم جهله","seriesTitle":"ما لا يسع المسلم جهله"},{"category":"hadith","name":"الأدب المفرد للإمام البخاري.pdf","size":215180747,"archive":"03-HADITH(1).rar","title":"الأدب المفرد — الإمام البخاري","seriesTitle":"الحديث"},{"category":"hadith","name":"الأربعين النووية.pdf","size":4987848,"archive":"03-HADITH(1).rar","title":"الأربعون النووية","seriesTitle":"الحديث"},{"category":"hadith","name":"تيسير مصطلح الحديث مكتبة الحرمين.pdf","size":119684355,"archive":"03-HADITH(1).rar","title":"تيسير مصطلح الحديث","seriesTitle":"الحديث"},{"category":"hadith","name":"رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf","size":29096112,"archive":"03-HADITH(1).rar","title":"رياض الصالحين — النووي","seriesTitle":"الحديث"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal.pdf","size":3335461,"archive":"06-TAJWEED(1).rar","title":"الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal1.pdf","size":497629,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 1","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal2.pdf","size":1066274,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 2","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal3.pdf","size":3982902,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 3","seriesTitle":"التجويد"},{"category":"tazkiyah","name":"madarej_1.pdf","size":9398568,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الأول","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_2.pdf","size":9542933,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثاني","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_3.pdf","size":8194983,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثالث","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_4.pdf","size":11165679,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الرابع","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_p.pdf","size":1680897,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — المقدمة","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"الداء والدواء - ت. أسامة العتيبي.pdf","size":21765797,"archive":"07-TAZKIYAH(1).rar","title":"الداء والدواء — تحقيق أسامة العتيبي","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصدين - ط الحجاز.pdf","size":29648193,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 1","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصين - ط الحجاز.pdf","size":39378866,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 2","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مدارج السالكين_Foulabook.com_.pdf","size":5708719,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — نسخة أخرى","seriesTitle":"التزكية"},{"category":"adab","name":"الشيخ محمد الغزالي خلق المسلم.pdf","size":5669376,"archive":"8-ADAB-LIFE(1).rar","title":"خلق المسلم — محمد الغزالي","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf","size":4557275,"archive":"8-ADAB-LIFE(1).rar","title":"بر الوالدين في ضوء الكتاب والسنة","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf","size":2718166,"archive":"8-ADAB-LIFE(1).rar","title":"جوامع الآداب في أخلاق الأنجاب — جمال الدين القاسمي","seriesTitle":"الآداب والحياة"},{"category":"optional","name":"lianak allah موقع جديد بدف.pdf","size":3782197,"archive":"9-OPTIONAL(1).rar","title":"لأنك الله","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf","size":13384110,"archive":"9-OPTIONAL(1).rar","title":"عقيدة المؤمن","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf","size":3062241,"archive":"9-OPTIONAL(1).rar","title":"كتاب التوحيد — محمد بن عبدالوهاب","seriesTitle":"كتب مفيدة"},{"category":"seerah","name":"sealed_nectar.pdf","title":"الرحيق المختوم","seriesTitle":"السيرة"},{"category":"seerah","name":"shs.pdf","title":"صور من حياة الصحابة","seriesTitle":"السيرة"},{"category":"seerah","name":"السيرة النبوية لإبن کثیر.pdf","title":"السيرة النبوية لابن كثير — المجلد الأول","seriesTitle":"السيرة"},{"category":"seerah","name":"قصص_الأنبياء_ابن_كثير.pdf","title":"قصص الأنبياء — ابن كثير","seriesTitle":"السيرة"},{"category":"audio","name":"Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar","title":"تلاوة الحصري — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"MINSHAWY.1.rar","title":"تلاوة المنشاوي — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"FARES-ABBAD.rar","title":"تلاوة فارس عباد — الحزمة المتاحة","seriesTitle":"التلاوات"}];</script>
 <script id="rafiq-v71-audit-fixes">
 (function(){
 'use strict';
@@ -2534,18 +2461,124 @@ window.openFocus=openFocus;
 window.renderExplore=renderExplore;
 })();
 </script>
-<script id="rafiq-v88-boot-guard">
+<script id="rafiq-content-engine-v89">
 (function(){
 'use strict';
-function boot(){
-  document.querySelectorAll('.nav-item').forEach(btn=>{btn.type='button';btn.onclick=()=>{if(typeof switchView==='function')switchView(btn.dataset.view)}});
-  if(typeof switchView==='function'){
-    const active=document.querySelector('.view.active')?.id||'home';
-    document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===active));
-  }
-  if(window.__rafiqRenderReleaseForSpace && window.__rafiqCurrentSpaceKey)window.__rafiqRenderReleaseForSpace(window.__rafiqCurrentSpaceKey);
+const q=id=>document.getElementById(id);
+const esc=s=>{const d=document.createElement('div');d.textContent=s??'';return d.innerHTML};
+const RELEASE_BASE='https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/download/content-v1/';
+const RELEASE_API='https://api.github.com/repos/mustafahossameldin66-dotcom/Test-Rafiq/releases/tags/content-v1';
+const CONTENT_CACHE='rafiq-books-content-v89';
+const READER_ID='v64Reader';
+const META=Array.isArray(window.__RAFIQ_CONTENT_META)?window.__RAFIQ_CONTENT_META:[];
+const SPACE={
+  knowledge:{label:'العلم الشرعي',filter:x=>['ما لا يسع المسلم جهله','الفقه الميسر في ضوء الكتاب والسنة','فقه المعاملات المالية المعاصرة','القواعد الأصولية للمعاملات المالية المعاصرة'].includes(x.title)},
+  prophets:{label:'السيرة والأنبياء والصحابة',filter:x=>x.seriesTitle==='السيرة'},
+  tafsir:{label:'التفسير وعلوم القرآن',filter:x=>x.title==='التفسير الميسر'||x.title==='مباحث في علوم القرآن — مناع القطان'},
+  asbab:{label:'أسباب النزول ومصادرها',filter:x=>x.title==='التفسير الميسر'||x.title==='مباحث في علوم القرآن — مناع القطان'},
+  words:{label:'معاني الكلمات',filter:x=>x.title==='السراج في بيان غريب القرآن — معاني الكلمات'},
+  practice:{label:'العمل بالقرآن',filter:x=>x.title==='القرآن تدبر وعمل'},
+  tajweed:{label:'التجويد',filter:x=>x.seriesTitle==='التجويد'},
+  tazkiyah:{label:'التزكية',filter:x=>x.seriesTitle==='التزكية'},
+  adab:{label:'الآداب والحياة',filter:x=>x.seriesTitle==='الآداب والحياة'},
+  resources:{label:'كتب للتوسع',filter:x=>x.seriesTitle==='كتب للتوسع'},
+  audio:{label:'التلاوات',filter:x=>x.category==='audio'&&/الحصري|hosary|Mahmoud_Al-Hosary/i.test(x.name||'')}
+};
+const current={};
+function norm(v){return String(v||'').normalize('NFC').trim();}
+function staticCatalog(){return META.filter(x=>x&&x.category!=='system').map((x,i)=>({
+  id:'m-'+i,name:norm(x.name||''),title:norm(x.title||x.name||''),size:Number(x.size||0),category:x.category||'',seriesTitle:norm(x.seriesTitle||''),static:true
+}));}
+let catalog=staticCatalog();
+let liveNames=null;
+function directUrl(a){return RELEASE_BASE+encodeURIComponent(a.name);}
+function humanSize(n){n=Number(n||0);if(!n)return '';if(n>=1073741824)return (n/1073741824).toFixed(1)+' GB';return (n/1048576).toFixed(n>=104857600?0:1)+' MB';}
+function isAudio(a){return a.category==='audio'||/\.(rar|zip|7z|mp3|m4a|ogg|wav)$/i.test(a.name||'');}
+function isPdf(a){return /\.pdf$/i.test(a.name||'');}
+function visible(){return catalog.filter(a=>{
+  if(a.category==='system')return false;
+  if(a.category==='audio')return /الحصري|hosary|Mahmoud_Al-Hosary/i.test(a.name||'');
+  return true;
+});}
+function mergeLive(items){
+  const map=new Map((items||[]).map(x=>[norm(x.name),x]));
+  catalog=catalog.map(a=>{const live=map.get(a.name);return live?{...a,...live,static:false,title:a.title||live.name}:a;});
+  window.__rafiqAssets=visible();
+  window.dispatchEvent(new CustomEvent('rafiq:release-updated'));
 }
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+async function discoverRelease(){
+  try{
+    const r=await fetch(RELEASE_API,{headers:{Accept:'application/vnd.github+json'},cache:'no-store'});
+    if(!r.ok)throw new Error('release '+r.status);
+    const data=await r.json();
+    mergeLive(data.assets||[]);
+    return true;
+  }catch(e){
+    window.__rafiqAssets=visible();
+    return false;
+  }
+}
+async function cache(){return caches.open(CONTENT_CACHE)}
+async function cached(a){try{const c=await cache();return !!(await c.match(directUrl(a)))}catch{return false}}
+async function getCached(a){try{const c=await cache();return await c.match(directUrl(a))}catch{return null}}
+async function saveOffline(a){
+  const url=directUrl(a);
+  try{
+    toast('جارٍ حفظ '+a.title+' على الجهاز…');
+    const r=await fetch(url,{mode:'cors',cache:'no-store'});
+    if(!r.ok)throw new Error(String(r.status));
+    const c=await cache();
+    await c.put(url,r.clone());
+    toast('تم حفظ '+a.title+' للعمل دون اتصال ✅');
+    renderCurrent();
+    return true;
+  }catch(e){toast('تعذر حفظ الملف تلقائيًا. استخدم تنزيل مباشر.');return false;}
+}
+function nativeDownload(a){
+  const url=directUrl(a);
+  const el=document.createElement('a');
+  el.href=url;el.target='_blank';el.rel='noopener';el.download=a.name;el.click();
+}
+function openReader(a){
+  if(!isPdf(a)){nativeDownload(a);return;}
+  const reader=q(READER_ID),frame=q('v64PdfFrame'),titleEl=q('v64ReaderTitle'),sub=q('v64ReaderSub');
+  if(!reader||!frame){window.open(directUrl(a),'_blank','noopener');return;}
+  titleEl.textContent=a.title||a.name;sub.textContent=humanSize(a.size)+(isAudio(a)?' — حزمة صوتية':'');
+  frame.src=directUrl(a);
+  reader.setAttribute('aria-hidden','false');reader.style.display='flex';
+}
+function closeReader(){const r=q(READER_ID),f=q('v64PdfFrame');if(r)r.style.display='none';if(f)f.src='about:blank';}
+function actions(a){
+  const cachedFlag='';
+  if(isAudio(a)) return `<div class="v70-actions"><button type="button" class="action info" data-download-id="${esc(a.id)}">⬇️ تنزيل التلاوة</button><span class="v69-pill">الحزمة الصوتية للحصري</span></div>`;
+  return `<div class="v70-actions"><button type="button" class="action" data-open-id="${esc(a.id)}">📖 قراءة الكتاب</button><button type="button" class="action info" data-download-id="${esc(a.id)}">⬇️ تنزيل الكتاب</button><button type="button" class="action success" data-save-id="${esc(a.id)}">💾 حفظ أوفلاين</button></div>`;
+}
+function card(a){return `<article class="v70-release-item" data-asset-id="${esc(a.id)}"><div class="v66-tag">${isAudio(a)?'🎧 تلاوة':'📖 كتاب'}</div><h4>${esc(a.title)}</h4><div class="v62-muted" style="font-weight:700;color:var(--gold2)">${esc(a.seriesTitle||'')}</div><div class="v66-meta" style="margin-top:8px"><span>${isAudio(a)?'حزمة صوتية':'كتاب كامل'}</span>${humanSize(a.size)?`<span>${humanSize(a.size)}</span>`:''}</div>${actions(a)}<div class="v62-muted content-availability" data-status-for="${esc(a.id)}">${a.static?'المصدر مُسجّل في زاد الحافظ — التنزيل من حزمة المحتوى المنشورة.':'المصدر متاح الآن من الحزمة المنشورة.'}</div></article>`}
+function itemsFor(space){const s=SPACE[space]||SPACE.knowledge;return visible().filter(s.filter)}
+function renderLinkedContent(space){
+  const article=q('spaceContent');if(!article)return;
+  let host=q('zadContentSources');
+  if(!host){host=document.createElement('div');host.id='zadContentSources';host.className='zad-content-sources';const shell=article.querySelector('.archive-shell');(shell? shell.parentElement:article).insertBefore(host,shell||article.firstChild);}
+  const items=itemsFor(space),meta=SPACE[space]||SPACE.knowledge;
+  const intro=space==='knowledge'?'المسار يبدأ بما لا يسع المسلم جهله، ثم الفقه الميسر، ثم فقه المعاملات والتوسع.':'كل مصدر هنا مرتبط مباشرة بالباب الذي فتحته داخل زاد الحافظ.';
+  host.innerHTML=`<section class="content-door-section"><div class="content-door-head"><div><div class="badge gold">📚 محتوى زاد الحافظ</div><h3>${esc(meta.label)}</h3><p>${esc(intro)}</p></div><span class="v69-pill">${items.length} مصدر</span></div>${space==='knowledge'?'<div class="curriculum-sequence"><span>١. ما لا يسع المسلم جهله</span><i>→</i><span>٢. الفقه الميسر</span><i>→</i><span>٣. فقه المعاملات والتوسع</span></div>':''}<div class="v70-release-grid">${items.map(card).join('')}</div></section>`;
+  host.querySelectorAll('[data-open-id]').forEach(b=>b.addEventListener('click',()=>{const a=catalog.find(x=>x.id===b.dataset.openId);if(a)openReader(a);}));
+  host.querySelectorAll('[data-download-id]').forEach(b=>b.addEventListener('click',()=>{const a=catalog.find(x=>x.id===b.dataset.downloadId);if(a)nativeDownload(a);}));
+  host.querySelectorAll('[data-save-id]').forEach(b=>b.addEventListener('click',()=>{const a=catalog.find(x=>x.id===b.dataset.saveId);if(a)saveOffline(a);}));
+}
+function renderCurrent(){if(window.__rafiqCurrentSpaceKey)renderLinkedContent(window.__rafiqCurrentSpaceKey)}
+function setup(){
+  window.__rafiqAssets=visible();
+  window.__rafiqReleaseState={getAssets:()=>visible(),seriesAsset:id=>{const t={mlaysam:'ما لا يسع المسلم جهله',fiqh:'الفقه الميسر في ضوء الكتاب والسنة',muamalat:'فقه المعاملات المالية المعاصرة',usulmuamalat:'القواعد الأصولية للمعاملات المالية المعاصرة'}[id]||id;return visible().find(x=>x.title===t)||null},refresh:()=>discoverRelease(),download:id=>{const a=catalog.find(x=>x.id===id);if(a)nativeDownload(a)},open:id=>{const a=catalog.find(x=>x.id===id);if(a)openReader(a)},isCached:id=>{const a=catalog.find(x=>x.id===id);return a?cached(a):Promise.resolve(false)}};
+  window.rafiqRelease={assets:()=>visible(),seriesAsset:id=>window.__rafiqReleaseState.seriesAsset(id),open:id=>window.__rafiqReleaseState.open(id),download:id=>window.__rafiqReleaseState.download(id),isCached:id=>window.__rafiqReleaseState.isCached(id)};
+  window.__rafiqRenderReleaseForSpace=renderLinkedContent;
+  const close=q('v64ReaderClose');if(close)close.onclick=closeReader;
+  const openNew=q('v64OpenNew');if(openNew)openNew.onclick=()=>{const f=q('v64PdfFrame');if(f?.src&&f.src!=='about:blank')window.open(f.src,'_blank','noopener')};
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeReader()});
+  discoverRelease();
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
 })();
-</script></body>
+</script>
+</body>
 </html>

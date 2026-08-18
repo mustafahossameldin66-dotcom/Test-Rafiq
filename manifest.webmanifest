@@ -1,12 +1,15 @@
 {
-  "name": "رفيق القرآن — زاد الحافظ",
+  "name": "رفيق القرآن",
   "short_name": "رفيق القرآن",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#07100b",
-  "theme_color": "#07100b",
+  "orientation": "any",
   "dir": "rtl",
   "lang": "ar",
+  "background_color": "#07100b",
+  "theme_color": "#07100b",
+  "description": "رفيق للحفظ والمراجعة والفهم والتزكية والعمل، مع محتوى قابل للتنزيل والاستخدام دون اتصال.",
   "icons": [
     {
       "src": "./icon-192.png",

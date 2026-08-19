@@ -1114,6 +1114,23 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 .v66-reader-note{margin-top:8px;font-size:12px;color:var(--muted)}
 @media(max-width:800px){.v66-release-grid{grid-template-columns:1fr}}
 </style>
+<style id="rafiq-v80-visible-library">
+.floating-card .floating-book{display:block;margin-top:6px;padding:5px 8px;border:1px solid rgba(212,175,55,.18);border-radius:10px;background:rgba(212,175,55,.055);color:#e6d99c;font-size:11px;line-height:1.45}
+.floating-card .floating-book b{color:var(--gold)}
+.v80-library-home{margin-top:18px;padding:18px;border-radius:26px;border:1px solid rgba(212,175,55,.18);background:linear-gradient(145deg,rgba(212,175,55,.065),rgba(255,255,255,.012));box-shadow:0 18px 50px rgba(0,0,0,.18)}
+.v80-library-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.v80-library-head h3{margin:0;color:var(--gold);font-size:24px}
+.v80-library-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:14px}
+.v80-book{padding:14px;border:1px solid var(--border);border-radius:18px;background:var(--surface3);min-height:145px;display:flex;flex-direction:column;gap:7px}
+.v80-book .k{display:inline-flex;align-self:flex-start;padding:4px 8px;border-radius:999px;border:1px solid rgba(212,175,55,.18);color:var(--gold);font-size:11px}
+.v80-book h4{margin:0;color:var(--text);font-size:15px;line-height:1.55}
+.v80-book .s{font-size:12px;color:var(--muted);line-height:1.55;flex:1}
+.v80-book .a{display:flex;gap:6px;flex-wrap:wrap}
+.v80-book .a button{font-size:12px;padding:8px 10px;border-radius:11px}
+.v80-books-note{margin-top:10px;color:var(--muted);font-size:12px}
+@media(max-width:950px){.v80-library-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.v80-library-grid{grid-template-columns:1fr}.v80-library-home{padding:14px}}
+</style>
 <style id="rafiq-v62-layer">
 /* RAFIQ V62 — Curriculum / Tadabbur & Amal / Offline content / personalization */
 .v62-nav-item{position:relative}.v62-nav-item::after{display:none}
@@ -1124,7 +1141,7 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 @media(max-width:560px){.v62-grid3,.v62-seq,.v62-packs,.v62-noise-grid{grid-template-columns:1fr}.v62-hero{padding:16px}.v62-card{padding:14px}}
 </style>
 <style id="rafiq-v69-content-css">
-#library,#v66ReleaseCard,#v69Doors{display:none!important}
+#v66ReleaseCard,#v69Doors{display:none!important}
 
 .v69-door-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:14px 0 18px}
 .v69-door{border:1px solid rgba(232,211,123,.18);background:rgba(0,0,0,.10);border-radius:18px;padding:12px;text-align:center;cursor:pointer;transition:.18s}
@@ -1257,19 +1274,29 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 <div class="ocean-status"><span class="dot-live"></span><span id="oceanStatusText">المشهد حي — الصوت اختياري</span></div>
 </div>
 <button aria-label="✦ استكشف اختيار شخصي حسب شعورك واحتياجك وشخصيتك ↗" class="zad-explore-portal" data-open-explore="true" type="button"><span class="portal-core"><span>✦</span></span><span class="portal-copy"><strong>استكشف</strong><small>اختيار شخصي حسب شعورك واحتياجك</small></span><span class="portal-arrow">↗</span></button><div class="float-grid">
-<button aria-label="الأذكار" class="floating-card" data-space="adhkar" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-beads"></use></svg></span><span class="floating-title">الأذكار</span><span class="small">الصباح والمساء، بعد الصلاة وقبل التلاوة</span></button>
-<button aria-label="التزكية" class="floating-card" data-space="tazkiyah" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-heart-leaf"></use></svg></span><span class="floating-title">التزكية</span><span class="small">الاستدراك، الإخلاص، الوقت، والعمل بالقرآن</span></button>
-<button aria-label="العلم" class="floating-card" data-space="knowledge" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-book"></use></svg></span><span class="floating-title">العلم</span><span class="small">ما لا يسع المسلم جهله والفقه الميسّر</span></button>
-<button aria-label="الدعاء" class="floating-card" data-space="duas" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-dua"></use></svg></span><span class="floating-title">الدعاء</span><span class="small">أدعية القرآن والأنبياء والمواسم</span></button>
-<button aria-label="الجمعة" class="floating-card" data-space="friday" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-mosque"></use></svg></span><span class="floating-title">الجمعة</span><span class="small">الكهف، الصلاة على النبي، ساعة الإجابة</span></button>
-<button aria-label="المواسم" class="floating-card" data-space="seasons" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-heart-leaf"></use></svg></span><span class="floating-title">المواسم</span><span class="small">رمضان، العشر، عرفة، ليلة القدر</span></button>
-<button aria-label="الأنبياء والصحابة" class="floating-card" data-space="prophets" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-scroll"></use></svg></span><span class="floating-title">الأنبياء والصحابة</span><span class="small">أسماء وملخصات موثقة</span></button>
-<button aria-label="كتب ومقاطع" class="floating-card" data-space="resources" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-video-book"></use></svg></span><span class="floating-title">كتب ومقاطع</span><span class="small">ترشيحات حسب شعورك واحتياجك وشخصيتك</span></button>
-<button aria-label="التفسير وعلوم الآية" class="floating-card" data-space="tafsir" type="button"><span class="ico">📖</span><span class="floating-title">التفسير</span><span class="small">التفسير الميسر، سياق الآية، مكي ومدني، وفوائد التدبر</span></button>
-<button aria-label="أسباب النزول" class="floating-card" data-space="asbab" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-scroll"></use></svg></span><span class="floating-title">أسباب النزول</span><span class="small">روايات موثقة فقط، مع التنبيه عند عدم ثبوت سبب خاص</span></button>
-<button aria-label="معاني الكلمات" class="floating-card" data-space="words" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-word"></use></svg></span><span class="floating-title">معاني الكلمات</span><span class="small">كلمة بكلمة مع سياقها، وليس مجرد ترجمة آلية</span></button>
-<button aria-label="العمل بالقرآن" class="floating-card" data-space="practice" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-work"></use></svg></span><span class="floating-title">العمل بالقرآن</span><span class="small">كيف تحوّل الآية المحفوظة إلى أثر وسلوك يومي</span></button>
+<button aria-label="الأذكار" class="floating-card" data-space="adhkar" data-book="رياض الصالحين" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-beads"></use></svg></span><span class="floating-title">الأذكار</span><span class="small">الصباح والمساء، بعد الصلاة وقبل التلاوة</span><span class="floating-book">📚 كتاب الباب: <b>رياض الصالحين</b></span></button>
+<button aria-label="التزكية" class="floating-card" data-space="tazkiyah" data-book="الداء والدواء — تحقيق أسامة العتيبي" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-heart-leaf"></use></svg></span><span class="floating-title">التزكية</span><span class="small">الاستدراك، الإخلاص، الوقت، والعمل بالقرآن</span><span class="floating-book">📚 كتاب الباب: <b>الداء والدواء</b></span></button>
+<button aria-label="العلم" class="floating-card" data-space="knowledge" data-book="ما لا يسع المسلم جهله" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-book"></use></svg></span><span class="floating-title">العلم</span><span class="small">ما لا يسع المسلم جهله والفقه الميسّر</span><span class="floating-book">📚 يبدأ بـ: <b>ما لا يسع المسلم جهله</b></span></button>
+<button aria-label="الدعاء" class="floating-card" data-space="duas" data-book="القرآن تدبر وعمل" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-dua"></use></svg></span><span class="floating-title">الدعاء</span><span class="small">أدعية القرآن والأنبياء والمواسم</span><span class="floating-book">📚 المصدر المرتبط: <b>القرآن تدبر وعمل</b></span></button>
+<button aria-label="الجمعة" class="floating-card" data-space="friday" data-book="رياض الصالحين" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-mosque"></use></svg></span><span class="floating-title">الجمعة</span><span class="small">الكهف، الصلاة على النبي، ساعة الإجابة</span><span class="floating-book">📚 مصدر الحديث: <b>رياض الصالحين</b></span></button>
+<button aria-label="المواسم" class="floating-card" data-space="seasons" data-book="ما لا يسع المسلم جهله" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-heart-leaf"></use></svg></span><span class="floating-title">المواسم</span><span class="small">رمضان، العشر، عرفة، ليلة القدر</span><span class="floating-book">📚 للتأسيس: <b>ما لا يسع المسلم جهله</b></span></button>
+<button aria-label="الأنبياء والصحابة" class="floating-card" data-space="prophets" data-book="قصص الأنبياء — ابن كثير" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-scroll"></use></svg></span><span class="floating-title">الأنبياء والصحابة</span><span class="small">أسماء وملخصات موثقة</span><span class="floating-book">📚 الكتاب الأساسي: <b>قصص الأنبياء — ابن كثير</b></span></button>
+<button aria-label="كتب ومقاطع" class="floating-card" data-space="resources" data-book="لأنك الله" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-video-book"></use></svg></span><span class="floating-title">كتب ومقاطع</span><span class="small">ترشيحات حسب شعورك واحتياجك وشخصيتك</span><span class="floating-book">📚 مثال كتاب: <b>لأنك الله</b></span></button>
+<button aria-label="التفسير وعلوم الآية" class="floating-card" data-space="tafsir" data-book="التفسير الميسر" type="button"><span class="ico">📖</span><span class="floating-title">التفسير</span><span class="small">التفسير الميسر، سياق الآية، مكي ومدني، وفوائد التدبر</span><span class="floating-book">📚 الكتاب: <b>التفسير الميسر</b></span></button>
+<button aria-label="أسباب النزول" class="floating-card" data-space="asbab" data-book="أسباب النزول — الواحدي" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-scroll"></use></svg></span><span class="floating-title">أسباب النزول</span><span class="small">روايات موثقة مع إسنادها إلى المصدر</span><span class="floating-book">📚 الكتاب: <b>أسباب النزول — الواحدي</b></span></button>
+<button aria-label="معاني الكلمات" class="floating-card" data-space="words" data-book="السراج في بيان غريب القرآن — معاني الكلمات" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-word"></use></svg></span><span class="floating-title">معاني الكلمات</span><span class="small">كلمة بكلمة مع سياقها</span><span class="floating-book">📚 الكتاب: <b>السراج في بيان غريب القرآن</b></span></button>
+<button aria-label="العمل بالقرآن" class="floating-card" data-space="practice" data-book="القرآن تدبر وعمل" type="button"><span class="ico"><svg class="portal-svg"><use href="#i-work"></use></svg></span><span class="floating-title">العمل بالقرآن</span><span class="small">كيف تحوّل الآية إلى أثر وسلوك يومي</span><span class="floating-book">📚 الكتاب: <b>القرآن تدبر وعمل</b></span></button>
+<button aria-label="التجويد" class="floating-card" data-space="tajweed" data-book="الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال" type="button"><span class="ico">🎙️</span><span class="floating-title">التجويد</span><span class="small">تعلم ثم طبّق على وردك</span><span class="floating-book">📚 الكتاب: <b>تحفة الأطفال والجزرية</b></span></button>
+<button aria-label="التلاوات" class="floating-card" data-space="audio" data-book="تلاوة الحصري — الحزمة المتاحة" type="button"><span class="ico">🎧</span><span class="floating-title">التلاوات</span><span class="small">الحصري والمنشاوي وفارس عباد</span><span class="floating-book">🎧 الحزمة الأساسية: <b>الحصري</b></span></button>
 </div>
+<div class="v80-library-home" id="v80HomeLibrary">
+  <div class="v80-library-head">
+    <div><div class="badge gold">📚 مكتبة رفيق</div><h3>الكتاب الحقيقي وراء كل باب</h3><div class="muted">مش دوائر شكلية: كل باب له مصدر فعلي من الكتب التي رفعتها، وتستطيع فتحه أو تنزيله من داخل الموقع.</div></div>
+    <button class="main" type="button" id="v80OpenLibrary">📚 افتح المكتبة كاملة</button>
+  </div>
+  <div class="v80-library-grid" id="v80HomeLibraryGrid"></div>
+  <div class="v80-books-note">المصادر تُفتح من فهرس المحتوى المنشور. الحزمة العلمية الأصلية تشمل كتب الفقه، الحديث، السيرة، التفسير، التجويد، التزكية، والآداب. </div>
+</div></div>
 </div><div class="space-view" id="spaceView">
 <div class="space-topbar">
 <span class="space-kicker">🌌 دخلت الآن إلى مساحة التفاصيل</span>
@@ -1315,7 +1342,7 @@ const ASBAB_BOOK_TITLE='أسباب النزول — الواحدي';
 const ASBAB_BOOK_FILE='asnz.pdf';
 const GITHUB_REPO='mustafahossameldin66-dotcom/Test-Rafiq';
 const GITHUB_RELEASE_TAG='content-v1';
-const githubAssetFallback=name=>GITHUB_LATEST_ASSET(name);
+const githubAssetFallback=name=>`https://github.com/${GITHUB_REPO}/releases/download/${GITHUB_RELEASE_TAG}/${encodeURIComponent(name)}`;
 function asbabBookUrl(){const a=assets.find(x=>x.catalog?.name===ASBAB_BOOK_FILE || x.name===ASBAB_BOOK_FILE);return directUrl(a,false)||githubAssetFallback(ASBAB_BOOK_FILE);}
 const wordMeanings={'2:286':'يكلّف: يحمّل التكليف — إصر: عهد/تكليف ثقيل — طاقة: قدرة — مولانا: ناصرنا وولينا','39:53':'أسرفوا: جاوزوا الحد — تقنطوا: تيأسوا — رحمة: فضل وإحسان','3:200':'اصبروا: الزموا الصبر — صابروا: غالبوا أعداءكم بالصبر — رابطوا: اثبتوا ولزموا الثغور — تفلحون: تفوزون وتنجحون','11:90':'استغفروا: اطلبوا المغفرة — توبوا: ارجعوا إلى الله — رحيم: كثير الرحمة — ودود: محب لعباده الصالحين'};
 const tazkiyah=[...reminders,'لا تجعل اللقب يسبق العلم والأخلاق؛ ما ينفع في الدنيا لا يغني عنك في القبر إن ضاع العمل.','الابتسامة والرفق وضبط اللسان أعمال صغيرة لكنها ثقيلة في الميزان.','لا تفْتِ في الدين بغير علم؛ تعلم ما لا يسع المسلم جهله واسأل أهل العلم.'];
@@ -1520,121 +1547,48 @@ function normalizeQuranPayload(j){
   if(!Array.isArray(arr)||!arr.length)return null;
   return arr.map((s,i)=>({s:Number(s.number||i+1),name:s.name||surahs[i]||`السورة ${i+1}`,type:s.revelationType==='Meccan'?'مكية':s.revelationType==='Medinan'?'مدنية':(s.type||'—'),count:Number(s.numberOfAyahs||s.ayahs?.length||0),verses:(s.ayahs||[]).map(a=>({a:Number(a.numberInSurah||a.ayah||0),global:Number(a.number||a.global_id||0),text:String(a.text||a.text_ar||'')}))})).filter(x=>x.verses.length);
 }
-async function fetchSurahFromKalamalah(s){
-  try{
-    const r=await fetch(`https://api.kalamalah.com/api/quran/ar/${s}`,{cache:'no-store'});
-    if(!r.ok) return null;
-    const j=await r.json();
-    const ayahs=Array.isArray(j?.ayahs)?j.ayahs:(Array.isArray(j?.data?.ayahs)?j.data.ayahs:(Array.isArray(j?.result)?j.result:[]));
-    if(!ayahs.length) return null;
-    const meta=j?.surah||j?.data?.surah||{};
-    return {s, name:meta.name||surahs[s-1]||`السورة ${s}`, type:meta.revelation_type==='Meccan'?'مكية':meta.revelation_type==='Medinan'?'مدنية':(meta.revelationType==='Meccan'?'مكية':meta.revelationType==='Medinan'?'مدنية':'—'), count:Number(meta.number_of_ayahs||meta.numberOfAyahs||ayahs.length), verses:ayahs.map(a=>({a:Number(a.numberInSurah||a.number||a.ayah||0),global:Number(a.number||a.global_id||0),text:String(a.text||a.text_ar||'')})).filter(v=>v.a&&v.text)};
-  }catch{return null}
-}
-async function ensureSurahLoaded(s){
-  if(!Array.isArray(quranBook)) quranBook=[];
-  const existing=quranBook.find(x=>x.s===s);
-  if(existing?.verses?.length) return existing;
-  const loaded=await fetchSurahFromKalamalah(s);
-  if(loaded){
-    const i=quranBook.findIndex(x=>x.s===s);
-    if(i>=0) quranBook[i]=loaded; else quranBook.push(loaded);
-    try{await quranDbPut(quranBook)}catch{}
-    return loaded;
-  }
-  return existing||null;
-}
 async function loadQuranBook(){
   if(quranBook)return quranBook;
   setMushafStatus('⏳ جاري تجهيز المصحف…',true);
   try{
     const r=await fetch(QURAN_BASE,{cache:'force-cache'});
-    if(r.ok){const raw=await r.json();const local=Array.isArray(raw)?raw:normalizeQuranPayload(raw)||raw;if(Array.isArray(local)&&local.length){quranBook=local;await quranDbPut(local);setMushafStatus('✓ المصحف متاح محليًا.',false);return quranBook}}
+    if(r.ok){const raw=await r.json();const local=Array.isArray(raw)?raw:normalizeQuranPayload(raw)||raw;if(Array.isArray(local)&&local.length){quranBook=local;await quranDbPut(local);setMushafStatus('',false);return quranBook}}
   }catch{}
   const cached=await quranDbGet();
   if(Array.isArray(cached)&&cached.length){quranBook=cached;setMushafStatus('✓ المصحف محفوظ محليًا — يعمل أوفلاين.',false);return quranBook}
-  // Do not block the whole mushaf on one large API request. Start with the surah index and lazy-load the chosen surah.
-  quranBook=surahs.map((name,i)=>({s:i+1,name,type:'—',count:0,verses:[]}));
-  const first=await ensureSurahLoaded(mushafSura||1);
-  setMushafStatus(first?'✓ اختر سورة؛ تُحمّل آياتها عند فتحها.':'⚠️ تعذر تحميل الآيات الآن؛ افتح التطبيق متصلًا بالإنترنت.',!first);
-  return quranBook;
+  if(navigator.onLine){
+    try{
+      setMushafStatus('🌐 لا يوجد ملف محلي؛ يتم تنزيل المصحف مرة واحدة ثم حفظه داخل الجهاز…',true);
+      const r=await fetch('https://api.alquran.cloud/v1/quran/quran-uthmani',{cache:'no-store'});
+      if(!r.ok)throw new Error('quran api');
+      const j=await r.json();const online=normalizeQuranPayload(j);
+      if(online?.length){quranBook=online;await quranDbPut(online);setMushafStatus('✓ تم تنزيل المصحف وحفظه محليًا. المرة القادمة سيعمل دون شبكة.',false);toast('تم تجهيز المصحف وحفظه للعمل أوفلاين ✅');return quranBook}
+    }catch{}
+  }
+  setMushafStatus('⚠️ المصحف غير متاح حاليًا. افتح التطبيق مرة متصلًا بالإنترنت ليتم تنزيله وحفظه تلقائيًا.',true);
+  return null;
 }
-
 function quranStorageKey(type,s,a){return `rq-${type}-${s}-${a}`}
 function loadCache(type,s,a){try{return localStorage.getItem(quranStorageKey(type,s,a))||''}catch{return ''}}
 function saveCache(type,s,a,text){try{localStorage.setItem(quranStorageKey(type,s,a),text)}catch{}}
 function tajweedRulesForText(text){const t=splitGraphemes(text),out=[];for(let i=0;i<t.length;i++){if(t[i].space||t[i].punct){out.push([]);continue}out.push(tajweedFor(t,i))}return {graphemes:t,rules:out}}
 function tajRuleDetail(r){return tajRules[r]||'حكم تجويدي يحتاج إلى ضبط الموضع وسياق الحرف، ويُفضّل سماعه من قارئ متقن.'}
 function mushafSurahButton(s){return `<button class="mushaf-surah-btn ${mushafSura===s.s?'active':''}" data-sura="${s.s}"><span class="mushaf-surah-num">${s.s}</span><span class="mushaf-surah-name">${esc(s.name)}</span><span class="mushaf-surah-meta">${s.type} • ${s.count}</span></button>`}
-async function renderMushafList(){
-  const b=await loadQuranBook(); if(!b)return;
-  const q=($('mushafSearch')?.value||'').trim();
-  const list=b.filter(s=>!q||s.name.includes(q)||String(s.s)===q);
-  $('mushafSurahList').innerHTML=list.map(mushafSurahButton).join('');
-  document.querySelectorAll('.mushaf-surah-btn').forEach(x=>x.onclick=async()=>{
-    mushafSura=+x.dataset.sura;
-    await renderMushafList();
-    await renderMushafSurah();
-    $('mushafMain')?.scrollIntoView({behavior:'smooth',block:'start'});
-  });
-}
-function studySourceLinks(s,a){
-  const bookUrl=GITHUB_LATEST_ASSET(ASBAB_BOOK_FILE);
-  return `<div class="source-badges"><a href="${bookUrl}" target="_blank" rel="noopener">📘 أسباب النزول — الواحدي</a><a href="https://quranpedia.net/book/242" target="_blank" rel="noopener">🔎 تصفح الكتاب</a><a href="https://tafsir.app/" target="_blank" rel="noopener">📚 موسوعة التفسير</a></div>`;
-}
-async function renderMushafSurah(){
-  if(!Array.isArray(quranBook)) return;
-  let s=await ensureSurahLoaded(mushafSura||1);
-  if(!s) { $('mushafVerses').innerHTML='<div class="v62-empty">تعذر تحميل السورة الآن. تأكد من الاتصال ثم أعد المحاولة.</div>'; return; }
-  mushafSelected=null;
-  $('mushafSurahTitle').textContent=s.name;
-  $('mushafSurahMeta').textContent=`${s.s} • ${s.type==='—'?'':s.type+' • '}${s.count||s.verses.length} آيات`;
-  $('mushafPrev').disabled=s.s===1; $('mushafNext').disabled=s.s===114;
-  if(!s.verses.length){$('mushafVerses').innerHTML='<div class="v62-empty">جارٍ تحميل الآيات…</div>'; s=await ensureSurahLoaded(mushafSura||1); if(!s?.verses?.length)return;}
-  $('mushafVerses').innerHTML=s.verses.map(v=>`<article class="mushaf-ayah" data-sura="${s.s}" data-ayah="${v.a}"><div class="mushaf-ayah-ref">${s.name} — الآية ${v.a} — رقمها في المصحف ${v.global||''}</div><div class="mushaf-ayah-text">${esc(v.text)}</div><div class="mushaf-ayah-actions"><button class="action info" data-study-ayah="${v.a}">🔍 دراسة الآية</button><button class="action" data-audio-ayah="${v.a}">🔊 استماع</button></div></article>`).join('');
-  document.querySelectorAll('[data-study-ayah]').forEach(b=>b.onclick=()=>openAyahStudy(s.s,+b.dataset.studyAyah));
-  document.querySelectorAll('[data-audio-ayah]').forEach(b=>b.onclick=()=>playAyahByReciter(s.s,+b.dataset.audioAyah));
-}
-
+async function renderMushafList(){const b=await loadQuranBook();if(!b)return;const q=($('mushafSearch')?.value||'').trim();const list=b.filter(s=>!q||s.name.includes(q)||String(s.s)===q);$('mushafSurahList').innerHTML=list.map(mushafSurahButton).join('');document.querySelectorAll('.mushaf-surah-btn').forEach(x=>x.onclick=()=>{mushafSura=+x.dataset.sura;renderMushafList();renderMushafSurah()})}
+function mushafSourceLinks(s,a){return `<div class="source-badges"><a href="https://quranenc.com/ar/browse/arabic_moyassar/${s}/${a}" target="_blank" rel="noopener">📖 التفسير الميسر — QuranEnc</a><a href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}" target="_blank" rel="noopener">🔎 معاني الكلمات — السراج</a><a href="https://corpus.quran.com/wordbyword.jsp?chapter=${s}&verse=${a}" target="_blank" rel="noopener">🧩 التحليل اللغوي — Quranic Corpus</a></div>`}
+function renderMushafSurah(){if(!quranBook)return;const s=quranBook.find(x=>x.s===mushafSura)||quranBook[0];mushafSelected=null;$('mushafSurahTitle').textContent=s.name;$('mushafSurahMeta').textContent=`${s.s} • ${s.type} • ${s.count} آيات`;$('mushafPrev').disabled=s.s===1;$('mushafNext').disabled=s.s===114;$('mushafVerses').innerHTML=s.verses.map(v=>`<article class="mushaf-ayah" data-sura="${s.s}" data-ayah="${v.a}"><div class="mushaf-ayah-ref">${s.name} — الآية ${v.a} — رقمها في المصحف ${v.global}</div><div class="mushaf-ayah-text">${esc(v.text)}</div><div class="mushaf-ayah-actions"><button class="action info" data-study-ayah="${v.a}">🔍 دراسة الآية</button><button class="action" data-audio-ayah="${v.a}">🔊 استماع</button></div></article>`).join('');document.querySelectorAll('[data-study-ayah]').forEach(b=>b.onclick=()=>openAyahStudy(s.s,+b.dataset.studyAyah));document.querySelectorAll('[data-audio-ayah]').forEach(b=>b.onclick=()=>playAyahByReciter(s.s,+b.dataset.audioAyah));}
 async function playAyahByReciter(s,a){const url=recitationUrl(s,a,state.reciter);const au=new Audio(url);au.volume=state.volume;au.onerror=()=>toast(navigator.onLine?'تعذر تشغيل التلاوة الآن — جرّب مرة أخرى.':'التلاوة غير محمّلة محليًا؛ نزّلها مرة أثناء الاتصال ثم ستعمل أوفلاين.');await au.play().catch(()=>{})}
 async function fetchVerseMeta(s,a){const key=`${s}:${a}`;let taf=loadCache('tafseer',s,a),word=loadCache('words',s,a);if(taf&&word)return {taf,word};$('mushafLoading').style.display='block';try{if(!taf){const r=await fetch(`https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${s}/${a}`,{cache:'no-store'});if(r.ok){const j=await r.json();taf=j?.result?.translation||j?.data?.translation||j?.translation||'';if(taf)saveCache('tafseer',s,a,taf)}}if(!word){const r=await fetch(`https://quranenc.com/api/v1/translation/aya/arabic_seraj/${s}/${a}`,{cache:'no-store'});if(r.ok){const j=await r.json();word=j?.result?.translation||j?.data?.translation||j?.translation||'';if(word)saveCache('words',s,a,word)}}}catch{}finally{$('mushafLoading').style.display='none'}return {taf:taf||'التفسير الميسر يحتاج اتصالًا لأول تحميل لهذه الآية؛ بعد التحميل يمكن الاحتفاظ به محليًا.',word:word||'معاني الكلمات تحتاج اتصالًا لأول تحميل لهذه الآية؛ بعد التحميل يمكن الاحتفاظ بها محليًا.'}}
 function splitWordsArabic(text){return text.replace(/[ۖۗۚۙۛۜ۝﴿﴾]/g,'').split(/\s+/).filter(Boolean)}
-async function openAyahStudy(s,a){
-  const book=await ensureSurahLoaded(s), v=book?.verses?.find(x=>x.a===a);
-  if(!v){toast('تعذر تحميل الآية الآن.');return;}
-  mushafTab='overview';
-  document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.toggle('selected',+x.dataset.sura===s && +x.dataset.ayah===a));
-  const panel=$('ayahStudyPanel');
-  if(!panel)return;
-  const jt=tajweedRulesForText(v.text), words=splitWordsArabic(v.text);
-  const letterHtml=jt.graphemes.map((g,i)=>{if(g.space||g.punct)return esc(g.raw);const rs=jt.rules[i]||[];return `<span class="ayah-taj-letter" data-char="${esc(g.b)}" data-haraka="${esc(haraka(g.m))}" data-pron="${esc(g.b+(g.m.includes('َ')?'َ':g.m.includes('ُ')?'ُ':g.m.includes('ِ')?'ِ':''))}" data-rules="${esc(rs.join('، '))}" title="اضغط للتفصيل">${esc(g.raw)}</span>`}).join('');
-  panel.style.display='block';
-  panel.innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div><h3>📚 ${esc(book.name)} — الآية ${a}</h3><div class="muted">الآية المختارة: <b>${s}:${a}</b> — دراسة مرتبطة بهذه الآية فقط.</div></div><button class="action" id="closeAyahStudy">✕ إغلاق</button></div><div class="ayah-study-tabs"><button class="ayah-study-tab active" data-at="overview">✨ نظرة كاملة</button><button class="ayah-study-tab" data-at="taj">🎙️ التجويد الحرفي</button><button class="ayah-study-tab" data-at="words">🔎 الكلمات</button><button class="ayah-study-tab" data-at="tafsir">📖 التفسير</button><button class="ayah-study-tab" data-at="asbab">🕊️ أسباب النزول</button><button class="ayah-study-tab" data-at="audio">🎧 التلاوة</button></div><div id="ayahStudyInner"><div class="mushaf-loading-inline">⏳ جاري تحميل التفسير ومعاني الكلمات…</div></div>`;
-  const selected=document.querySelector(`.mushaf-ayah[data-sura="${s}"][data-ayah="${a}"]`);
-  selected?.insertAdjacentElement('afterend',panel);
-  panel.scrollIntoView({behavior:'smooth',block:'nearest'});
-  const meta=await Promise.race([fetchVerseMeta(s,a),new Promise(resolve=>setTimeout(()=>resolve({taf:'لم يُحمّل التفسير بعد. يمكنك فتح المصدر المباشر.',word:'لم تُحمّل معاني الكلمات بعد. يمكنك فتح المصدر المباشر.'}),2500))]);
-  const renderTab=()=>{
-    let inner='';
-    if(mushafTab==='overview') inner=`<div class="mushaf-note">📌 <b>المصدر:</b> الآية ${s}:${a}. كل تبويب أدناه مربوط بهذه الآية نفسها.</div><div class="ayah-detail-grid"><section class="ayah-detail"><h4>📖 التفسير الميسر</h4><p>${esc(meta.taf)}</p></section><section class="ayah-detail"><h4>🔎 معاني الكلمات</h4><p>${esc(meta.word)}</p></section><section class="ayah-detail"><h4>🕊️ أسباب النزول</h4><p>${esc(asbab[`${s}:${a}`]||'لم تُفهرس رواية خاصة بهذه الآية داخل بطاقة التطبيق حتى الآن. هذا لا يعني عدم وجود رواية؛ افتح كتاب أسباب النزول — الواحدي للتحقق من الموضع.')}</p>${studySourceLinks(s,a)}</section><section class="ayah-detail"><h4>🏷️ معلومات السورة</h4><p>سورة ${esc(book.name)} — ${book.type==='—'?'':book.type+' — '}${book.count||book.verses.length} آيات.</p></section></div><div style="margin-top:12px"><h4 style="color:#f0d77a">🎙️ التجويد</h4><div class="ayah-taj-verse">${letterHtml}</div></div>`;
-    if(mushafTab==='taj') inner=`<div class="mushaf-note">🎙️ ابدأ من الحرف ثم الكلمة ثم الوصل. اضغط أي حرف لمعرفة الحركة والحكم الذي رصده المحلل.</div><div class="taj-beginner-guide"><h4>دراسة الآية ${s}:${a}</h4><p>كل حرف هنا من نفس الآية المختارة.</p></div><div class="ayah-taj-verse">${letterHtml}</div>${renderBeginnerWordStudy(v.text)}`;
-    if(mushafTab==='words') inner=`<div class="mushaf-note">🔎 معاني الكلمات للآية ${s}:${a}</div><div class="word-list">${words.map((w,i)=>`<button class="word-chip" type="button" data-word="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('')}</div><div id="wordDetail" class="ayah-detail" style="margin-top:12px"><h4>اختر كلمة</h4><p>${esc(meta.word)}</p></div><div class="source-badges"><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">📚 السراج</a></div>`;
-    if(mushafTab==='tafsir') inner=`<section class="ayah-detail"><h4>📖 التفسير الميسر — الآية ${s}:${a}</h4><p>${esc(meta.taf)}</p></section><div class="source-badges"><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_moyassar/${s}/${a}">📚 فتح التفسير الميسر</a><a target="_blank" rel="noopener" href="https://tafsir.app/">🔎 التوسع في التفسير</a></div>`;
-    if(mushafTab==='asbab') inner=`<section class="ayah-detail"><h4>🕊️ أسباب النزول — الواحدي</h4><p>${esc(asbab[`${s}:${a}`]||'لم تُفهرس الرواية داخل بطاقة الآية بعد. افتح المصدر الأصلي وتأكد من السورة والآية؛ التطبيق لا ينفي وجود سبب نزول لغياب البطاقة المحلية.')}</p></section>${studySourceLinks(s,a)}`;
-    if(mushafTab==='audio'){
-      const rs=[['Husary_128kbps','الحصري'],['Minshawy_Murattal_128kbps','المنشاوي'],['Fares_Abbad_64kbps','فارس عباد']];
-      inner=`<section class="study-panel"><h3 style="color:var(--gold)">🎧 التلاوة — الآية ${s}:${a}</h3><div class="study-compare-audios">${rs.map(([id,name])=>{const url=recitationUrl(s,a,id);return `<div class="study-reciter-card"><b>🎙️ ${name}</b><audio controls preload="none" src="${url}"></audio><div class="small">تشغيل مباشر من EveryAyah. يمكن للمستخدم تنزيل الملفات/الحزم من المصدر.</div></div>`}).join('')}</div><div class="source-badges"><a target="_blank" rel="noopener" href="https://everyayah.com/recitations_ayat.html">📥 حزم التلاوات</a></div></section>`;
-    }
-    $('ayahStudyInner').innerHTML=inner;
-    document.querySelectorAll('.ayah-study-tab').forEach(b=>b.classList.toggle('active',b.dataset.at===mushafTab));
-    document.querySelectorAll('.ayah-study-tab').forEach(b=>b.onclick=()=>{mushafTab=b.dataset.at;renderTab()});
-    document.querySelectorAll('.ayah-taj-letter').forEach(x=>x.onclick=()=>{const rs=(x.dataset.rules||'').split('،').filter(Boolean);toast(`الحرف: ${x.dataset.char}\nالحركة: ${x.dataset.haraka}\nالحكم: ${rs.join('، ')||'لا حكم إضافي ظاهر آليًا'}`)});
-    document.querySelectorAll('.word-chip').forEach(x=>x.onclick=()=>{const wd=$('wordDetail');if(wd)wd.innerHTML=`<h4>${esc(x.dataset.word)}</h4><p>${esc(meta.word)}</p><div class="source-badges"><a target="_blank" rel="noopener" href="https://corpus.quran.com/wordbyword.jsp?chapter=${s}&verse=${a}">🧩 التحليل اللغوي</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">📚 السراج</a></div>`});
-  };
-  $('closeAyahStudy').onclick=()=>{panel.style.display='none';selected?.classList.remove('selected')};
-  renderTab();
-}
-
+async function openAyahStudy(s,a){const book=quranBook.find(x=>x.s===s),v=book?.verses.find(x=>x.a===a);if(!v)return;document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.toggle('selected',+x.dataset.ayah===a));const meta=await fetchVerseMeta(s,a);const jt=tajweedRulesForText(v.text);const words=splitWordsArabic(v.text);const letterHtml=jt.graphemes.map((g,i)=>{if(g.space||g.punct)return esc(g.raw);const rs=jt.rules[i]||[];return `<span class="ayah-taj-letter" data-char="${esc(g.b)}" data-haraka="${esc(haraka(g.m))}" data-pron="${esc(g.b+(g.m.includes('َ')?'َ':g.m.includes('ُ')?'ُ':g.m.includes('ِ')?'ِ':''))}" data-rules="${esc(rs.join('، '))}" title="اضغط للتفصيل">${esc(g.raw)}</span>`}).join('');
+$('ayahStudyPanel').style.display='block';$('ayahStudyPanel').innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div><h3>📚 ${esc(book.name)} — الآية ${a}</h3><div class="muted">موسوعة الآية داخل المصحف: حرفًا حرفًا، كلمةً كلمةً، ثم الوصل بين الكلمات والمعنى والتفسير.</div></div><button class="action" id="closeAyahStudy">✕ إغلاق</button></div><div class="ayah-study-tabs"><button class="ayah-study-tab active" data-at="overview">✨ نظرة كاملة</button><button class="ayah-study-tab" data-at="taj">🎙️ التجويد الحرفي</button><button class="ayah-study-tab" data-at="words">🔎 الكلمات</button><button class="ayah-study-tab" data-at="tafsir">📖 التفسير</button><button class="ayah-study-tab" data-at="asbab">🕊️ أسباب النزول</button></div><div id="ayahStudyInner"></div>`;
+$('closeAyahStudy').onclick=()=>{$('ayahStudyPanel').style.display='none';document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.remove('selected'))};
+const renderTab=()=>{const tab=mushafTab;let inner='';if(tab==='overview'){inner=`<div class="mushaf-note">📌 التصنيف المكي/المدني هنا مبني على التصنيف المشهور وقد توجد مسائل خلافية في بعض السور. أما سبب النزول فلا يُذكر إلا إذا توفر نقل موثق أو يُصرّح بعدم توفره.</div><div class="ayah-detail-grid"><section class="ayah-detail"><h4>📖 التفسير الميسر</h4><p>${esc(meta.taf)}</p></section><section class="ayah-detail"><h4>🔎 معاني الكلمات</h4><p>${esc(meta.word)}</p></section><section class="ayah-detail"><h4>🕊️ أسباب النزول</h4><p>${esc(asbab[`${s}:${a}`]||'لا توجد في قاعدة التطبيق المحلية رواية خاصة بهذه الآية. عدم وجود رواية هنا لا يعني الجزم بعدم وجود بحث في المصادر المتخصصة؛ يُرجع إلى كتب أسباب النزول عند الحاجة.')}</p></section><section class="ayah-detail"><h4>🏷️ معلومات السورة</h4><p>سورة ${esc(book.name)} — ${book.type} — عدد آياتها ${book.count}. ويمكن دراسة موضوعاتها من خلال التفسير المعتبر.</p></section></div><div style="margin-top:12px"><h4 style="color:#f0d77a">🎙️ التجويد</h4><div class="ayah-taj-verse">${letterHtml}</div></div>${mushafSourceLinks(s,a)}`;}
+if(tab==='taj'){inner=`<div class="mushaf-note">🎙️ ابدأ من الحرف، ثم الكلمة، ثم الكلمتين معًا. اضغط على أي حرف لترى الحركة والنطق البسيط والحكم الذي رصده المحلل. لا تحتاج إلى حفظ أسماء القواعد قبل أن تفهم طريقة الأداء.</div><div class="taj-beginner-guide"><h4>كيف تدرس الآية؟</h4><p>١) اقرأ الحرف بالحركة. ٢) اقرأ الكلمة كاملة. ٣) صِلها بالكلمة التي بعدها. ٤) اسمع القارئ ثم قلد الأداء.</p></div><div class="ayah-taj-verse">${letterHtml}</div>${renderBeginnerWordStudy(v.text)}<div class="grid2" style="margin-top:12px">${[...new Set(jt.rules.flat())].map(r=>`<div class="ayah-detail"><h4>${esc(r)}</h4><p>${esc(tajRuleDetail(r))}</p></div>`).join('')||'<div class="muted">لا يظهر حكم آلي إضافي.</div>'}</div>`}
+if(tab==='words'){inner=`<div class="mushaf-note">🔎 المصدر المعجمي العربي في QuranEnc هو «معاني الكلمات» من كتاب السراج في بيان غريب القرآن. يعرض التطبيق النص المتاح عند الاتصال ويحفظه محليًا للمشاهدة لاحقًا. </div><div class="word-list">${words.map((w,i)=>`<button class="word-chip" type="button" data-word="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('')}</div><div id="wordDetail" class="ayah-detail" style="margin-top:12px"><h4>اختر كلمة</h4><p>اضغط على أي كلمة لرؤية معناها من المادة المتاحة، ويمكن فتح التحليل اللغوي التفصيلي.</p></div>${mushafSourceLinks(s,a)}`}
+if(tab==='tafsir'){inner=`<section class="ayah-detail"><h4>📖 التفسير الميسر</h4><p>${esc(meta.taf)}</p></section><div class="ayah-detail" style="margin-top:12px"><h4>📚 مصدر التفسير</h4><p>التفسير الميسر صادر عن مجمع الملك فهد لطباعة المصحف الشريف، كما يصفه QuranEnc في فهرسه العربي.</p>${mushafSourceLinks(s,a)}</div>`}
+if(tab==='asbab'){inner=`<section class="ayah-detail"><h4>🕊️ أسباب النزول</h4><p>${esc(asbab[`${s}:${a}`]||'لا توجد رواية خاصة محفوظة محليًا لهذه الآية في النسخة الحالية. لا نختلق سبب نزول؛ يُرجع إلى كتب أسباب النزول ومصادر التخريج عند الحاجة.')}</p></section><div class="mushaf-note" style="margin-top:12px">⚠️ سبب النزول مسألة توثيقية: لا نثبت رواية خاصة بلا سند أو نقل معتبر.</div><div class="source-badges"><a href="https://tafsir.app/" target="_blank" rel="noopener">📚 موسوعة التفسير</a><a href="https://dorar.net/" target="_blank" rel="noopener">🔎 الدرر السنية</a></div>`}
+$('ayahStudyInner').innerHTML=inner;document.querySelectorAll('.ayah-study-tab').forEach(b=>b.classList.toggle('active',b.dataset.at===tab));document.querySelectorAll('.ayah-study-tab').forEach(b=>b.onclick=()=>{mushafTab=b.dataset.at;renderTab()});document.querySelectorAll('.ayah-taj-letter').forEach(x=>x.onclick=()=>{const rs=(x.dataset.rules||'').split('،').filter(Boolean);const nextText='';const msg=`الحرف: ${x.dataset.char}\nالحركة: ${x.dataset.haraka}\nكيف تنطقه؟ ${x.dataset.pron}\nالحكم: ${rs.join('، ')||'لا حكم إضافي ظاهر آليًا'}`;toast(msg)});document.querySelectorAll('.word-chip').forEach(x=>x.onclick=()=>{const wd=$('wordDetail');if(wd)wd.innerHTML=`<h4>${esc(x.dataset.word)}</h4><p>المعنى المحلي لهذه الكلمة يعتمد على بيانات «معاني الكلمات» المحملة للآية. للمزيد من التحليل الصرفي والنحوي افتح Quranic Arabic Corpus للآية.</p><div class="source-badges"><a target="_blank" rel="noopener" href="https://corpus.quran.com/wordbyword.jsp?chapter=${s}&verse=${a}">🧩 التحليل كلمة بكلمة</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">📚 معاني الكلمات</a></div>`});};renderTab();const target=document.querySelector(`.mushaf-ayah[data-sura="${s}"][data-ayah="${a}"]`); if(target){target.scrollIntoView({behavior:'smooth',block:'center'}); target.insertAdjacentElement('afterend',$('ayahStudyPanel')); setTimeout(()=>$('ayahStudyPanel').scrollIntoView({behavior:'smooth',block:'nearest'}),80)}}
 function mushafInit(){const root=$('mushaf');if(!root)return;if(root.dataset.ready==='1'){loadQuranBook().then(()=>{renderMushafList();renderMushafSurah()});return}root.dataset.ready='1';loadQuranBook().then(()=>{renderMushafList();renderMushafSurah()});$('mushafSearch')?.addEventListener('input',renderMushafList);$('mushafPrev')?.addEventListener('click',()=>{if(mushafSura>1){mushafSura--;renderMushafList();renderMushafSurah();window.scrollTo({top:0,behavior:'smooth'})}});$('mushafNext')?.addEventListener('click',()=>{if(mushafSura<114){mushafSura++;renderMushafList();renderMushafSurah();window.scrollTo({top:0,behavior:'smooth'})}});$('mushafResetBtn')?.addEventListener('click',()=>{mushafSura=1;renderMushafList();renderMushafSurah();window.scrollTo({top:0,behavior:'smooth'})});$('mushafCacheBtn')?.addEventListener('click',async()=>{const s=quranBook?.find(x=>x.s===mushafSura);if(!s)return;for(const v of s.verses){await fetchVerseMeta(s.s,v.a)}toast(`تم حفظ بيانات التفسير ومعاني الكلمات للسورة: ${s.name} ✅`);$('mushafCacheStatus').textContent='محفوظ محليًا'});}
 
 function renderAdhkar(){
@@ -2512,16 +2466,13 @@ function renderPlanningV60(){const v=getV();const f=q('v60GoalAmount');if(f)f.va
 <iframe id="v64PdfFrame" loading="lazy" title="قارئ الكتاب"></iframe>
 </div>
 </div>
-<script>window.__RAFIQ_CONTENT_META=[{"category":"quran","name":"quran-uthmani.json","size":1556453,"archive":"01-QURAN(5).rar","title":"المصحف العثماني — نص القرآن","seriesTitle":"القرآن"},{"category":"tafsir","name":"5769.pdf","size":3739736,"archive":"01-QURAN(6).rar","title":"السراج في بيان غريب القرآن — معاني الكلمات","seriesTitle":"القرآن"},{"category":"seerah","name":"asnz.pdf","size":7779833,"archive":"01-QURAN(6).rar","title":"أسباب النزول — الواحدي","seriesTitle":"السيرة"},{"category":"tafsir","name":"التفسير الميسر_73731_Foulabook.com_.pdf","size":24890541,"archive":"01-QURAN(6).rar","title":"التفسير الميسر","seriesTitle":"القرآن"},{"category":"quran","name":"القرآن تدبر وعمل كاملا.pdf","size":52637057,"archive":"01-QURAN(6).rar","title":"القرآن تدبر وعمل","seriesTitle":"القرآن"},{"category":"tafsir","name":"كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf","size":8090011,"archive":"01-QURAN(6).rar","title":"مباحث في علوم القرآن — مناع القطان","seriesTitle":"القرآن"},{"category":"basic","name":"01_57052.pdf","size":7889435,"archive":"02-BASIC-DIN(1).rar","title":"القواعد الأصولية للمعاملات المالية المعاصرة","seriesTitle":"فقه المعاملات"},{"category":"basic","name":"الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf","size":7245818,"archive":"02-BASIC-DIN(1).rar","title":"الفقه الميسر في ضوء الكتاب والسنة","seriesTitle":"الفقه الميسر"},{"category":"basic","name":"فقه المعاملات المالية المعاصرة.pdf","size":4391705,"archive":"02-BASIC-DIN(1).rar","title":"فقه المعاملات المالية المعاصرة","seriesTitle":"فقه المعاملات"},{"category":"basic","name":"ما_لا_يسع_المسلم_جهله.pdf","size":5427007,"archive":"02-BASIC-DIN(1).rar","title":"ما لا يسع المسلم جهله","seriesTitle":"ما لا يسع المسلم جهله"},{"category":"hadith","name":"الأدب المفرد للإمام البخاري.pdf","size":215180747,"archive":"03-HADITH(1).rar","title":"الأدب المفرد — الإمام البخاري","seriesTitle":"الحديث"},{"category":"hadith","name":"الأربعين النووية.pdf","size":4987848,"archive":"03-HADITH(1).rar","title":"الأربعون النووية","seriesTitle":"الحديث"},{"category":"hadith","name":"تيسير مصطلح الحديث مكتبة الحرمين.pdf","size":119684355,"archive":"03-HADITH(1).rar","title":"تيسير مصطلح الحديث","seriesTitle":"الحديث"},{"category":"hadith","name":"رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf","size":29096112,"archive":"03-HADITH(1).rar","title":"رياض الصالحين — النووي","seriesTitle":"الحديث"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal.pdf","size":3335461,"archive":"06-TAJWEED(1).rar","title":"الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal1.pdf","size":497629,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 1","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal2.pdf","size":1066274,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 2","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal3.pdf","size":3982902,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 3","seriesTitle":"التجويد"},{"category":"tazkiyah","name":"madarej_1.pdf","size":9398568,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الأول","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_2.pdf","size":9542933,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثاني","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_3.pdf","size":8194983,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثالث","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_4.pdf","size":11165679,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الرابع","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_p.pdf","size":1680897,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — المقدمة","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"الداء والدواء - ت. أسامة العتيبي.pdf","size":21765797,"archive":"07-TAZKIYAH(1).rar","title":"الداء والدواء — تحقيق أسامة العتيبي","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصدين - ط الحجاز.pdf","size":29648193,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 1","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصين - ط الحجاز.pdf","size":39378866,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 2","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مدارج السالكين_Foulabook.com_.pdf","size":5708719,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — نسخة أخرى","seriesTitle":"التزكية"},{"category":"adab","name":"الشيخ محمد الغزالي خلق المسلم.pdf","size":5669376,"archive":"8-ADAB-LIFE(1).rar","title":"خلق المسلم — محمد الغزالي","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf","size":4557275,"archive":"8-ADAB-LIFE(1).rar","title":"بر الوالدين في ضوء الكتاب والسنة","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf","size":2718166,"archive":"8-ADAB-LIFE(1).rar","title":"جوامع الآداب في أخلاق الأنجاب — جمال الدين القاسمي","seriesTitle":"الآداب والحياة"},{"category":"optional","name":"lianak allah موقع جديد بدف.pdf","size":3782197,"archive":"9-OPTIONAL(1).rar","title":"لأنك الله","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf","size":13384110,"archive":"9-OPTIONAL(1).rar","title":"عقيدة المؤمن","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf","size":3062241,"archive":"9-OPTIONAL(1).rar","title":"كتاب التوحيد — محمد بن عبدالوهاب","seriesTitle":"كتب مفيدة"},{"category":"seerah","name":"sealed_nectar.pdf","title":"الرحيق المختوم","seriesTitle":"السيرة"},{"category":"seerah","name":"shs.pdf","title":"صور من حياة الصحابة","seriesTitle":"السيرة"},{"category":"seerah","name":"السيرة النبوية لإبن کثیر.pdf","title":"السيرة النبوية لابن كثير — المجلد الأول","seriesTitle":"السيرة"},{"category":"seerah","name":"قصص_الأنبياء_ابن_كثير.pdf","title":"قصص الأنبياء — ابن كثير","seriesTitle":"السيرة"},{"category":"audio","name":"Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar","title":"تلاوة الحصري — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"MINSHAWY.1.rar","title":"تلاوة المنشاوي — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"FARES-ABBAD.rar","title":"تلاوة فارس عباد — الحزمة المتاحة","seriesTitle":"التلاوات"}];</script>
+<script>window.__RAFIQ_CONTENT_META=[{"category":"quran","name":"quran-uthmani.json","size":1556453,"archive":"01-QURAN(5).rar","title":"المصحف العثماني — نص القرآن","seriesTitle":"القرآن"},{"category":"tafsir","name":"5769.pdf","size":3739736,"archive":"01-QURAN(6).rar","title":"السراج في بيان غريب القرآن — معاني الكلمات","seriesTitle":"القرآن"},{"category":"seerah","name":"asnz.pdf","size":7779833,"archive":"01-QURAN(6).rar","title":"أسد الغابة في معرفة الصحابة","seriesTitle":"السيرة"},{"category":"tafsir","name":"التفسير الميسر_73731_Foulabook.com_.pdf","size":24890541,"archive":"01-QURAN(6).rar","title":"التفسير الميسر","seriesTitle":"القرآن"},{"category":"quran","name":"القرآن تدبر وعمل كاملا.pdf","size":52637057,"archive":"01-QURAN(6).rar","title":"القرآن تدبر وعمل","seriesTitle":"القرآن"},{"category":"tafsir","name":"كتاب مباحث في علوم القرآن pdf لمناع القطان.pdf","size":8090011,"archive":"01-QURAN(6).rar","title":"مباحث في علوم القرآن — مناع القطان","seriesTitle":"القرآن"},{"category":"basic","name":"01_57052.pdf","size":7889435,"archive":"02-BASIC-DIN(1).rar","title":"القواعد الأصولية للمعاملات المالية المعاصرة","seriesTitle":"فقه المعاملات"},{"category":"basic","name":"الفقه الميسر في ضوء الكتاب والسنة_48185_Foulabook.com_.pdf","size":7245818,"archive":"02-BASIC-DIN(1).rar","title":"الفقه الميسر في ضوء الكتاب والسنة","seriesTitle":"الفقه الميسر"},{"category":"basic","name":"فقه المعاملات المالية المعاصرة.pdf","size":4391705,"archive":"02-BASIC-DIN(1).rar","title":"فقه المعاملات المالية المعاصرة","seriesTitle":"فقه المعاملات"},{"category":"basic","name":"ما_لا_يسع_المسلم_جهله.pdf","size":5427007,"archive":"02-BASIC-DIN(1).rar","title":"ما لا يسع المسلم جهله","seriesTitle":"ما لا يسع المسلم جهله"},{"category":"hadith","name":"الأدب المفرد للإمام البخاري.pdf","size":215180747,"archive":"03-HADITH(1).rar","title":"الأدب المفرد — الإمام البخاري","seriesTitle":"الحديث"},{"category":"hadith","name":"الأربعين النووية.pdf","size":4987848,"archive":"03-HADITH(1).rar","title":"الأربعون النووية","seriesTitle":"الحديث"},{"category":"hadith","name":"تيسير مصطلح الحديث مكتبة الحرمين.pdf","size":119684355,"archive":"03-HADITH(1).rar","title":"تيسير مصطلح الحديث","seriesTitle":"الحديث"},{"category":"hadith","name":"رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf","size":29096112,"archive":"03-HADITH(1).rar","title":"رياض الصالحين — النووي","seriesTitle":"الحديث"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal.pdf","size":3335461,"archive":"06-TAJWEED(1).rar","title":"الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal1.pdf","size":497629,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 1","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal2.pdf","size":1066274,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 2","seriesTitle":"التجويد"},{"category":"tajweed","name":"ar_Tuhfat_Alatfal3.pdf","size":3982902,"archive":"06-TAJWEED(1).rar","title":"مواد التجويد — ملف إضافي 3","seriesTitle":"التجويد"},{"category":"tazkiyah","name":"madarej_1.pdf","size":9398568,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الأول","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_2.pdf","size":9542933,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثاني","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_3.pdf","size":8194983,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الثالث","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_4.pdf","size":11165679,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — الجزء الرابع","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"madarej_p.pdf","size":1680897,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — المقدمة","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"الداء والدواء - ت. أسامة العتيبي.pdf","size":21765797,"archive":"07-TAZKIYAH(1).rar","title":"الداء والدواء — تحقيق أسامة العتيبي","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصدين - ط الحجاز.pdf","size":29648193,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 1","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مختصر منهاج القاصين - ط الحجاز.pdf","size":39378866,"archive":"07-TAZKIYAH(1).rar","title":"مختصر منهاج القاصدين — نسخة 2","seriesTitle":"التزكية"},{"category":"tazkiyah","name":"مدارج السالكين_Foulabook.com_.pdf","size":5708719,"archive":"07-TAZKIYAH(1).rar","title":"مدارج السالكين — نسخة أخرى","seriesTitle":"التزكية"},{"category":"adab","name":"الشيخ محمد الغزالي خلق المسلم.pdf","size":5669376,"archive":"8-ADAB-LIFE(1).rar","title":"خلق المسلم — محمد الغزالي","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"بر الوالدين في ضوء الكتاب والسنة_40411_Foulabook.com_.pdf","size":4557275,"archive":"8-ADAB-LIFE(1).rar","title":"بر الوالدين في ضوء الكتاب والسنة","seriesTitle":"الآداب والحياة"},{"category":"adab","name":"جوامع الآداب في أخلاق الأنجاب - جمال الدين القاسمي.pdf","size":2718166,"archive":"8-ADAB-LIFE(1).rar","title":"جوامع الآداب في أخلاق الأنجاب — جمال الدين القاسمي","seriesTitle":"الآداب والحياة"},{"category":"optional","name":"lianak allah موقع جديد بدف.pdf","size":3782197,"archive":"9-OPTIONAL(1).rar","title":"لأنك الله","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"عقيدة المؤمن - نسخة مصورة_16583_Foulabook.com_.pdf","size":13384110,"archive":"9-OPTIONAL(1).rar","title":"عقيدة المؤمن","seriesTitle":"كتب مفيدة"},{"category":"optional","name":"كتاب_التوحيد_تأليف_الإمام_المجدد_محمد_بن_عبدالوهاب_النجدي.pdf","size":3062241,"archive":"9-OPTIONAL(1).rar","title":"كتاب التوحيد — محمد بن عبدالوهاب","seriesTitle":"كتب مفيدة"},{"category":"seerah","name":"sealed_nectar.pdf","title":"الرحيق المختوم","seriesTitle":"السيرة"},{"category":"seerah","name":"shs.pdf","title":"صور من حياة الصحابة","seriesTitle":"السيرة"},{"category":"seerah","name":"السيرة النبوية لإبن کثیر.pdf","title":"السيرة النبوية لابن كثير — المجلد الأول","seriesTitle":"السيرة"},{"category":"seerah","name":"قصص_الأنبياء_ابن_كثير.pdf","title":"قصص الأنبياء — ابن كثير","seriesTitle":"السيرة"},{"category":"audio","name":"Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar","title":"تلاوة الحصري — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"MINSHAWY.1.rar","title":"تلاوة المنشاوي — الحزمة المتاحة","seriesTitle":"التلاوات"},{"category":"audio","name":"FARES-ABBAD.rar","title":"تلاوة فارس عباد — الحزمة المتاحة","seriesTitle":"التلاوات"}];</script>
 <script id="rafiq-v69-content-script">
 (function(){
 'use strict';
 const q=id=>document.getElementById(id);
 const esc=s=>{const d=document.createElement('div');d.textContent=s??'';return d.innerHTML};
 const API='https://api.github.com/repos/mustafahossameldin66-dotcom/Test-Rafiq/releases/tags/content-v1';
-const GITHUB_RELEASE_PAGE='https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/latest';
-const GITHUB_LATEST_ASSET=name=>`https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/latest/download/${encodeURIComponent(name)}`;
-const GITHUB_TAG_ASSET=name=>`https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/download/content-v1/${encodeURIComponent(name)}`;
 const CACHE='rafiq-release-assets-v90';
 const ASSET_MAP_KEY='rafiq-release-map-v90';
 const CONTENT_MANIFEST='./content-catalog-v90.json';
@@ -2596,12 +2547,10 @@ function curriculumItems(){
 }
 function directUrl(a,download=false){
  const u=String(a?.browser_download_url||'');
- const name=String(a?.name||'');
- let base=u || (name?GITHUB_TAG_ASSET(name):'');
- if(!base && name) base=GITHUB_LATEST_ASSET(name);
- return base ? (download ? base+(base.includes('?')?'&':'?')+'download=1' : base) : '';
+ const fallback=a?.name?githubAssetFallback(a.name):'';
+ const base=u||fallback; if(!base)return '';
+ return download ? base+(base.includes('?')?'&':'?')+'download=1' : base;
 }
-function archiveUrl(a){const archive=String(a?.catalog?.archive||'');return archive?GITHUB_LATEST_ASSET(archive):GITHUB_RELEASE_PAGE;}
 function card(a){
  const audio=isAudio(a.name)||a.catalog?.category==='audio';
  const cached=(()=>{try{return !!a.cached}catch{return false}})();
@@ -2613,7 +2562,7 @@ function card(a){
    <div class="v69-order">${esc(a.catalog?.track||'')}</div>
    <div class="v62-muted" style="margin-top:6px">${esc(a.catalog?.desc||'')}</div>
    <div class="v66-meta" style="margin-top:8px"><span>${audio?'حزمة صوتية':'كتاب كامل'}</span><span>${humanSize(a.size)}</span></div>
-   ${url?`<div class="v66-actions"><button type="button" class="action info" data-v90-open="${esc(a.id)}">📖 فتح ${audio?'التلاوة':'الكتاب'}</button><button type="button" class="action" data-v90-download="${esc(a.id)}">⬇️ تنزيل ${audio?'للاستخدام دون اتصال':'الكتاب'}</button></div>`:`<div class="v69-note" style="margin-top:10px">رابط الملف المفرد غير مؤكد حاليًا.</div>`}<div class="v66-actions"><a class="action" href="${archiveUrl(a)}" target="_blank" rel="noopener">📦 فتح حزمة ${audio?'التلاوة':'المحتوى'}</a><a class="action info" href="${GITHUB_RELEASE_PAGE}" target="_blank" rel="noopener">GitHub Releases</a></div>
+   ${url?`<div class="v66-actions"><button type="button" class="action info" data-v90-open="${esc(a.id)}">📖 فتح ${audio?'التلاوة':'الكتاب'}</button><button type="button" class="action" data-v90-download="${esc(a.id)}">⬇️ تنزيل ${audio?'للاستخدام دون اتصال':'الكتاب'}</button></div>`:`<div class="v69-note" style="margin-top:10px">📦 رابط التحميل المباشر غير متاح حاليًا من واجهة GitHub، لكن عنوان الملف محفوظ في فهرس زاد الحافظ ويمكن إعادة تحديثه.</div>`}
    <div class="v66-meta" style="margin-top:6px"><span>${cached?'✅ محفوظ على الجهاز':(url?'☁️ متاح الآن':'⚠️ غير مطابق للإصدار الحالي')}</span></div>
  </article>`;
 }
@@ -2627,7 +2576,7 @@ async function renderDoorList(){
  const items=sectionItems(activeDoor);
  if(!items.length){wrap.innerHTML='<div class="v62-empty">لا توجد ملفات مطابقة لهذا الباب في الإصدار المنشور حاليًا.</div>';return}
  const note=activeDoor==='ilm'?`<div class="v69-note"><b>الترتيب المعتمد:</b> ما لا يسع المسلم جهله ← الفقه الميسر ← فقه المعاملات والقواعد الأصولية للتوسع.</div>`:'';
- wrap.innerHTML=note+'<div class="v70-release-grid">'+items.map(card).join('')+'</div>';bindAssetButtons(); if(activeDoor==='audio') renderRecitationDoorUpgrade();
+ wrap.innerHTML=note+'<div class="v70-release-grid">'+items.map(card).join('')+'</div>';bindAssetButtons();
 }
 function renderAllContentPanel(){
  const host=q('allContentPanel'); if(!host)return;
@@ -2643,11 +2592,6 @@ async function downloadAllContent(){
  if(!confirm(`إجمالي المحتوى المدرج حاليًا: ${humanSize(total)}\nسيتم فتح التحميلات المتاحة واحدًا تلو الآخر. هل تريد المتابعة؟`))return;
  for(const a of items){const u=directUrl(a,true);if(u)window.open(u,'_blank','noopener');await new Promise(r=>setTimeout(r,250));}
 }
-function renderRecitationDoorUpgrade(){
- const host=q('v66ReleaseBooks'); if(!host||activeDoor!=='audio') return;
- const rs=[['Husary_128kbps','الحصري'],['Minshawy_Murattal_128kbps','المنشاوي'],['Fares_Abbad_64kbps','فارس عباد']];
- host.innerHTML=`<section class="study-panel"><h3 style="color:var(--gold)">🎧 التلاوات تعمل مباشرة الآن</h3><p class="muted">تشغيل الآية من EveryAyah، مع روابط الحزم الكاملة للتنزيل.</p><div class="study-compare-audios">${rs.map(([id,name])=>`<div class="study-reciter-card"><b>🎙️ ${name}</b><audio controls preload="none" src="${recitationUrl(mushafSura||1,1,id)}"></audio><div class="row" style="margin-top:8px"><a class="action" href="https://everyayah.com/recitations_ayat.html" target="_blank" rel="noopener">📥 تحميل الحزم</a></div></div>`).join('')}</div></section>`;
-}
 function renderAllContent(){renderDoorChooser();renderDoorList();renderAllContentPanel()}
 function showReleaseStatus(msg){const st=q('v66ReleaseStatus');if(st)st.textContent=msg}
 async function refresh(){
@@ -2655,7 +2599,7 @@ async function refresh(){
  await loadManifest();
  hydrateFromSaved();
  renderAllContent();
- try{await fetchRelease();const liveCount=assets.filter(a=>a.live).length;showReleaseStatus(`تم العثور على ${liveCount} رابطًا حيًا، والفهرس الكامل ظاهر حتى عند تعذر API.`)}catch(e){showReleaseStatus(assets.length?`وضع المحتوى المباشر: الفهرس ظاهر، والفتح يعتمد على رابط Release المباشر.`:'تعذر قراءة فهرس المحتوى المحلي.')}
+ try{await fetchRelease();const liveCount=assets.filter(a=>a.live).length;showReleaseStatus(`تم العثور على ${liveCount} ملف منشور، ويظهر باقي الفهرس حتى إن لم يكن الرابط متاحًا بعد.`)}catch(e){showReleaseStatus(assets.length?`تعذر تحديث روابط GitHub الآن؛ فهرس المحتوى ما زال ظاهرًا.`:'تعذر تحميل فهرس المحتوى الآن.')}
  renderAllContent();
  const k=window.__rafiqCurrentSpaceKey;if(k)renderLinkedContent(k);
 }
@@ -2684,7 +2628,7 @@ function renderLinkedContent(spaceKey){
  const host=q('zadContentSources');if(!host)return;
  const items=spaceItems(spaceKey);
  const section=doorSection[keyBySpace[spaceKey]||'']||'المحتوى المرتبط';
- host.innerHTML=`<section class="content-door-section"><div class="content-door-head"><div><div class="badge gold">📚 محتوى زاد الحافظ</div><h3>${esc(section)}</h3><p>هذه المصادر مرتبطة بهذا الباب مباشرة، والملف يُفتح أو يُنزّل من الإصدار المنشور نفسه.</p></div><div class="v69-status-row"><button type="button" class="action info" id="v90SpaceRefresh">🔄 تحديث المحتوى</button><span class="v69-pill">${items.length} مصدر</span></div></div>${items.length?trackBlock(items):'<div class="v62-empty">الفهرس جاهز، لكن لم يُثبت وجود ملف مفرد لهذا الباب في الإصدار الحالي. استخدم حزمة المصدر الأصلية.</div>'}</section>`;
+ host.innerHTML=`<section class="content-door-section"><div class="content-door-head"><div><div class="badge gold">📚 محتوى زاد الحافظ</div><h3>${esc(section)}</h3><p>هذه المصادر مرتبطة بهذا الباب مباشرة، والملف يُفتح أو يُنزّل من الإصدار المنشور نفسه.</p></div><div class="v69-status-row"><button type="button" class="action info" id="v90SpaceRefresh">🔄 تحديث المحتوى</button><span class="v69-pill">${items.length} مصدر</span></div></div>${items.length?trackBlock(items):'<div class="v62-empty">لم تُطابق ملفات منشورة لهذا الباب بعد. اضغط تحديث المحتوى لإعادة الفحص.</div'}</section>`;
  q('v90SpaceRefresh')?.addEventListener('click',refresh);
  bindAssetButtons();
 }
@@ -2766,7 +2710,7 @@ window.openFocus=openFocus;
 window.renderExplore=renderExplore;
 })();
 </script>
-<script>
+
 (function(){
   const keys={
     '1':'home','2':'planning','3':'mushaf','4':'study','5':'spiritual','6':'progress','7':'settings'
@@ -2779,7 +2723,55 @@ window.renderExplore=renderExplore;
     if(id && typeof switchView==='function'){ e.preventDefault(); switchView(id); }
   });
 })();
-</script>
 <script src="./rafiq-web-v2-patch.js"></script>
+
+<script id="rafiq-v80-visible-library-script">
+(function(){
+  const q=id=>document.getElementById(id);
+  const bookCards=[
+    ['العلم','ما لا يسع المسلم جهله','🕌','basic','ما لا يسع المسلم جهله'],
+    ['الفقه','الفقه الميسر في ضوء الكتاب والسنة','⚖️','basic','الفقه الميسر في ضوء الكتاب والسنة'],
+    ['الحديث','رياض الصالحين','📜','hadith','رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf'],
+    ['التفسير','التفسير الميسر','📖','tafsir','التفسير الميسر_73731_Foulabook.com_.pdf'],
+    ['أسباب النزول','أسباب النزول — الواحدي','🕊️','tafsir','asnz.pdf'],
+    ['التجويد','الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال','🎙️','tajweed','ar_Tuhfat_Alatfal.pdf'],
+    ['التزكية','الداء والدواء — تحقيق أسامة العتيبي','🌱','tazkiyah','الداء والدواء - ت. أسامة العتيبي.pdf'],
+    ['العمل بالقرآن','القرآن تدبر وعمل','✨','quran','القرآن تدبر وعمل كاملا.pdf'],
+    ['السيرة','قصص الأنبياء — ابن كثير','🕊️','seerah','قصص_الأنبياء_ابن_كثير.pdf'],
+    ['الآداب','خلق المسلم','🌿','adab','الشيخ محمد الغزالي خلق المسلم.pdf'],
+    ['كتاب مفيد','لأنك الله','💛','optional','lianak allah موقع جديد بدف.pdf'],
+    ['التلاوة','الحصري','🎧','audio','Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar']
+  ];
+  function findAsset(hint){
+    const api=window.rafiqRelease; const list=api&&typeof api.assets==='function'?api.assets():[];
+    if(!Array.isArray(list)||!list.length)return null;
+    return list.find(a=>String(a.name||'').toLowerCase()===String(hint||'').toLowerCase())||list.find(a=>String(a._title||a.title||'').includes(hint))||list.find(a=>String(a.name||'').includes(hint))||null;
+  }
+  function openInLibrary(hint){
+    if(typeof switchView==='function')switchView('library');
+    setTimeout(async()=>{
+      try{if(typeof window.__rafiqReleaseRefresh==='function')await window.__rafiqReleaseRefresh();}catch{}
+      const a=findAsset(hint);
+      if(a&&window.rafiqRelease&&typeof window.rafiqRelease.open==='function')window.rafiqRelease.open(a);
+      const node=q('v66ReleaseCard'); if(node)node.scrollIntoView({behavior:'smooth',block:'start'});
+    },500);
+  }
+  function render(){
+    const host=q('v80HomeLibraryGrid'); if(!host)return;
+    host.innerHTML=bookCards.map((b,i)=>`<article class="v80-book"><span class="k">${b[2]} ${b[0]}</span><h4>${b[1]}</h4><div class="s">مصدر فعلي مرتبط بباب ${b[0]} داخل رفيق.</div><div class="a"><button class="action info" type="button" data-v80-open="${i}">📖 فتح</button><button class="action" type="button" data-v80-lib="${i}">📚 المكتبة</button></div></article>`).join('');
+    host.querySelectorAll('[data-v80-open]').forEach(btn=>btn.onclick=()=>openInLibrary(bookCards[+btn.dataset.v80Open][4]));
+    host.querySelectorAll('[data-v80-lib]').forEach(btn=>btn.onclick=()=>{if(typeof switchView==='function')switchView('library');setTimeout(()=>q('v66ReleaseCard')?.scrollIntoView({behavior:'smooth',block:'start'}),250)});
+  }
+  function init(){
+    render();
+    q('v80OpenLibrary')?.addEventListener('click',()=>{if(typeof switchView==='function')switchView('library');setTimeout(()=>q('v66ReleaseCard')?.scrollIntoView({behavior:'smooth',block:'start'}),250)});
+    document.querySelectorAll('.floating-card[data-book]').forEach(card=>{
+      const small=card.querySelector('.floating-book'); if(!small)return;
+      small.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openInLibrary(card.dataset.book)});
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,100));else setTimeout(init,100);
+})();
+</script>
 </body>
 </html>

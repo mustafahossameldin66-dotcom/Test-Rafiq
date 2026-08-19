@@ -2777,5 +2777,18 @@ window.renderExplore=renderExplore;
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,100));else setTimeout(init,100);
 })();
 </script>
+  <!-- استدعاء قائمة الكتب والمحتوى -->
+<script src="./content-data.js"></script>
+
+<!-- تفعيل نظام PWA والتشغيل بدون إنترنت -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(registration => console.log('تم تفعيل نظام التشغيل بدون إنترنت بنجاح'))
+        .catch(error => console.error('خطأ في تفعيل نظام الأوفلاين:', error));
+    });
+  }
+</script>
 </body>
 </html>

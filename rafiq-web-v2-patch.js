@@ -44,12 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="floating-book">📚 كتاب الباب: <b>لأنك الله</b></span>
             `;
             floatGrid.insertBefore(asmaaBtn, floatGrid.firstChild);
-            
-            // تفعيل الضغط على الزر الجديد
-            asmaaBtn.addEventListener('click', (e) => {
-                e.preventDefault(); e.stopPropagation();
-                window.openSpace('asmaa');
-            });
         }
         renderLibrary();
     }, 800);
@@ -66,7 +60,14 @@ const RAFIQ_RICH_META = {
     prophets: { title: 'قصص الأنبياء والسيرة', intro: 'العبر والعظات من سير الأنبياء والمرسلين لتثبيت القلوب. (مستوحى من: قصص الأنبياء لابن كثير).' },
     tafsir: { title: 'التفسير وعلوم القرآن', intro: 'مداخل لفهم كلام الله عز وجل واستخراج الهدايات. (مستوحى من: التفسير الميسر ومباحث علوم القرآن).' },
     practice: { title: 'تدبر وعمل', intro: 'كيف نحول الآيات من حفظ في الصدور إلى واقع وعمل في الحياة. (مستوحى من: القرآن تدبر وعمل).' },
-    duas: { title: 'جوامع الدعاء', intro: 'أدعية الأنبياء والصالحين من القرآن والسنة. (مستوحى من: الأربعون النووية ورياض الصالحين).' }
+    duas: { title: 'جوامع الدعاء', intro: 'أدعية الأنبياء والصالحين من القرآن والسنة. (مستوحى من: الأربعون النووية ورياض الصالحين).' },
+    asbab: { title: 'أسباب النزول', intro: 'معرفة السياق الذي نزلت فيه الآيات يعين على الفهم الصحيح لمراد الله عز وجل.' },
+    words: { title: 'معاني الكلمات', intro: 'بيان غريب القرآن لفهم المعاني العميقة للألفاظ.' },
+    friday: { title: 'الجمعة', intro: 'سنن يوم الجمعة وآدابها.' },
+    seasons: { title: 'المواسم', intro: 'اغتنام مواسم الطاعات كرمضان وعشر ذي الحجة.' },
+    resources: { title: 'موارد إضافية', intro: 'كتب ومقاطع للتوسع في العلم الشرعي.' },
+    audio: { title: 'التلاوات', intro: 'الاستماع للقرآن الكريم بأصوات القراء المتقنين.' },
+    tajweed: { title: 'التجويد', intro: 'علم إعطاء كل حرف حقه ومستحقه.' }
 };
 
 const RAFIQ_RICH_EXTRA = {
@@ -123,16 +124,26 @@ const BOOK_MAP = {
     duas: ['رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf'],
     friday: ['رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf'],
     seasons: ['ما_لا_يسع_المسلم_جهله.pdf'],
-    resources: ['lianak allah موقع جديد بدف.pdf']
+    resources: ['lianak allah موقع جديد بدف.pdf'],
+    audio: ['Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar', 'MINSHAWY.1.rar', 'FARES-ABBAD.rar'],
+    tajweed: ['ar_Tuhfat_Alatfal.pdf']
 };
 
 // ==========================================
-// 4. دالة عرض الأقسام (بدون PDF داخلي)
+// 4. دالة عرض الأقسام الحقيقية (بمنع الكود القديم)
 // ==========================================
-window.openSpace = function(spaceId) {
-    // جلب البيانات، أو استخدام الافتراضي لو مش موجودة
-    const meta = RAFIQ_RICH_META[spaceId] || (window.ARCHIVE_META ? window.ARCHIVE_META[spaceId] : {title: 'الموسوعة', intro: 'قسم تحت التطوير.'});
-    const extra = RAFIQ_RICH_EXTRA[spaceId] || (window.ARCHIVE_EXTRA ? window.ARCHIVE_EXTRA[spaceId] : [{t: 'مقتطف', p: 'معلومات هذا القسم ستتوفر قريباً.'}]);
+document.addEventListener('click', (e) => {
+    const c = e.target.closest('.floating-card');
+    if (c) {
+        e.preventDefault();
+        e.stopImmediatePropagation(); // الأهم: إيقاف الدالة القديمة اللي بتبوظ الدنيا
+        mySafeOpenSpace(c.dataset.space);
+    }
+}, true); // وضعية Capture Phase لتجاوز الملف الأصلي
+
+function mySafeOpenSpace(spaceId) {
+    const meta = RAFIQ_RICH_META[spaceId] || { title: 'الموسوعة', intro: 'هذا الباب قيد التطوير والمراجعة.' };
+    const extra = RAFIQ_RICH_EXTRA[spaceId] || [{ t: 'مقتطف من الباب', p: 'سيتم إضافة الخلاصات قريباً بإذن الله.' }];
     
     let contentHtml = extra.map(e => `
         <div class="ency-section highlight" style="margin-top:16px; background:linear-gradient(145deg, rgba(77,194,107,0.1), rgba(0,0,0,0.2)); border:1px solid rgba(76,166,93,0.3); padding:18px; border-radius:18px;">
@@ -147,9 +158,12 @@ window.openSpace = function(spaceId) {
         booksHtml = `
             <div style="margin-top:30px; padding:22px; background:rgba(11, 40, 21, 0.4); border-radius:18px; border:1px solid rgba(212, 175, 55, 0.3); text-align:center;">
                 <h4 style="color:var(--gold-bright); margin-top:0; font-size:22px;">📚 المراجع والكتب للتحميل</h4>
-                <p class="muted" style="font-size:14px; margin-bottom:16px;">للتوسع والاستزادة، يمكنك فتح أو تحميل الكتب الأصلية لهذا الباب.</p>
+                <p class="muted" style="font-size:14px; margin-bottom:16px;">للتوسع والاستزادة، يمكنك تحميل الكتب الأصلية لهذا الباب.</p>
                 <div style="display:flex; flex-direction:column; gap:10px; align-items:center;">
-                    ${books.map(b => `<a class="action" target="_blank" rel="noopener" download href="${releaseUrl(b)}" style="width:min(100%, 300px);">⬇️ تحميل: ${escSafe(b.replace('.pdf','').replace(/_/g, ' '))}</a>`).join('')}
+                    ${books.map(b => {
+                        const isAudio = /\.(rar|zip)$/i.test(b);
+                        return `<a class="action" target="_blank" rel="noopener" download href="${releaseUrl(b)}" style="width:min(100%, 300px);">${isAudio ? '⬇️ تحميل الحزمة المضغوطة' : '⬇️ تحميل الكتاب'}</a>`;
+                    }).join('')}
                 </div>
             </div>
         `;
@@ -173,7 +187,7 @@ window.openSpace = function(spaceId) {
     if(container) container.innerHTML = html;
 
     const st = q('spaceTitle'); if(st) st.textContent = meta.title;
-    const si = q('spaceIntro'); if(si) si.textContent = 'اقرأ وردك العلمي الميسر هنا مباشرة، واستفد من خلاصة أمهات الكتب.';
+    const si = q('spaceIntro'); if(si) si.textContent = 'اقرأ وردك العلمي המيسر هنا مباشرة، واستفد من خلاصة أمهات الكتب.';
 
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     const sv = q('spaceView');
@@ -182,7 +196,7 @@ window.openSpace = function(spaceId) {
         sv.classList.add('show');
         document.body.classList.add('space-world');
     }
-};
+}
 
 // ==========================================
 // 5. تحديث شكل المكتبة في الشاشة الرئيسية 

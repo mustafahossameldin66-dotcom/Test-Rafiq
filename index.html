@@ -2777,18 +2777,24 @@ window.renderExplore=renderExplore;
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,100));else setTimeout(init,100);
 })();
 </script>
-  <!-- استدعاء قائمة الكتب والمحتوى -->
+<!-- استدعاء قائمة الكتب للمكتبة -->
 <script src="./content-data.js"></script>
 
-<!-- تفعيل نظام PWA والتشغيل بدون إنترنت -->
+<!-- استدعاء ملف الباتش الذي أنشأناه للتو وفيه نظام أسباب النزول -->
+<script src="./rafiq-web-v2-patch.js"></script>
+
+<!-- تفعيل نظام العمل بدون إنترنت Offline PWA -->
 <script>
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('./sw.js')
-        .then(registration => console.log('تم تفعيل نظام التشغيل بدون إنترنت بنجاح'))
+        .then(registration => console.log('تم تفعيل نظام الأوفلاين بنجاح'))
         .catch(error => console.error('خطأ في تفعيل نظام الأوفلاين:', error));
     });
   }
+</script>
+</body>
+</html>
 </script>
 </body>
 </html>

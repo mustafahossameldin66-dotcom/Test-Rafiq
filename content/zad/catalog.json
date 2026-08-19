@@ -1,17 +1,37 @@
 {
-  "version": "Rafiq-Zad-V1",
+  "version": "Rafiq-Zad-Local-4",
   "localBooks": [
-    {"id":"seraj-ghareeb","title":"السراج في بيان غريب القرآن — معاني الكلمات","category":"القرآن","section":"فهم القرآن","path":"content/zad/quran/seraj-ghareeb.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"asbab-alnuzul-alwahidi","title":"أسباب النزول — الواحدي","category":"القرآن","section":"أسباب النزول","path":"content/zad/quran/asbab-alnuzul-alwahidi.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"tafsir-almuyassar","title":"التفسير الميسر","category":"القرآن","section":"التفسير","path":"content/zad/quran/tafsir-almuyassar.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"quran-tadabbur-waamal","title":"القرآن تدبر وعمل","category":"القرآن","section":"التدبر والعمل","path":"content/zad/quran/quran-tadabbur-waamal.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"mabahith-ulum-alquran","title":"مباحث في علوم القرآن — مناع القطان","category":"القرآن","section":"علوم القرآن","path":"content/zad/quran/mabahith-ulum-alquran.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"mutashabihat-lafziya","title":"المتشابهات اللفظية في القرآن الكريم","category":"القرآن","section":"التثبيت والتربيط","path":"content/zad/quran/mutashabihat-lafziya.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"lianak-allah","title":"لأنك الله","category":"كتب للتوسع","section":"توسع","path":"content/zad/optional/lianak-allah.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"al-ahkam-tuhfat-alatfal","title":"الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال","category":"التجويد","section":"التجويد","path":"content/zad/tajweed/al-ahkam-tuhfat-alatfal.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"tajweed-supplement-1","title":"مواد التجويد — ملف إضافي 1","category":"التجويد","section":"التجويد","path":"content/zad/tajweed/tajweed-supplement-1.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"tajweed-supplement-2","title":"مواد التجويد — ملف إضافي 2","category":"التجويد","section":"التجويد","path":"content/zad/tajweed/tajweed-supplement-2.pdf","source":"كتاب مرفوع من المستخدم"},
-    {"id":"tajweed-supplement-3","title":"مواد التجويد — ملف إضافي 3","category":"التجويد","section":"التجويد","path":"content/zad/tajweed/tajweed-supplement-3.pdf","source":"كتاب مرفوع من المستخدم"}
-  ],
-  "releaseFallback": "https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/download/content-v1/"
+    {
+      "id": "seraj-ghareeb",
+      "title": "السراج في بيان غريب القرآن — معاني الكلمات",
+      "category": "القرآن",
+      "section": "فهم القرآن",
+      "path": "content/zad/quran/seraj-ghareeb.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "asbab-alnuzul-alwahidi",
+      "title": "أسباب النزول — الواحدي",
+      "category": "القرآن",
+      "section": "أسباب النزول",
+      "path": "content/zad/quran/asbab-alnuzul-alwahidi.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "mabahith-ulum-alquran",
+      "title": "مباحث في علوم القرآن — مناع القطان",
+      "category": "القرآن",
+      "section": "علوم القرآن",
+      "path": "content/zad/quran/mabahith-ulum-alquran.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "mutashabihat-lafziya",
+      "title": "المتشابهات اللفظية في القرآن الكريم",
+      "category": "القرآن",
+      "section": "التثبيت والتربيط",
+      "path": "content/zad/quran/mutashabihat-lafziya.pdf",
+      "source": "ملف محلي"
+    }
+  ]
 }

@@ -1,6 +1,54 @@
 {
-  "version": "Rafiq-Zad-V1",
-  "releaseTag": "content-v1",
-  "note": "ملفات القرآن والتفسير والتدبر وأسباب النزول ومعاني الكلمات والمتشابهات والتجويد ولأنك الله مرفقة داخل الموقع، مع تلاوات آية بآية أونلاين وحزم تنزيل من الإصدار.",
-  "localPaths": "content/zad/**"
+  "version": "Rafiq-Zad-Local-4",
+  "localBooks": [
+    {
+      "id": "seraj-ghareeb",
+      "title": "السراج في بيان غريب القرآن — معاني الكلمات",
+      "category": "القرآن",
+      "section": "فهم القرآن",
+      "path": "content/zad/quran/seraj-ghareeb.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "asbab-alnuzul-alwahidi",
+      "title": "أسباب النزول — الواحدي",
+      "category": "القرآن",
+      "section": "أسباب النزول",
+      "path": "content/zad/quran/asbab-alnuzul-alwahidi.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "mabahith-ulum-alquran",
+      "title": "مباحث في علوم القرآن — مناع القطان",
+      "category": "القرآن",
+      "section": "علوم القرآن",
+      "path": "content/zad/quran/mabahith-ulum-alquran.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "mutashabihat-lafziya",
+      "title": "المتشابهات اللفظية في القرآن الكريم",
+      "category": "القرآن",
+      "section": "التثبيت والتربيط",
+      "path": "content/zad/quran/mutashabihat-lafziya.pdf",
+      "source": "ملف محلي"
+    }
+  ],
+  "audio": [
+    {
+      "id": "husary",
+      "title": "الحصري",
+      "reciter": "Husary_128kbps"
+    },
+    {
+      "id": "minshawy",
+      "title": "المنشاوي",
+      "reciter": "Minshawy_Murattal_128kbps"
+    },
+    {
+      "id": "fares",
+      "title": "فارس عباد",
+      "reciter": "Fares_Abbad_64kbps"
+    }
+  ]
 }

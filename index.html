@@ -2823,126 +2823,162 @@ window.renderExplore=renderExplore;
 .zad-source-links a{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:10px;border:1px solid rgba(212,175,55,.18);color:var(--gold2);text-decoration:none;background:rgba(212,175,55,.05)}
 @media(max-width:900px){.zad-real-grid,.zad-audio-grid{grid-template-columns:1fr}.zad-real-content-head{display:block}}
 </style>
-<script id="rafiq-real-content-v1">
+<script id="rafiq-real-content-v2">
 (function(){
-  'use strict';
-  const q=id=>document.getElementById(id);
-  const esc2=s=>{const d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML};
-  const RELEASE_BASE='https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/download/content-v1/';
-  const localBooks=[
-    {id:'seraj-ghareeb',title:'السراج في بيان غريب القرآن — معاني الكلمات',category:'القرآن',section:'فهم القرآن',path:'content/zad/quran/seraj-ghareeb.pdf'},
-    {id:'asbab-alnuzul-alwahidi',title:'أسباب النزول — الواحدي',category:'القرآن',section:'أسباب النزول',path:'content/zad/quran/asbab-alnuzul-alwahidi.pdf'},
-    {id:'tafsir-almuyassar',title:'التفسير الميسر',category:'القرآن',section:'التفسير',path:'content/zad/quran/tafsir-almuyassar.pdf'},
-    {id:'quran-tadabbur-waamal',title:'القرآن تدبر وعمل',category:'القرآن',section:'التدبر والعمل',path:'content/zad/quran/quran-tadabbur-waamal.pdf'},
-    {id:'mabahith-ulum-alquran',title:'مباحث في علوم القرآن — مناع القطان',category:'القرآن',section:'علوم القرآن',path:'content/zad/quran/mabahith-ulum-alquran.pdf'},
-    {id:'mutashabihat-lafziya',title:'المتشابهات اللفظية في القرآن الكريم',category:'القرآن',section:'التثبيت والتربيط',path:'content/zad/quran/mutashabihat-lafziya.pdf'},
-    {id:'lianak-allah',title:'لأنك الله',category:'كتب للتوسع',section:'توسع',path:'content/zad/optional/lianak-allah.pdf'},
-    {id:'al-ahkam-tuhfat-alatfal',title:'الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/al-ahkam-tuhfat-alatfal.pdf'},
-    {id:'tajweed-supplement-1',title:'مواد التجويد — ملف إضافي 1',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/tajweed-supplement-1.pdf'},
-    {id:'tajweed-supplement-2',title:'مواد التجويد — ملف إضافي 2',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/tajweed-supplement-2.pdf'},
-    {id:'tajweed-supplement-3',title:'مواد التجويد — ملف إضافي 3',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/tajweed-supplement-3.pdf'}
-  ];
-  const remoteRecitationPacks=[
-    {id:'audio-husary-pack',title:'تلاوة الحصري — الحزمة',file:'Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar',reciter:'Husary_128kbps'},
-    {id:'audio-minshawy-pack',title:'تلاوة المنشاوي — الحزمة',file:'MINSHAWY.1.rar',reciter:'Minshawy_Murattal_128kbps'},
-    {id:'audio-fares-pack',title:'تلاوة فارس عباد — الحزمة',file:'FARES-ABBAD.rar',reciter:'Fares_Abbad_64kbps'}
-  ];
-  let allBooks=[], activeCat='زاد الحافظ';
-  const categories=[
-    {id:'زاد الحافظ',icon:'🌊',desc:'المصادر التي تخدم الحفظ والتثبيت والتربيط والفهم والتفسير والتدبر والعمل والتلاوة.'},
-    {id:'القرآن',icon:'📖',desc:'مراجع مرتبطة مباشرة بدراسة القرآن.'},
-    {id:'التجويد',icon:'🎙️',desc:'مواد التجويد المرفوعة داخل المشروع.'},
-    {id:'كتب للتوسع',icon:'✨',desc:'مواد إضافية خارج المسار الأساسي.'}
-  ];
-  function directRelease(name){return RELEASE_BASE+encodeURIComponent(name)}
-  function installReader(){
-    if(q('zadContentReader'))return;
-    const el=document.createElement('div');el.id='zadContentReader';el.innerHTML=`<div class="inner"><div class="bar"><b id="zadReaderTitle">الكتاب</b><button type="button" class="action" id="zadReaderClose">✕ إغلاق</button></div><iframe id="zadReaderFrame" title="قارئ الكتاب"></iframe></div>`;document.body.appendChild(el);
-    q('zadReaderClose').onclick=()=>{q('zadContentReader').classList.remove('show');q('zadReaderFrame').src='about:blank'};
-  }
-  function openBook(book){installReader();q('zadReaderTitle').textContent=book.title;q('zadReaderFrame').src=book.url||book.path;q('zadContentReader').classList.add('show')}
-  function downloadBook(book){const a=document.createElement('a');a.href=book.url||book.path;a.target='_blank';a.rel='noopener';a.download='';document.body.appendChild(a);a.click();a.remove()}
-  function loadManifest(){
-    return fetch('content-manifest.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({items:[]}));
-  }
-  function mergeBooks(man){
-    const map=new Map(localBooks.map(x=>[x.title,x]));
-    const items=Array.isArray(man.items)?man.items:[];
-    for(const x of items){
-      if(x.category==='system')continue;
-      if(x.category==='audio')continue;
-      const local=map.get(x.title);
-      if(local){local.url=local.path;local.isLocal=true;continue}
-      map.set(x.title,{id:'release-'+(x.name||x.title),title:x.title||x.name,category:x.category,section:x.seriesTitle||'مصادر',path:'',url:directRelease(x.name),isLocal:false,release:true,size:x.size||0,archive:x.archive||''});
-    }
-    allBooks=[...map.values()];
-  }
-  function zadRecommended(){
-    const wanted=['التفسير الميسر','السراج في بيان غريب القرآن — معاني الكلمات','أسباب النزول — الواحدي','القرآن تدبر وعمل','مباحث في علوم القرآن — مناع القطان','المتشابهات اللفظية في القرآن الكريم'];
-    return wanted.map(t=>allBooks.find(x=>x.title===t)).filter(Boolean);
-  }
-  function card(b){const source=b.isLocal?'📦 مرفوع داخل الموقع':'☁️ من إصدار المحتوى';const size=b.size?` • ${Math.round(b.size/1048576*10)/10} MB`:'';return `<article class="zad-real-card"><span class="zad-real-badge">${esc2(b.category)} • ${esc2(b.section||'مصدر') }</span><h4>${esc2(b.title)}</h4><div class="muted">${source}${size}</div><div class="zad-real-actions"><button type="button" class="action info" data-zad-open="${esc2(b.id)}">📖 فتح</button><button type="button" class="action" data-zad-download="${esc2(b.id)}">⬇️ تنزيل</button></div></article>`}
-  function audioCard(a){return `<article class="zad-real-card"><span class="zad-real-badge">🎧 تلاوات</span><h4>${esc2(a.title)}</h4><div class="muted">تشغيل آية بآية أونلاين + رابط تنزيل الحزمة الكاملة.</div><div class="zad-real-actions"><button type="button" class="action info" data-audio-reciter="${esc2(a.reciter)}">▶ تجربة التلاوة</button><a class="action" target="_blank" rel="noopener" href="${directRelease(a.file)}">⬇️ تنزيل الحزمة</a></div></article>`}
-  function renderLibrary(){
-    let cardRoot=q('zadRealContentCard');
-    if(!cardRoot){
-      const host=q('v66ReleaseBooks')?.parentElement || q('library')?.querySelector('.zad-page-content');
-      if(!host)return;
-      cardRoot=document.createElement('section');cardRoot.id='zadRealContentCard';cardRoot.className='card';host.appendChild(cardRoot);
-    }
-    const cat=categories.find(x=>x.id===activeCat)||categories[0];
-    const items=activeCat==='زاد الحافظ'?zadRecommended():allBooks.filter(x=>x.category===activeCat || x.section===activeCat || (activeCat==='القرآن'&&x.category==='tafsir'));
-    const audioHtml=activeCat==='زاد الحافظ'?`<div class="zad-audio-panel"><div class="zad-real-content-head"><div><h3>🎧 التلاوات</h3><div class="zad-real-content-note">الحصري والمنشاوي وفارس عباد: تشغيل مباشر للآية، مع تنزيل الحزم الكاملة من إصدار المحتوى.</div></div></div><div class="zad-audio-grid"><div class="zad-audio-box"><label>القارئ</label><select id="zadReciterSelect"><option value="Husary_128kbps">الحصري</option><option value="Minshawy_Murattal_128kbps">المنشاوي</option><option value="Fares_Abbad_64kbps">فارس عباد</option></select></div><div class="zad-audio-box"><label>السورة</label><select id="zadSuraSelect"></select></div><div class="zad-audio-box"><label>رقم الآية</label><input id="zadAyahInput" type="number" min="1" value="1"><button type="button" class="main" style="margin-top:8px;width:100%" id="zadPlayAudioBtn">▶ تشغيل الآية</button></div></div><div class="zad-real-grid" style="margin-top:12px">${remoteRecitationPacks.map(audioCard).join('')}</div></div>`:'';
-    cardRoot.innerHTML=`<div class="zad-real-content-head"><div><span class="zad-real-badge">${cat.icon} ${esc2(cat.id)}</span><h3 style="margin-top:8px">المحتوى الفعلي</h3><div class="zad-real-content-note">${esc2(cat.desc)} كل كتاب هنا له ملف قابل للفتح أو التنزيل، وليس مجرد عنوان في الفهرس.</div></div></div><div class="zad-real-tabs">${categories.map(c=>`<button type="button" class="${c.id===activeCat?'active':''}" data-zad-cat="${esc2(c.id)}">${c.icon} ${esc2(c.id)}</button>`).join('')}</div><div class="zad-real-grid">${items.length?items.map(card).join(''):'<div class="zad-real-card"><h4>لا توجد نسخة محلية لهذا الباب</h4><div class="muted">سيظهر هنا المصدر المنشور إذا كانت أصوله متاحة في إصدار المحتوى.</div></div>'}</div>${audioHtml}`;
-    cardRoot.querySelectorAll('[data-zad-cat]').forEach(b=>b.onclick=()=>{activeCat=b.dataset.zadCat;renderLibrary()});
-    cardRoot.querySelectorAll('[data-zad-open]').forEach(b=>b.onclick=()=>{const item=allBooks.find(x=>x.id===b.dataset.zadOpen);if(item)openBook(item)});
-    cardRoot.querySelectorAll('[data-zad-download]').forEach(b=>b.onclick=()=>{const item=allBooks.find(x=>x.id===b.dataset.zadDownload);if(item)downloadBook(item)});
-    cardRoot.querySelectorAll('[data-audio-reciter]').forEach(b=>b.onclick=()=>{q('zadReciterSelect').value=b.dataset.audioReciter;playSelectedAudio()});
-    const ss=q('zadSuraSelect');
-    if(ss&&Array.isArray(window.quranBook)&&window.quranBook.length) ss.innerHTML=window.quranBook.map(x=>`<option value="${x.s}">${esc2(x.name)} — ${x.s}</option>`).join('');
-    else if(ss) ss.innerHTML=Array.from({length:114},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
-    q('zadPlayAudioBtn')?.addEventListener('click',playSelectedAudio);
-    if(q('zadSuraSelect'))q('zadSuraSelect').value=String(window.mushafSura||1);
-  }
-  function playSelectedAudio(){const s=Number(q('zadSuraSelect')?.value||1),a=Number(q('zadAyahInput')?.value||1),r=q('zadReciterSelect')?.value||'Husary_128kbps';const url=`https://everyayah.com/data/${r}/${String(s).padStart(3,'0')}${String(a).padStart(3,'0')}.mp3`;const audio=new Audio(url);audio.volume=Number(window.state?.volume||1);audio.play().then(()=>toast('بدأت التلاوة ✅')).catch(()=>toast('تعذر تشغيل التلاوة — جرّب مرة أخرى بعد الضغط على تشغيل.'))}
-  function installSourceBadges(){
-    document.querySelectorAll('.mushaf-ayah').forEach(el=>{if(el.querySelector('.zad-fast-study'))return;const s=Number(el.dataset.sura),a=Number(el.dataset.ayah);const row=document.createElement('div');row.className='zad-source-links zad-fast-study';row.innerHTML=`<a target="_blank" rel="noopener" href="https://quranpedia.net/ayahs/${s}/${a}/11/2919">🕊️ أسباب النزول — الواحدي</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_moyassar/${s}/${a}">📖 التفسير الميسر</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">🔎 السراج — معاني الكلمات</a>`;el.appendChild(row)});
-  }
-  async function customStudy(s,a){
-    const book=Array.isArray(window.quranBook)?window.quranBook.find(x=>x.s===s):null;const v=book?.verses?.find(x=>x.a===a);if(!v)return toast('لم أجد الآية في المصحف المحلي');
-    const panel=q('ayahStudyPanel');if(!panel)return;
-    document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.toggle('selected',Number(x.dataset.sura)===s&&Number(x.dataset.ayah)===a));
-    panel.style.display='block';panel.innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div><h3>📚 ${esc2(book.name)} — الآية ${a}</h3><div class="muted">دراسة الآية تبدأ فورًا من مكانها، ثم تُحمّل التفاصيل في الخلفية.</div></div><button class="action" id="closeZadAyahStudy">✕ إغلاق</button></div><div class="ayah-study-tabs"><button class="ayah-study-tab active" data-zatab="overview">✨ نظرة كاملة</button><button class="ayah-study-tab" data-zatab="tafsir">📖 التفسير</button><button class="ayah-study-tab" data-zatab="words">🔎 الكلمات</button><button class="ayah-study-tab" data-zatab="asbab">🕊️ أسباب النزول</button><button class="ayah-study-tab" data-zatab="audio">🎧 التلاوة</button></div><div id="zadAyahInner"></div>`;
-    q('closeZadAyahStudy').onclick=()=>{panel.style.display='none';document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.remove('selected'))};
-    const sourceLinks=`<div class="zad-source-links"><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_moyassar/${s}/${a}">📖 التفسير الميسر</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">🔎 السراج</a><a target="_blank" rel="noopener" href="https://quranpedia.net/ayahs/${s}/${a}/11/2919">🕊️ أسباب النزول — الواحدي</a></div>`;
-    const render=(tab,taf='',word='')=>{
-      const inner=q('zadAyahInner');if(!inner)return;let h='';
-      if(tab==='overview') h=`<div class="ayah-detail-grid"><section class="ayah-detail"><h4>🕋 الآية</h4><p style="font-size:26px;line-height:2">${esc2(v.text)}</p></section><section class="ayah-detail"><h4>📌 المرجع</h4><p>سورة ${esc2(book.name)} — الآية ${a}</p>${sourceLinks}</section></div>`;
-      if(tab==='tafsir') h=`<section class="ayah-detail"><h4>📖 التفسير الميسر</h4><p id="zadLocalTafsirText">${esc2(taf||'جاري تحميل التفسير الميسر لهذه الآية…')}</p>${sourceLinks}<p class="muted">والكتاب الكامل موجود داخل مكتبة زاد الحافظ ويمكن فتحه مباشرة.</p></section>`;
-      if(tab==='words') h=`<section class="ayah-detail"><h4>🔎 معاني الكلمات</h4><p>${esc2(word||'جاري تحميل معاني الكلمات…')}</p>${sourceLinks}</section>`;
-      if(tab==='asbab') h=`<section class="ayah-detail"><h4>🕊️ أسباب النزول — الواحدي</h4><p>المحتوى يُعرض مباشرة من نسخة الكتاب النصية المرتبة على سور القرآن. إن لم يكن لهذه الآية رواية مخصوصة في الكتاب فستظهر صفحة الكتاب دون اختلاق رواية.</p><div style="height:min(65vh,720px);margin-top:12px;border:1px solid rgba(212,175,55,.18);border-radius:14px;overflow:hidden"><iframe title="أسباب النزول — الواحدي" style="width:100%;height:100%;border:0;background:#111" src="https://quranpedia.net/ayahs/${s}/${a}/11/2919"></iframe></div><div class="zad-source-links"><a target="_blank" rel="noopener" href="https://quranpedia.net/book/242">📚 فتح كتاب أسباب النزول كاملًا</a><a href="content/zad/quran/asbab-alnuzul-alwahidi.pdf" target="_blank" rel="noopener">📕 فتح الـPDF المرفوع</a></div></section>`;
-      if(tab==='audio') h=`<section class="ayah-detail"><h4>🎧 استمع للآية</h4><p>اختر القارئ ثم شغّل الآية مباشرة.</p><div class="grid2"><select id="zadAyahReciter"><option value="Husary_128kbps">الحصري</option><option value="Minshawy_Murattal_128kbps">المنشاوي</option><option value="Fares_Abbad_64kbps">فارس عباد</option></select><button type="button" class="main" id="zadAyahPlay">▶ تشغيل الآية</button></div><div class="zad-source-links"><a target="_blank" rel="noopener" href="https://everyayah.com/recitations_ayat.html">🎧 مكتبة التلاوات</a></div></section>`;
-      inner.innerHTML=h;
-      inner.querySelectorAll('[data-zatab]').forEach(b=>b.onclick=()=>render(b.dataset.zatab,taf,word));
-      q('zadAyahPlay')?.addEventListener('click',()=>{const r=q('zadAyahReciter')?.value||'Husary_128kbps';const au=new Audio(`https://everyayah.com/data/${r}/${String(s).padStart(3,'0')}${String(a).padStart(3,'0')}.mp3`);au.play().catch(()=>toast('تعذر تشغيل التلاوة الآن.'))});
-    };
-    render('overview');
-    requestAnimationFrame(()=>{const target=document.querySelector(`.mushaf-ayah[data-sura="${s}"][data-ayah="${a}"]`);if(target){target.scrollIntoView({behavior:'smooth',block:'center'});target.insertAdjacentElement('afterend',panel);setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),70)}});
-    // Load online text after the study panel is already visible.
-    try{const [tr,wr]=await Promise.all([fetch(`https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${s}/${a}`,{cache:'no-store'}),fetch(`https://quranenc.com/api/v1/translation/aya/arabic_seraj/${s}/${a}`,{cache:'no-store'})]);const tj=tr.ok?await tr.json():{};const wj=wr.ok?await wr.json():{};const taf=tj?.result?.translation||tj?.data?.translation||tj?.translation||'';const word=wj?.result?.translation||wj?.data?.translation||wj?.translation||'';render('tafsir',taf,word)}catch{}
-  }
-  function interceptStudyClicks(){
-    const box=q('mushafVerses');if(!box||box.dataset.zadRealBound)return;box.dataset.zadRealBound='1';box.addEventListener('click',e=>{const b=e.target.closest('[data-study-ayah]');if(!b)return;const art=b.closest('.mushaf-ayah');if(!art)return;e.preventDefault();e.stopImmediatePropagation();customStudy(Number(art.dataset.sura),Number(b.dataset.studyAyah));},true);
-  }
-  function boot(){
-    loadManifest().then(man=>{mergeBooks(man);renderLibrary();});
-    installReader();
-    interceptStudyClicks();
-    setInterval(()=>{interceptStudyClicks();installSourceBadges()},800);
-    document.addEventListener('click',e=>{const n=e.target.closest('.nav-item[data-view="library"]');if(n)setTimeout(renderLibrary,120);});
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.RafiqRealContent={renderLibrary,customStudy,openBook,playSelectedAudio};
+'use strict';
+const q=id=>document.getElementById(id);
+const esc=s=>{const d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML};
+const RECITERS=[
+  {id:'Husary_128kbps',name:'الحصري'},
+  {id:'Minshawy_Murattal_128kbps',name:'المنشاوي'},
+  {id:'Fares_Abbad_64kbps',name:'فارس عباد'}
+];
+const BOOKS=[
+  {id:'seraj-ghareeb',title:'السراج في بيان غريب القرآن — معاني الكلمات',section:'فهم القرآن',path:'content/zad/quran/seraj-ghareeb.pdf',desc:'لفهم غريب ألفاظ القرآن ومعاني الكلمات.'},
+  {id:'asbab-alnuzul-alwahidi',title:'أسباب النزول — الواحدي',section:'أسباب النزول',path:'content/zad/quran/asbab-alnuzul-alwahidi.pdf',desc:'المصدر المرفوع لأسباب النزول، مرتب بحسب السور.'},
+  {id:'mabahith-ulum-alquran',title:'مباحث في علوم القرآن — مناع القطان',section:'علوم القرآن',path:'content/zad/quran/mabahith-ulum-alquran.pdf',desc:'مدخل لفهم علوم القرآن وما يعين على الفهم والتعامل مع النص.'},
+  {id:'mutashabihat-lafziya',title:'المتشابهات اللفظية في القرآن الكريم',section:'التثبيت والتربيط',path:'content/zad/quran/mutashabihat-lafziya.pdf',desc:'مادة مباشرة لخدمة تثبيت الحفظ والتربيط بين المواضع المتشابهة.'}
+];
+function installReader(){
+  if(q('zadContentReader'))return;
+  const el=document.createElement('div');
+  el.id='zadContentReader';
+  el.innerHTML='<div class="inner"><div class="bar"><b id="zadReaderTitle">الكتاب</b><button type="button" class="action" id="zadReaderClose">✕ إغلاق</button></div><iframe id="zadReaderFrame" title="قارئ الكتاب" style="width:100%;height:80vh;border:0;background:#111"></iframe></div>';
+  document.body.appendChild(el);
+  q('zadReaderClose').onclick=()=>{q('zadContentReader').classList.remove('show');q('zadReaderFrame').src='about:blank'};
+}
+function openBook(book){
+  installReader();
+  q('zadReaderTitle').textContent=book.title;
+  q('zadReaderFrame').src=book.path;
+  q('zadContentReader').classList.add('show');
+}
+function downloadBook(book){
+  const a=document.createElement('a');
+  a.href=book.path;a.target='_blank';a.rel='noopener';a.download='';
+  document.body.appendChild(a);a.click();a.remove();
+}
+function audioUrl(reciter,sura,ayah){
+  return `https://everyayah.com/data/${reciter}/${String(sura).padStart(3,'0')}${String(ayah).padStart(3,'0')}.mp3`;
+}
+function currentAyah(){
+  return {
+    s:Number(window.mushafSura||1),
+    a:1
+  };
+}
+function playRecitation(reciter){
+  const {s,a}=currentAyah();
+  const url=audioUrl(reciter,s,a);
+  const audio=new Audio(url);
+  audio.preload='auto';
+  audio.play().then(()=>{if(typeof toast==='function')toast(`بدأت تلاوة ${RECITERS.find(x=>x.id===reciter)?.name||''} ✅`)}).catch(()=>{if(typeof toast==='function')toast('تعذر تشغيل التلاوة. اضغط التشغيل مرة أخرى بعد السماح بالصوت.')});
+}
+function recitationPanel(){
+  return `<section class="zad-audio-panel">
+    <div class="zad-real-content-head"><div><h3>🎧 التلاوات</h3><div class="zad-real-content-note">تشغيل مباشر آية بآية من EveryAyah للحصري والمنشاوي وفارس عباد؛ لا تحتاج لرفع ملفات الصوت الضخمة إلى الموقع.</div></div></div>
+    <div class="zad-real-grid">
+      ${RECITERS.map(r=>`<article class="zad-real-card"><span class="zad-real-badge">🎙️ ${esc(r.name)}</span><h4>${esc(r.name)}</h4><div class="muted">يشغّل الآية الأولى من السورة الحالية في المصحف، ويمكنك بعدها استخدام دراسة الآية للتلاوة.</div><button type="button" class="action info" data-zad-reciter="${esc(r.id)}">▶ تشغيل الآية الحالية</button><a class="action" href="https://everyayah.com/recitations_ayat.html" target="_blank" rel="noopener">🌐 مكتبة التلاوات</a></article>`).join('')}
+    </div>
+    <div class="zad-audio-box" style="margin-top:12px">
+      <label for="zadAudioSura">السورة</label>
+      <select id="zadAudioSura"></select>
+      <label for="zadAudioAyah" style="margin-top:8px">الآية</label>
+      <input id="zadAudioAyah" type="number" min="1" value="1">
+      <label for="zadAudioReciter" style="margin-top:8px">القارئ</label>
+      <select id="zadAudioReciter">${RECITERS.map(r=>`<option value="${r.id}">${esc(r.name)}</option>`).join('')}</select>
+      <button type="button" class="main" style="margin-top:10px;width:100%" id="zadPlayChosenAudio">▶ تشغيل التلاوة</button>
+      <div class="zad-source-links"><a href="https://everyayah.com/recitations_ayat.html" target="_blank" rel="noopener">مصدر التلاوات — EveryAyah</a></div>
+    </div>
+  </section>`;
+}
+function populateSuras(){
+  const sel=q('zadAudioSura'); if(!sel)return;
+  const list=Array.isArray(window.quranBook)?window.quranBook:[];
+  sel.innerHTML=list.length?list.map(x=>`<option value="${x.s}">${esc(x.name)} — ${x.s}</option>`).join(''):Array.from({length:114},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
+  sel.value=String(window.mushafSura||1);
+}
+function bindAudio(root){
+  root.querySelectorAll('[data-zad-reciter]').forEach(b=>b.onclick=()=>playRecitation(b.dataset.zadReciter));
+  const play=q('zadPlayChosenAudio');
+  play?.addEventListener('click',()=>{
+    const r=q('zadAudioReciter')?.value||RECITERS[0].id;
+    const s=Number(q('zadAudioSura')?.value||1);
+    const a=Math.max(1,Number(q('zadAudioAyah')?.value||1));
+    const audio=new Audio(audioUrl(r,s,a));
+    audio.play().then(()=>{if(typeof toast==='function')toast('بدأت التلاوة ✅')}).catch(()=>{if(typeof toast==='function')toast('تعذر تشغيل التلاوة الآن.')});
+  });
+}
+let activeCategory='all';
+function categoryFilter(book){
+  if(activeCategory==='all')return true;
+  if(activeCategory==='quran')return book.section==='فهم القرآن'||book.section==='أسباب النزول'||book.section==='علوم القرآن';
+  if(activeCategory==='link')return book.section==='التثبيت والتربيط';
+  return true;
+}
+function renderRealContent(){
+  const old=q('zadRealContentCard');
+  if(old)old.remove();
+  const host=q('v66ReleaseBooks')?.parentElement?.parentElement || q('library')?.querySelector('.zad-page-content');
+  if(!host)return;
+  const cardRoot=document.createElement('section');
+  cardRoot.id='zadRealContentCard';
+  cardRoot.className='v62-card';
+  cardRoot.style.marginTop='14px';
+  cardRoot.innerHTML=`<div class="zad-real-content-head">
+      <div><span class="zad-real-badge">📚 المحتوى الحقيقي</span><h3>زاد الحافظ — كتب الحفظ والفهم والتثبيت</h3>
+      <div class="zad-real-content-note">كل كتاب أدناه ملف موجود داخل الموقع فعليًا. اضغط «فتح» لقراءته الآن أو «تنزيل» لحفظه.</div></div>
+    </div>
+    <div class="zad-real-tabs">
+      <button type="button" class="${activeCategory==='all'?'active':''}" data-zad-cat="all">📚 الكل</button>
+      <button type="button" class="${activeCategory==='quran'?'active':''}" data-zad-cat="quran">📖 فهم القرآن</button>
+      <button type="button" class="${activeCategory==='link'?'active':''}" data-zad-cat="link">🔗 التثبيت والتربيط</button>
+    </div>
+    <div class="zad-real-grid">${BOOKS.filter(categoryFilter).map(b=>`<article class="zad-real-card">
+      <span class="zad-real-badge">📕 ${esc(b.section)}</span>
+      <h4>${esc(b.title)}</h4>
+      <div class="muted">${esc(b.desc)}</div>
+      <div class="zad-real-actions"><button type="button" class="action info" data-zad-open="${esc(b.id)}">📖 فتح الكتاب</button><a class="action" href="${esc(b.path)}" target="_blank" rel="noopener">⬇️ فتح/تنزيل PDF</a></div>
+    </article>`).join('')}</div>${recitationPanel()}`;
+  host.appendChild(cardRoot);
+  cardRoot.querySelectorAll('[data-zad-cat]').forEach(b=>b.onclick=()=>{activeCategory=b.dataset.zadCat;renderRealContent()});
+  cardRoot.querySelectorAll('[data-zad-open]').forEach(b=>b.onclick=()=>{const book=BOOKS.find(x=>x.id===b.dataset.zadOpen);if(book)openBook(book)});
+  populateSuras();bindAudio(cardRoot);
+}
+function hardenMushafStudy(){
+  // Keep the existing study implementation, but add a deterministic local-source bar
+  // after every rendered ayah so the four local sources are always reachable.
+  const host=q('mushafVerses');
+  if(!host || host.dataset.zadLocalSourcesBound)return;
+  host.dataset.zadLocalSourcesBound='1';
+  const add=()=>{
+    host.querySelectorAll('.mushaf-ayah').forEach(el=>{
+      if(el.querySelector('.zad-local-source-bar'))return;
+      const s=Number(el.dataset.sura||0), a=Number(el.dataset.ayah||0);
+      const row=document.createElement('div');
+      row.className='zad-source-links zad-local-source-bar';
+      row.innerHTML=`<a href="content/zad/quran/asbab-alnuzul-alwahidi.pdf" target="_blank" rel="noopener">🕊️ كتاب أسباب النزول — الواحدي</a>
+      <a href="content/zad/quran/mabahith-ulum-alquran.pdf" target="_blank" rel="noopener">📚 علوم القرآن</a>
+      <a href="content/zad/quran/seraj-ghareeb.pdf" target="_blank" rel="noopener">🔎 معاني الكلمات</a>
+      <a href="content/zad/quran/mutashabihat-lafziya.pdf" target="_blank" rel="noopener">🔗 المتشابهات</a>
+      <a href="${audioUrl('Husary_128kbps',s,a)}" target="_blank" rel="noopener">🎧 تلاوة الآية</a>`;
+      el.appendChild(row);
+    });
+  };
+  const obs=new MutationObserver(add);obs.observe(host,{childList:true,subtree:true});add();
+}
+function boot(){
+  // Hide the old release/API card that depended on GitHub release assets.
+  const old=q('v66ReleaseCard');if(old)old.style.display='none';
+  renderRealContent();
+  hardenMushafStudy();
+  document.addEventListener('click',e=>{
+    const n=e.target.closest('.nav-item[data-view="library"]');
+    if(n)setTimeout(renderRealContent,100);
+  });
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
+window.RafiqRealContent={renderRealContent,openBook,playRecitation};
 })();
 </script>
 </body>

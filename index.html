@@ -2733,14 +2733,18 @@ window.renderExplore=renderExplore;
 (function(){
   const q=id=>document.getElementById(id);
   const bookCards=[
-    ['فهم القرآن','السراج في بيان غريب القرآن — معاني الكلمات','🔎','local','content/zad/quran/seraj-ghareeb.pdf'],
-    ['أسباب النزول','أسباب النزول — الواحدي','🕊️','local','content/zad/quran/asbab-alnuzul-alwahidi.pdf'],
-    ['علوم القرآن','مباحث في علوم القرآن — مناع القطان','📚','local','content/zad/quran/mabahith-ulum-alquran.pdf'],
-    ['التثبيت','المتشابهات اللفظية في القرآن الكريم','🔗','local','content/zad/quran/mutashabihat-lafziya.pdf'],
-    ['التدبر والعمل','القرآن تدبر وعمل','✨','local','content/zad/quran/tadabbur-wa-amal.pdf'],
-    ['الأذكار','الأذكار اليومية من صحيح السنة النبوية','📿','local','content/zad/quran/adhkar-yawmiyya.pdf'],
-    ['الأدعية','جامع الدعاء من القرآن والسنة','🤲','local','content/zad/quran/jami-al-dua.pdf'],
-    ['أسماء الله','لأنك الله — رحلة إلى السماء السابعة','💛','local','content/zad/quran/liannaka-allah.pdf']
+    ['العلم','ما لا يسع المسلم جهله','🕌','basic','ما لا يسع المسلم جهله'],
+    ['الفقه','الفقه الميسر في ضوء الكتاب والسنة','⚖️','basic','الفقه الميسر في ضوء الكتاب والسنة'],
+    ['الحديث','رياض الصالحين','📜','hadith','رياض الصالحين من كلام رسول الله سيد العارفين- النووي - ط دار المنهاج.pdf'],
+    ['التفسير','التفسير الميسر','📖','tafsir','التفسير الميسر_73731_Foulabook.com_.pdf'],
+    ['أسباب النزول','أسباب النزول — الواحدي','🕊️','tafsir','asnz.pdf'],
+    ['التجويد','الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال','🎙️','tajweed','ar_Tuhfat_Alatfal.pdf'],
+    ['التزكية','الداء والدواء — تحقيق أسامة العتيبي','🌱','tazkiyah','الداء والدواء - ت. أسامة العتيبي.pdf'],
+    ['العمل بالقرآن','القرآن تدبر وعمل','✨','quran','القرآن تدبر وعمل كاملا.pdf'],
+    ['السيرة','قصص الأنبياء — ابن كثير','🕊️','seerah','قصص_الأنبياء_ابن_كثير.pdf'],
+    ['الآداب','خلق المسلم','🌿','adab','الشيخ محمد الغزالي خلق المسلم.pdf'],
+    ['كتاب مفيد','لأنك الله','💛','optional','lianak allah موقع جديد بدف.pdf'],
+    ['التلاوة','الحصري','🎧','audio','Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar']
   ];
   function findAsset(hint){
     const api=window.rafiqRelease; const list=api&&typeof api.assets==='function'?api.assets():[];
@@ -2750,16 +2754,11 @@ window.renderExplore=renderExplore;
   function openInLibrary(hint){
     if(typeof switchView==='function')switchView('library');
     setTimeout(async()=>{
-      const local=String(hint||'');
-      if(local.startsWith('content/')){
-        window.open(local,'_blank','noopener');
-        return;
-      }
       try{if(typeof window.__rafiqReleaseRefresh==='function')await window.__rafiqReleaseRefresh();}catch{}
       const a=findAsset(hint);
       if(a&&window.rafiqRelease&&typeof window.rafiqRelease.open==='function')window.rafiqRelease.open(a);
       const node=q('v66ReleaseCard'); if(node)node.scrollIntoView({behavior:'smooth',block:'start'});
-    },300);
+    },500);
   }
   function render(){
     const host=q('v80HomeLibraryGrid'); if(!host)return;
@@ -2838,11 +2837,7 @@ const BOOKS=[
   {id:'seraj-ghareeb',title:'السراج في بيان غريب القرآن — معاني الكلمات',section:'فهم القرآن',path:'content/zad/quran/seraj-ghareeb.pdf',desc:'لفهم غريب ألفاظ القرآن ومعاني الكلمات.'},
   {id:'asbab-alnuzul-alwahidi',title:'أسباب النزول — الواحدي',section:'أسباب النزول',path:'content/zad/quran/asbab-alnuzul-alwahidi.pdf',desc:'المصدر المرفوع لأسباب النزول، مرتب بحسب السور.'},
   {id:'mabahith-ulum-alquran',title:'مباحث في علوم القرآن — مناع القطان',section:'علوم القرآن',path:'content/zad/quran/mabahith-ulum-alquran.pdf',desc:'مدخل لفهم علوم القرآن وما يعين على الفهم والتعامل مع النص.'},
-  {id:'mutashabihat-lafziya',title:'المتشابهات اللفظية في القرآن الكريم',section:'التثبيت والتربيط',path:'content/zad/quran/mutashabihat-lafziya.pdf',desc:'مادة مباشرة لخدمة تثبيت الحفظ والتربيط بين المواضع المتشابهة.'},
-  {id:'tadabbur-wa-amal',title:'القرآن تدبر وعمل',section:'تدبر وعمل',path:'content/zad/quran/tadabbur-wa-amal.pdf',desc:'برنامج عملي لتدبر القرآن وربط الآيات بالعمل والتطبيق.'},
-  {id:'adhkar-yawmiyya',title:'الأذكار اليومية من صحيح السنة النبوية',section:'الأذكار',path:'content/zad/quran/adhkar-yawmiyya.pdf',desc:'الأذكار اليومية من صحيح السنة النبوية.'},
-  {id:'jami-al-dua',title:'جامع الدعاء من القرآن والسنة',section:'الأدعية',path:'content/zad/quran/jami-al-dua.pdf',desc:'مختارات من أدعية القرآن والسنة.'},
-  {id:'liannaka-allah',title:'لأنك الله — رحلة إلى السماء السابعة',section:'أسماء الله الحسنى',path:'content/zad/quran/liannaka-allah.pdf',desc:'رحلة إيمانية مع أسماء الله الحسنى ومعانيها وآثارها.'}
+  {id:'mutashabihat-lafziya',title:'المتشابهات اللفظية في القرآن الكريم',section:'التثبيت والتربيط',path:'content/zad/quran/mutashabihat-lafziya.pdf',desc:'مادة مباشرة لخدمة تثبيت الحفظ والتربيط بين المواضع المتشابهة.'}
 ];
 function installReader(){
   if(q('zadContentReader'))return;
@@ -2919,9 +2914,6 @@ function categoryFilter(book){
   if(activeCategory==='all')return true;
   if(activeCategory==='quran')return book.section==='فهم القرآن'||book.section==='أسباب النزول'||book.section==='علوم القرآن';
   if(activeCategory==='link')return book.section==='التثبيت والتربيط';
-  if(activeCategory==='daily')return book.section==='الأذكار'||book.section==='الأدعية';
-  if(activeCategory==='tadabbur')return book.section==='تدبر وعمل';
-  if(activeCategory==='asmaa')return book.section==='أسماء الله الحسنى';
   return true;
 }
 function renderRealContent(){
@@ -2941,9 +2933,6 @@ function renderRealContent(){
       <button type="button" class="${activeCategory==='all'?'active':''}" data-zad-cat="all">📚 الكل</button>
       <button type="button" class="${activeCategory==='quran'?'active':''}" data-zad-cat="quran">📖 فهم القرآن</button>
       <button type="button" class="${activeCategory==='link'?'active':''}" data-zad-cat="link">🔗 التثبيت والتربيط</button>
-      <button type="button" class="${activeCategory==='daily'?'active':''}" data-zad-cat="daily">🤲 الأذكار والأدعية</button>
-      <button type="button" class="${activeCategory==='tadabbur'?'active':''}" data-zad-cat="tadabbur">✨ تدبر وعمل</button>
-      <button type="button" class="${activeCategory==='asmaa'?'active':''}" data-zad-cat="asmaa">💛 أسماء الله الحسنى</button>
     </div>
     <div class="zad-real-grid">${BOOKS.filter(categoryFilter).map(b=>`<article class="zad-real-card">
       <span class="zad-real-badge">📕 ${esc(b.section)}</span>
@@ -2968,14 +2957,10 @@ function hardenMushafStudy(){
       const s=Number(el.dataset.sura||0), a=Number(el.dataset.ayah||0);
       const row=document.createElement('div');
       row.className='zad-source-links zad-local-source-bar';
-      row.innerHTML=`<a href="content/zad/quran/asbab-alnuzul-alwahidi.pdf" target="_blank" rel="noopener">🕊️ أسباب النزول</a>
+      row.innerHTML=`<a href="content/zad/quran/asbab-alnuzul-alwahidi.pdf" target="_blank" rel="noopener">🕊️ كتاب أسباب النزول — الواحدي</a>
       <a href="content/zad/quran/mabahith-ulum-alquran.pdf" target="_blank" rel="noopener">📚 علوم القرآن</a>
       <a href="content/zad/quran/seraj-ghareeb.pdf" target="_blank" rel="noopener">🔎 معاني الكلمات</a>
       <a href="content/zad/quran/mutashabihat-lafziya.pdf" target="_blank" rel="noopener">🔗 المتشابهات</a>
-      <a href="content/zad/quran/tadabbur-wa-amal.pdf" target="_blank" rel="noopener">✨ تدبر وعمل</a>
-      <a href="content/zad/quran/adhkar-yawmiyya.pdf" target="_blank" rel="noopener">🤲 الأذكار</a>
-      <a href="content/zad/quran/jami-al-dua.pdf" target="_blank" rel="noopener">🙏 جامع الدعاء</a>
-      <a href="content/zad/quran/liannaka-allah.pdf" target="_blank" rel="noopener">💛 لأنك الله</a>
       <a href="${audioUrl('Husary_128kbps',s,a)}" target="_blank" rel="noopener">🎧 تلاوة الآية</a>`;
       el.appendChild(row);
     });

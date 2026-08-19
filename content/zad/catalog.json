@@ -42,26 +42,26 @@
       "source": "ملف محلي"
     },
     {
-      "id": "adhkar-yawmiyya",
+      "id": "adhkar-yawmia",
       "title": "الأذكار اليومية من صحيح السنة النبوية",
       "category": "الأذكار",
       "section": "الأذكار",
-      "path": "content/zad/quran/adhkar-yawmiyya.pdf",
+      "path": "content/zad/quran/adhkar-yawmia.pdf",
       "source": "ملف محلي"
     },
     {
-      "id": "jami-al-dua",
+      "id": "jami-aldua",
       "title": "جامع الدعاء من القرآن والسنة",
       "category": "الأدعية",
       "section": "الأدعية",
-      "path": "content/zad/quran/jami-al-dua.pdf",
+      "path": "content/zad/quran/jami-aldua.pdf",
       "source": "ملف محلي"
     },
     {
       "id": "liannaka-allah",
       "title": "لأنك الله — رحلة إلى السماء السابعة",
-      "category": "أسماء الله الحسنى",
-      "section": "أسماء الله الحسنى",
+      "category": "أسماء الله",
+      "section": "أسماء الله",
       "path": "content/zad/quran/liannaka-allah.pdf",
       "source": "ملف محلي"
     }

@@ -10,37 +10,65 @@ function releaseUrl(name){
 window.rafiqReleaseUrl=releaseUrl;
 
 // ==========================================
-// 1. تشغيل المكتبة وإظهار الكتب والتلاوات
+// 1. إخفاء العدادات وتجميل شكل المكتبة (CSS)
+// ==========================================
+const style = document.createElement('style');
+style.innerHTML = `
+  /* إخفاء عدادات المراجعة والتكرار والتركيز تماماً */
+  .mission-grid { display: none !important; }
+  
+  /* تصميم فخم للمكتبة يتماشى مع زاد الحافظ */
+  .v80-book { 
+      background: linear-gradient(145deg, rgba(11, 40, 21, 0.66), rgba(7, 24, 13, 0.54)) !important; 
+      border: 1px solid rgba(177, 232, 196, 0.16) !important; 
+      color: #edfaf1 !important; 
+      box-shadow: 0 18px 52px rgba(4, 12, 7, 0.24) !important; 
+      backdrop-filter: blur(4px); 
+      border-radius: 18px; 
+      padding: 18px; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px; 
+  }
+  .v80-book h4 { color: var(--gold-bright); margin: 0; font-size: 17px; line-height: 1.4; }
+  .v80-book .k { background: rgba(212, 175, 55, 0.1); border: 1px solid rgba(212, 175, 55, 0.3); padding: 4px 12px; border-radius: 999px; font-size: 11px; color: var(--gold); align-self: flex-start; font-weight: bold; }
+  .v80-book .desc { font-size: 13px; color: var(--muted); flex: 1; line-height: 1.6; }
+  .v80-book .action { background: rgba(9, 32, 17, 0.52) !important; border: 1px solid rgba(177, 232, 196, 0.15) !important; border-radius: 12px; padding: 10px 14px; text-align: center; text-decoration: none; color: #e0f6e7 !important; font-weight: bold; transition: 0.3s; }
+  .v80-book .action:hover { background: rgba(38, 131, 70, 0.2) !important; border-color: rgba(212, 175, 55, 0.4) !important; color: #ffe7a0 !important; }
+`;
+document.head.appendChild(style);
+
+// ==========================================
+// 2. تشغيل المكتبة الذكية
 // ==========================================
 function renderLibrary() {
   const grid = q('v80HomeLibraryGrid');
   if (!grid) return;
   
   const items = window.__RAFIQ_CONTENT_META || [];
-  if (items.length === 0) {
-    grid.innerHTML = '<div class="muted">لم يتم العثور على بيانات المكتبة. تأكد من ملف content-data.js</div>';
-    return;
-  }
+  if (items.length === 0) return;
 
   grid.innerHTML = items.map(x => {
-    // تحديد إذا كان الملف صوتي/مضغوط أم كتاب
     const isAudio = x.category === 'audio' || /\.(rar|zip|mp3)$/i.test(x.name || '');
     const url = releaseUrl(x.name);
+    
+    // توضيح للمستخدم إن الأونلاين شغال من جوة المصحف، والملفات دي للتحميل فقط
+    let btnText = isAudio ? '⬇️ تحميل الحزمة المضغوطة' : '📖 فتح الكتاب';
+    let desc = isAudio ? 'ملاحظة: يمكنك الاستماع للتلاوات أونلاين من داخل "المصحف" مباشرة. هذا الملف الضخم مخصص لمن يريد تحميل القرآن كاملاً لجهازه.' : escSafe(x.seriesTitle || x.category);
+    
     return `
       <div class="v80-book">
-        <span class="k">${isAudio ? '🎧 تلاوة' : '📖 كتاب'}</span>
+        <span class="k">${isAudio ? '🎧 تلاوات (للتحميل)' : '📚 كتاب PDF'}</span>
         <h4>${escSafe(x.title || x.name)}</h4>
-        <div class="s">${escSafe(x.seriesTitle || x.category)}</div>
-        <div class="a">
-          <a class="action info" target="_blank" rel="noopener" href="${url}">${isAudio ? '⬇️ تحميل' : '📖 فتح'}</a>
-        </div>
+        <div class="desc">${desc}</div>
+        <a class="action" target="_blank" rel="noopener" href="${url}">${btnText}</a>
       </div>
     `;
   }).join('');
 }
 
 // ==========================================
-// 2. محرك أسباب النزول الذكي
+// 3. محرك أسباب النزول المعدّل
 // ==========================================
 window.rafiqAsbabCache = {};
 window.getAsbabForAyah = async function(s, a) {
@@ -55,7 +83,6 @@ window.getAsbabForAyah = async function(s, a) {
     if (res.ok) {
       const data = await res.json();
       for (const item of data) {
-        // البحث عن الآية المحددة في قاعدة البيانات
         if (item.ayahs && (item.ayahs.includes(a) || item.ayahs.includes(String(a)))) {
           const text = item.occasions.join('<br><br>---<br><br>');
           window.rafiqAsbabCache[cacheKey] = text;
@@ -63,30 +90,23 @@ window.getAsbabForAyah = async function(s, a) {
         }
       }
     }
-  } catch (e) {
-      console.error("Asbab Fetch Error:", e);
-  }
+  } catch (e) {}
   
-  // إذا لم يجد سبب نزول
   window.rafiqAsbabCache[cacheKey] = 'NOT_FOUND';
   return 'NOT_FOUND';
 };
 
-// تعديل نافذة التفسير لتشمل حالة البحث
 if(typeof window.openAyahStudy === 'function'){
   const originalOpenAyahStudy = window.openAyahStudy;
   window.openAyahStudy = async function(s, a) {
     const res = await originalOpenAyahStudy(s, a);
     
     setTimeout(async () => {
-      // البحث عن عنوان "أسباب النزول" في النافذة
       const asbabHeaders = Array.from(document.querySelectorAll('#ayahStudyInner h4')).filter(el => el.textContent.includes('أسباب النزول'));
       
       asbabHeaders.forEach(h4 => {
          const p = h4.nextElementSibling;
-         if (p && p.tagName === 'P') {
-             p.innerHTML = '⏳ جاري البحث في موسوعة أسباب النزول...';
-         }
+         if (p && p.tagName === 'P') p.innerHTML = '⏳ جاري البحث في كتاب أسباب النزول...';
       });
 
       const txt = await window.getAsbabForAyah(s, a);
@@ -95,9 +115,9 @@ if(typeof window.openAyahStudy === 'function'){
          const p = h4.nextElementSibling;
          if (p && p.tagName === 'P') {
              if (txt !== 'NOT_FOUND') {
-                 p.innerHTML = escSafe(txt) + '<br><br><small style="color:var(--gold)">(المصدر: صحيح أسباب النزول)</small>';
+                 p.innerHTML = escSafe(txt);
              } else {
-                 p.innerHTML = 'لم يرد سبب نزول خاص ومباشر لهذه الآية بالتحديد.<br><small>تنبيه: أغلب آيات القرآن نزلت لتشريع أو توجيه عام دون حادثة معينة.</small>';
+                 p.innerHTML = 'لم تُفهرس رواية محددة لهذه الآية في قاعدة البيانات الرقمية.<br><br><a href="' + releaseUrl('asnz.pdf') + '" target="_blank" style="color:var(--gold); text-decoration:underline;">للتأكد، يُرجى الرجوع للنسخة الأصلية (أسباب النزول للواحدي) بالضغط هنا.</a>';
              }
          }
       });
@@ -107,7 +127,6 @@ if(typeof window.openAyahStudy === 'function'){
   };
 }
 
-// تشغيل المكتبة عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(renderLibrary, 500);
 });

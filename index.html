@@ -1422,7 +1422,7 @@ function recitationUrl(s,a,r=state.reciter){return`https://everyayah.com/data/${
 function showDailySplash(force=false){if(!state.name)return;const key=ritualKey();if(!force&&localStorage.getItem('rafiq-splash-boundary')===key)return;const a=getDailyVerse();const ay=$('splashAyah'),ref=$('splashRef'),audio=$('splashAudio'),panel=$('dailySplash'),sg=$('splashGreeting'),sd=$('splashDate');if(!ay||!ref||!audio||!panel)return;if(sg)sg.textContent=greeting();if(sd)sd.textContent=new Date().toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'});ay.textContent=a.text;ref.textContent=`${a.ref} — بصوت ${a.name}`;audio.pause();audio.src=recitationUrl(a.s,a.a,a.reciter||state.reciter);audio.volume=Math.max(0,Math.min(1,state.volume||.85));audio.currentTime=0;panel.classList.add('show');const play=$('splashPlay');if(play)play.textContent='▶ تشغيل الآية';}
 function closeSplash(mark=true){const a=$('splashAudio');if(a){a.pause();a.currentTime=0}$('dailySplash')?.classList.remove('show');if(mark)localStorage.setItem('rafiq-splash-boundary',ritualKey())}
 function openModal(id){$(id)?.classList.add('show')};function closeModal(id){$(id)?.classList.remove('show')}
-function switchView(id){if(id==='library')id='spiritual';document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(id)?.classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===id));document.body.classList.toggle('ocean-world',id==='spiritual');document.body.classList.toggle('view-spiritual',id==='spiritual');if($('globalZadOcean'))$('globalZadOcean').style.display=id==='spiritual'?'none':'block';if(id!=='spiritual')document.body.classList.remove('space-world');if(id==='spiritual'){const o=$('ocean'),s=$('spaceView');if(o){o.style.display='block';o.classList.remove('ocean-dive')}if(s)s.classList.remove('show')}window.scrollTo({top:0,behavior:'auto'});if(id==='home')renderHome();if(id==='planning')renderPlanning();if(id==='study')renderStudy();if(id==='mushaf')mushafInit();if(id==='spiritual'){renderSpiritual();createOceanBubbles()}else if(oceanSound)stopOceanSound();if(id==='progress')renderProgress();if(id==='settings')renderSettings();if(id==='library'&&window.renderV62)window.renderV62();setTimeGlow()}
+function switchView(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));$(id)?.classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===id));document.body.classList.toggle('ocean-world',id==='spiritual');document.body.classList.toggle('view-spiritual',id==='spiritual');if($('globalZadOcean'))$('globalZadOcean').style.display=id==='spiritual'?'none':'block';if(id!=='spiritual')document.body.classList.remove('space-world');if(id==='spiritual'){const o=$('ocean'),s=$('spaceView');if(o){o.style.display='block';o.classList.remove('ocean-dive')}if(s)s.classList.remove('show')}window.scrollTo({top:0,behavior:'auto'});if(id==='home')renderHome();if(id==='planning')renderPlanning();if(id==='study')renderStudy();if(id==='mushaf')mushafInit();if(id==='spiritual'){renderSpiritual();createOceanBubbles()}else if(id==='library'){try{window.RafiqRealContent?.renderLibrary?.()}catch{}; if(oceanSound)stopOceanSound();}else if(oceanSound)stopOceanSound();if(id==='progress')renderProgress();if(id==='settings')renderSettings();if(id==='library'&&window.renderV62)window.renderV62();setTimeGlow()}
 function profileSave(name,age){state.name=String(name||'').trim();state.age=age||'';state.role='';save();}
 function saveWelcome(){const n=$('welcomeName').value.trim();const age=+$('welcomeAge').value||'';if(!n)return toast('اكتب اسمك أولًا');if(age&& (age<3||age>110))return toast('العمر من 3 إلى 110 سنة');profileSave(n,age);const style=$('welcomeStyle').value;if(style==='lite'||style==='auto')state.graphics=1;else if(style==='balanced')state.graphics=2;else if(style==='ultra')state.graphics=3;applyGraphics();save();closeModal('welcomeModal');renderAll();setTimeout(()=>showDailySplash(false),180)}
 function renderHome(){
@@ -2135,7 +2135,7 @@ init();
   const addDaysV=(d,n)=>{const x=new Date(d);x.setDate(x.getDate()+n);return x};
   const monthKey=d=>{const k=toDateKey(d);return k.slice(0,7)};
   const mergeV=(a,b)=>{for(const k in b){if(b[k]&&typeof b[k]==='object'&&!Array.isArray(b[k])&&a[k]&&typeof a[k]==='object'&&!Array.isArray(a[k]))mergeV(a[k],b[k]);else a[k]=b[k]}return a};
-  const getV=()=>{state.v60=state.v60&&typeof state.v60==='object'?state.v60:{};const d={profile:{name:state.name||'',age:state.age||'',role:'',study:'',dialect:'ar-eg'},plan:{mode:'auto',goalAmount:1,goalUnit:'جزء',days:null,dailyNew:0,reviewMode:'balanced',reviewDaily:0,goalDate:'',startDate:'',targetLabel:''},prayer:{timezone:tz(),lastSync:'',months:{},source:'AlAdhan',city:state.city||'أسيوط',locationKey:''},reminders:{enabled:true},worship:{},lamp:{level:0,missedDays:0,lastActivity:''},lastReligiousDay:'',focusSound:'rain',offline:{lastOnline:''},content:{dailyIndex:0},...state.v60};state.v60=mergeV(d,state.v60||{});state.v60.profile={...d.profile,...(state.v60.profile||{})};state.v60.plan={...d.plan,...(state.v60.plan||{})};state.v60.prayer={...d.prayer,...(state.v60.prayer||{})};state.v60.reminders={...d.reminders,...(state.v60.reminders||{})};state.v60.worship={...d.worship,...(state.v60.worship||{})};state.v60.lamp={...d.lamp,...(state.v60.lamp||{})};state.v60.content={...d.content,...(state.v60.content||{})};return state.v60;};
+  const getV=()=>{state.v60=state.v60&&typeof state.v60==='object'?state.v60:{};const d={profile:{name:state.name||'',age:state.age||'',role:'',study:'',dialect:'ar'},plan:{mode:'auto',goalAmount:1,goalUnit:'جزء',days:null,dailyNew:0,reviewMode:'balanced',reviewDaily:0,goalDate:'',startDate:'',targetLabel:''},prayer:{timezone:tz(),lastSync:'',months:{},source:'AlAdhan',city:state.city||'أسيوط',locationKey:''},reminders:{enabled:true},worship:{},lamp:{level:0,missedDays:0,lastActivity:''},lastReligiousDay:'',focusSound:'rain',offline:{lastOnline:''},content:{dailyIndex:0},...state.v60};state.v60=mergeV(d,state.v60||{});state.v60.profile={...d.profile,...(state.v60.profile||{})};state.v60.plan={...d.plan,...(state.v60.plan||{})};state.v60.prayer={...d.prayer,...(state.v60.prayer||{})};state.v60.reminders={...d.reminders,...(state.v60.reminders||{})};state.v60.worship={...d.worship,...(state.v60.worship||{})};state.v60.lamp={...d.lamp,...(state.v60.lamp||{})};state.v60.content={...d.content,...(state.v60.content||{})};return state.v60;};
   const saveV=()=>{try{save()}catch(e){localStorage.setItem('rafiq-v60-state',JSON.stringify(state))}};
 
   const ROLES={
@@ -2237,9 +2237,9 @@ init();
   function profileRole(){const p=getV().profile;return p.role||'عام'}
   function greetingV(){const p=getV().profile,n=p.name||'يا رفيق القرآن',role=p.role||'عام',h=now().getHours();const roleText=ROLES[role]||ROLES['عام'];let base=h<6?'وقت الخلوات والهدوء':h<12?'صباح الهمة والبركة':h<17?'طاب يومك':h<22?'مساء الهدوء':'ليلة مباركة';return `${base} يا ${n} 🌙 — ${roleText}`}
 
-  function injectOnboarding(){const box=q('welcomeModal')?.querySelector('.box');if(!box||box.dataset.v60Done)return;if(!q('welcomeRole')){const ref=q('welcomeStyle');const wrap=document.createElement('div');wrap.className='v60-grid2';wrap.style.marginTop='8px';wrap.innerHTML=`<select id="welcomeRole"><option value="">المهنة/الدور</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>ربة منزل</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)" autocomplete="organization-title"/></div>`;ref?.insertAdjacentElement('afterend',wrap);const d=document.createElement('select');d.id='welcomeDialect';d.innerHTML='<option value="ar">العربية الفصحى الجميلة</option><option value="ar-eg">لهجة مصرية</option>';ref?.insertAdjacentElement('afterend',d)}box.dataset.v60Done='1'}
+  function injectOnboarding(){const box=q('welcomeModal')?.querySelector('.box');if(!box||box.dataset.v60Done)return;if(!q('welcomeRole')){const ref=q('welcomeStyle');const wrap=document.createElement('div');wrap.className='v60-grid2';wrap.style.marginTop='8px';wrap.innerHTML=`<select id="welcomeRole"><option value="">المهنة/الدور</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>ربة منزل</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)" autocomplete="organization-title"/></div>`;ref?.insertAdjacentElement('afterend',wrap);const d=document.createElement('select');d.id='welcomeDialect';d.innerHTML='<option value="ar">العربية الفصحى الجميلة</option>';ref?.insertAdjacentElement('afterend',d)}box.dataset.v60Done='1'}
 
-  function patchWelcomeSave(){if(!q('welcomeStartBtn'))return;q('welcomeStartBtn').onclick=()=>{const n=q('welcomeName')?.value.trim();const age=+q('welcomeAge')?.value||'';if(!n)return toast('اكتب اسمك أولًا');if(age&&(age<3||age>110))return toast('العمر من 3 إلى 110 سنة');profileSave(n,age);const v=getV();v.profile.name=n;v.profile.age=age;v.profile.role=q('welcomeRole')?.value||'';v.profile.study=q('welcomeStudy')?.value.trim()||'';v.profile.dialect=q('welcomeDialect')?.value||'ar';const style=q('welcomeStyle')?.value;if(style==='lite'||style==='auto')state.graphics=1;else if(style==='balanced')state.graphics=2;else if(style==='ultra')state.graphics=3;v.lamp.level=Math.max(v.lamp.level||0,.08);v.lamp.lastActivity=Date.now();saveV();applyGraphics?.();q('welcomeModal')?.classList.remove('show');renderAll?.();setTimeout(()=>RafiqV60.showSplash(),220);setTimeout(()=>RafiqV60.syncLocationAndPrayer(false),650)}}
+  function patchWelcomeSave(){if(!q('welcomeStartBtn'))return;q('welcomeStartBtn').onclick=()=>{const n=q('welcomeName')?.value.trim();const age=+q('welcomeAge')?.value||'';if(!n)return toast('اكتب اسمك أولًا');if(age&&(age<3||age>110))return toast('العمر من 3 إلى 110 سنة');profileSave(n,age);const v=getV();v.profile.name=n;v.profile.age=age;v.profile.role=q('welcomeRole')?.value||'';v.profile.study=q('welcomeStudy')?.value.trim()||'';v.profile.dialect='ar';const style=q('welcomeStyle')?.value;if(style==='lite'||style==='auto')state.graphics=1;else if(style==='balanced')state.graphics=2;else if(style==='ultra')state.graphics=3;v.lamp.level=Math.max(v.lamp.level||0,.08);v.lamp.lastActivity=Date.now();saveV();applyGraphics?.();q('welcomeModal')?.classList.remove('show');renderAll?.();setTimeout(()=>RafiqV60.showSplash(),220);setTimeout(()=>RafiqV60.syncLocationAndPrayer(false),650)}}
 
   function localizeRoleUi(){if(q('greeting'))q('greeting').textContent=greetingV();const p=getV().profile;const label=q('dateLine');if(label)label.title=`${p.study||''} ${p.role||''}`.trim()}
 
@@ -2415,9 +2415,9 @@ function renderPlanningV60(){const v=getV();const f=q('v60GoalAmount');if(f)f.va
   const noise=['🌧️ مطر','🌊 بحر','🌬️ رياح','🤍 White Noise'];
   const audioCtx={ctx:null,source:null,gain:null};
   function profileHydrate(){V.profile={name:state.name||'',age:state.age||'',role:state.role||'',study:V.profile.study||'',dialect:V.profile.dialect||'ar'};return V.profile}
-  function ensureWelcomeFields(){const box=q('welcomeModal')?.querySelector('.box'); if(!box||q('welcomeRole'))return;const btn=q('welcomeStartBtn');const div=document.createElement('div');div.innerHTML=`<select id="welcomeRole" aria-label="المهنة أو الدور"><option value="">المهنة/الدور (اختياري)</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)"/><select id="welcomeDialect"><option value="ar">العربية الفصحى</option><option value="ar-eg">العربية المصرية</option></select>`;box.insertBefore(div,btn);profileHydrate();q('welcomeRole').value=V.profile.role||state.role||'';q('welcomeStudy').value=V.profile.study||'';q('welcomeDialect').value=V.profile.dialect||'ar'}
-  function saveProfileV(){profileHydrate();V.profile.role=q('welcomeRole')?.value||V.profile.role||state.role||'';V.profile.study=q('welcomeStudy')?.value||V.profile.study||'';V.profile.dialect=q('welcomeDialect')?.value||V.profile.dialect||'ar';state.role=V.profile.role;V.profile.name=state.name;V.profile.age=state.age;save()}
-  function dialect(text){if((V.profile.dialect||'ar')!=='ar-eg')return text;return String(text).replaceAll('ابدأ','يلا ابدأ').replaceAll('اليوم','النهارده').replaceAll('الآن','دلوقتي').replaceAll('مراجعة','مراجعة').replaceAll('حفظ','حفظ')}
+  function ensureWelcomeFields(){const box=q('welcomeModal')?.querySelector('.box'); if(!box||q('welcomeRole'))return;const btn=q('welcomeStartBtn');const div=document.createElement('div');div.innerHTML=`<select id="welcomeRole" aria-label="المهنة أو الدور"><option value="">المهنة/الدور (اختياري)</option><option>طالب</option><option>طالب جامعي</option><option>صيدلي</option><option>طبيب</option><option>مهندس</option><option>معلم</option><option>محفّظ</option><option>أب</option><option>أم</option><option>جد</option><option>جدة</option><option>طفل</option><option>شيخ</option></select><input id="welcomeStudy" placeholder="الدراسة/التخصص (اختياري)"/><select id="welcomeDialect"><option value="ar">العربية الفصحى</option></select>`;box.insertBefore(div,btn);profileHydrate();q('welcomeRole').value=V.profile.role||state.role||'';q('welcomeStudy').value=V.profile.study||'';q('welcomeDialect').value=V.profile.dialect||'ar'}
+  function saveProfileV(){profileHydrate();V.profile.role=q('welcomeRole')?.value||V.profile.role||state.role||'';V.profile.study=q('welcomeStudy')?.value||V.profile.study||'';V.profile.dialect='ar';state.role=V.profile.role;V.profile.name=state.name;V.profile.age=state.age;save()}
+  function dialect(text){return text}
   function showNetwork(){const b=q('v62NetBadge');if(!b)return;const on=navigator.onLine;b.className='v62-offline '+(on?'on':'off');b.textContent=on?'🟢 متصل — يمكن تنزيل الحزم':'🟠 أوفلاين — الـCore المحلي شغال'}
   function religiousDay(){const k=day();const h=typeof hijri==='function'?hijri(new Date()):'';q('v62ReligiousTitle').textContent=`اليوم الشرعي: ${h||k}`;q('v62ReligiousSub').textContent='بداية اليوم الشرعي عند المغرب، وبداية الليلة لليوم الهجري التالي. مواقيت الصلاة المخزنة هي المرجع المحلي للتذكيرات.'}
   function currentSeries(){const idx=Math.min(SERIES.length-1,Number(V.learning.seriesIndex||0));return SERIES[idx]}
@@ -2793,8 +2793,157 @@ window.renderExplore=renderExplore;
     });
   }
 </script>
-</body>
-</html>
+
+
+<style id="rafiq-real-content-v1-style">
+#zadRealContentCard{margin-top:18px}
+.zad-real-content-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;flex-wrap:wrap}
+.zad-real-content-head h3{margin:0;color:var(--gold)}
+.zad-real-content-note{color:var(--muted);margin-top:6px;line-height:1.7}
+.zad-real-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.zad-real-tabs button{border:1px solid rgba(212,175,55,.22);background:rgba(255,255,255,.025);color:var(--text);border-radius:999px;padding:8px 12px;cursor:pointer}
+.zad-real-tabs button.active{background:rgba(212,175,55,.12);border-color:rgba(212,175,55,.48);color:var(--gold)}
+.zad-real-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.zad-real-card{border:1px solid rgba(212,175,55,.14);background:rgba(255,255,255,.022);border-radius:16px;padding:14px}
+.zad-real-card h4{margin:0 0 6px;color:var(--text)}
+.zad-real-card .muted{line-height:1.6}
+.zad-real-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.zad-real-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;background:rgba(212,175,55,.10);color:var(--gold);font-size:12px}
+#zadContentReader{position:fixed;inset:0;z-index:99999;background:rgba(2,8,5,.88);display:none;padding:18px}
+#zadContentReader.show{display:flex;align-items:center;justify-content:center}
+#zadContentReader .inner{width:min(1200px,96vw);height:min(92vh,900px);background:#0b1711;border:1px solid rgba(212,175,55,.25);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 24px 70px rgba(0,0,0,.45)}
+#zadContentReader .bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.08)}
+#zadContentReader iframe{width:100%;height:100%;border:0;background:#111}
+.zad-audio-panel{margin-top:18px;border:1px solid rgba(212,175,55,.14);border-radius:16px;padding:14px;background:rgba(255,255,255,.02)}
+.zad-audio-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px}
+.zad-audio-box{border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:12px;background:rgba(0,0,0,.08)}
+.zad-audio-box label{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}
+.zad-audio-box select,.zad-audio-box input{width:100%;box-sizing:border-box}
+.zad-source-links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.zad-source-links a{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:10px;border:1px solid rgba(212,175,55,.18);color:var(--gold2);text-decoration:none;background:rgba(212,175,55,.05)}
+@media(max-width:900px){.zad-real-grid,.zad-audio-grid{grid-template-columns:1fr}.zad-real-content-head{display:block}}
+</style>
+<script id="rafiq-real-content-v1">
+(function(){
+  'use strict';
+  const q=id=>document.getElementById(id);
+  const esc2=s=>{const d=document.createElement('div');d.textContent=String(s==null?'':s);return d.innerHTML};
+  const RELEASE_BASE='https://github.com/mustafahossameldin66-dotcom/Test-Rafiq/releases/download/content-v1/';
+  const localBooks=[
+    {id:'seraj-ghareeb',title:'السراج في بيان غريب القرآن — معاني الكلمات',category:'القرآن',section:'فهم القرآن',path:'content/zad/quran/seraj-ghareeb.pdf'},
+    {id:'asbab-alnuzul-alwahidi',title:'أسباب النزول — الواحدي',category:'القرآن',section:'أسباب النزول',path:'content/zad/quran/asbab-alnuzul-alwahidi.pdf'},
+    {id:'tafsir-almuyassar',title:'التفسير الميسر',category:'القرآن',section:'التفسير',path:'content/zad/quran/tafsir-almuyassar.pdf'},
+    {id:'quran-tadabbur-waamal',title:'القرآن تدبر وعمل',category:'القرآن',section:'التدبر والعمل',path:'content/zad/quran/quran-tadabbur-waamal.pdf'},
+    {id:'mabahith-ulum-alquran',title:'مباحث في علوم القرآن — مناع القطان',category:'القرآن',section:'علوم القرآن',path:'content/zad/quran/mabahith-ulum-alquran.pdf'},
+    {id:'mutashabihat-lafziya',title:'المتشابهات اللفظية في القرآن الكريم',category:'القرآن',section:'التثبيت والتربيط',path:'content/zad/quran/mutashabihat-lafziya.pdf'},
+    {id:'lianak-allah',title:'لأنك الله',category:'كتب للتوسع',section:'توسع',path:'content/zad/optional/lianak-allah.pdf'},
+    {id:'al-ahkam-tuhfat-alatfal',title:'الإحكام في ضبط المقدمة الجزرية وتحفة الأطفال',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/al-ahkam-tuhfat-alatfal.pdf'},
+    {id:'tajweed-supplement-1',title:'مواد التجويد — ملف إضافي 1',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/tajweed-supplement-1.pdf'},
+    {id:'tajweed-supplement-2',title:'مواد التجويد — ملف إضافي 2',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/tajweed-supplement-2.pdf'},
+    {id:'tajweed-supplement-3',title:'مواد التجويد — ملف إضافي 3',category:'التجويد',section:'التجويد',path:'content/zad/tajweed/tajweed-supplement-3.pdf'}
+  ];
+  const remoteRecitationPacks=[
+    {id:'audio-husary-pack',title:'تلاوة الحصري — الحزمة',file:'Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar',reciter:'Husary_128kbps'},
+    {id:'audio-minshawy-pack',title:'تلاوة المنشاوي — الحزمة',file:'MINSHAWY.1.rar',reciter:'Minshawy_Murattal_128kbps'},
+    {id:'audio-fares-pack',title:'تلاوة فارس عباد — الحزمة',file:'FARES-ABBAD.rar',reciter:'Fares_Abbad_64kbps'}
+  ];
+  let allBooks=[], activeCat='زاد الحافظ';
+  const categories=[
+    {id:'زاد الحافظ',icon:'🌊',desc:'المصادر التي تخدم الحفظ والتثبيت والتربيط والفهم والتفسير والتدبر والعمل والتلاوة.'},
+    {id:'القرآن',icon:'📖',desc:'مراجع مرتبطة مباشرة بدراسة القرآن.'},
+    {id:'التجويد',icon:'🎙️',desc:'مواد التجويد المرفوعة داخل المشروع.'},
+    {id:'كتب للتوسع',icon:'✨',desc:'مواد إضافية خارج المسار الأساسي.'}
+  ];
+  function directRelease(name){return RELEASE_BASE+encodeURIComponent(name)}
+  function installReader(){
+    if(q('zadContentReader'))return;
+    const el=document.createElement('div');el.id='zadContentReader';el.innerHTML=`<div class="inner"><div class="bar"><b id="zadReaderTitle">الكتاب</b><button type="button" class="action" id="zadReaderClose">✕ إغلاق</button></div><iframe id="zadReaderFrame" title="قارئ الكتاب"></iframe></div>`;document.body.appendChild(el);
+    q('zadReaderClose').onclick=()=>{q('zadContentReader').classList.remove('show');q('zadReaderFrame').src='about:blank'};
+  }
+  function openBook(book){installReader();q('zadReaderTitle').textContent=book.title;q('zadReaderFrame').src=book.url||book.path;q('zadContentReader').classList.add('show')}
+  function downloadBook(book){const a=document.createElement('a');a.href=book.url||book.path;a.target='_blank';a.rel='noopener';a.download='';document.body.appendChild(a);a.click();a.remove()}
+  function loadManifest(){
+    return fetch('content-manifest.json',{cache:'no-store'}).then(r=>r.json()).catch(()=>({items:[]}));
+  }
+  function mergeBooks(man){
+    const map=new Map(localBooks.map(x=>[x.title,x]));
+    const items=Array.isArray(man.items)?man.items:[];
+    for(const x of items){
+      if(x.category==='system')continue;
+      if(x.category==='audio')continue;
+      const local=map.get(x.title);
+      if(local){local.url=local.path;local.isLocal=true;continue}
+      map.set(x.title,{id:'release-'+(x.name||x.title),title:x.title||x.name,category:x.category,section:x.seriesTitle||'مصادر',path:'',url:directRelease(x.name),isLocal:false,release:true,size:x.size||0,archive:x.archive||''});
+    }
+    allBooks=[...map.values()];
+  }
+  function zadRecommended(){
+    const wanted=['التفسير الميسر','السراج في بيان غريب القرآن — معاني الكلمات','أسباب النزول — الواحدي','القرآن تدبر وعمل','مباحث في علوم القرآن — مناع القطان','المتشابهات اللفظية في القرآن الكريم'];
+    return wanted.map(t=>allBooks.find(x=>x.title===t)).filter(Boolean);
+  }
+  function card(b){const source=b.isLocal?'📦 مرفوع داخل الموقع':'☁️ من إصدار المحتوى';const size=b.size?` • ${Math.round(b.size/1048576*10)/10} MB`:'';return `<article class="zad-real-card"><span class="zad-real-badge">${esc2(b.category)} • ${esc2(b.section||'مصدر') }</span><h4>${esc2(b.title)}</h4><div class="muted">${source}${size}</div><div class="zad-real-actions"><button type="button" class="action info" data-zad-open="${esc2(b.id)}">📖 فتح</button><button type="button" class="action" data-zad-download="${esc2(b.id)}">⬇️ تنزيل</button></div></article>`}
+  function audioCard(a){return `<article class="zad-real-card"><span class="zad-real-badge">🎧 تلاوات</span><h4>${esc2(a.title)}</h4><div class="muted">تشغيل آية بآية أونلاين + رابط تنزيل الحزمة الكاملة.</div><div class="zad-real-actions"><button type="button" class="action info" data-audio-reciter="${esc2(a.reciter)}">▶ تجربة التلاوة</button><a class="action" target="_blank" rel="noopener" href="${directRelease(a.file)}">⬇️ تنزيل الحزمة</a></div></article>`}
+  function renderLibrary(){
+    let cardRoot=q('zadRealContentCard');
+    if(!cardRoot){
+      const host=q('v66ReleaseBooks')?.parentElement || q('library')?.querySelector('.zad-page-content');
+      if(!host)return;
+      cardRoot=document.createElement('section');cardRoot.id='zadRealContentCard';cardRoot.className='card';host.appendChild(cardRoot);
+    }
+    const cat=categories.find(x=>x.id===activeCat)||categories[0];
+    const items=activeCat==='زاد الحافظ'?zadRecommended():allBooks.filter(x=>x.category===activeCat || x.section===activeCat || (activeCat==='القرآن'&&x.category==='tafsir'));
+    const audioHtml=activeCat==='زاد الحافظ'?`<div class="zad-audio-panel"><div class="zad-real-content-head"><div><h3>🎧 التلاوات</h3><div class="zad-real-content-note">الحصري والمنشاوي وفارس عباد: تشغيل مباشر للآية، مع تنزيل الحزم الكاملة من إصدار المحتوى.</div></div></div><div class="zad-audio-grid"><div class="zad-audio-box"><label>القارئ</label><select id="zadReciterSelect"><option value="Husary_128kbps">الحصري</option><option value="Minshawy_Murattal_128kbps">المنشاوي</option><option value="Fares_Abbad_64kbps">فارس عباد</option></select></div><div class="zad-audio-box"><label>السورة</label><select id="zadSuraSelect"></select></div><div class="zad-audio-box"><label>رقم الآية</label><input id="zadAyahInput" type="number" min="1" value="1"><button type="button" class="main" style="margin-top:8px;width:100%" id="zadPlayAudioBtn">▶ تشغيل الآية</button></div></div><div class="zad-real-grid" style="margin-top:12px">${remoteRecitationPacks.map(audioCard).join('')}</div></div>`:'';
+    cardRoot.innerHTML=`<div class="zad-real-content-head"><div><span class="zad-real-badge">${cat.icon} ${esc2(cat.id)}</span><h3 style="margin-top:8px">المحتوى الفعلي</h3><div class="zad-real-content-note">${esc2(cat.desc)} كل كتاب هنا له ملف قابل للفتح أو التنزيل، وليس مجرد عنوان في الفهرس.</div></div></div><div class="zad-real-tabs">${categories.map(c=>`<button type="button" class="${c.id===activeCat?'active':''}" data-zad-cat="${esc2(c.id)}">${c.icon} ${esc2(c.id)}</button>`).join('')}</div><div class="zad-real-grid">${items.length?items.map(card).join(''):'<div class="zad-real-card"><h4>لا توجد نسخة محلية لهذا الباب</h4><div class="muted">سيظهر هنا المصدر المنشور إذا كانت أصوله متاحة في إصدار المحتوى.</div></div>'}</div>${audioHtml}`;
+    cardRoot.querySelectorAll('[data-zad-cat]').forEach(b=>b.onclick=()=>{activeCat=b.dataset.zadCat;renderLibrary()});
+    cardRoot.querySelectorAll('[data-zad-open]').forEach(b=>b.onclick=()=>{const item=allBooks.find(x=>x.id===b.dataset.zadOpen);if(item)openBook(item)});
+    cardRoot.querySelectorAll('[data-zad-download]').forEach(b=>b.onclick=()=>{const item=allBooks.find(x=>x.id===b.dataset.zadDownload);if(item)downloadBook(item)});
+    cardRoot.querySelectorAll('[data-audio-reciter]').forEach(b=>b.onclick=()=>{q('zadReciterSelect').value=b.dataset.audioReciter;playSelectedAudio()});
+    const ss=q('zadSuraSelect');
+    if(ss&&Array.isArray(window.quranBook)&&window.quranBook.length) ss.innerHTML=window.quranBook.map(x=>`<option value="${x.s}">${esc2(x.name)} — ${x.s}</option>`).join('');
+    else if(ss) ss.innerHTML=Array.from({length:114},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('');
+    q('zadPlayAudioBtn')?.addEventListener('click',playSelectedAudio);
+    if(q('zadSuraSelect'))q('zadSuraSelect').value=String(window.mushafSura||1);
+  }
+  function playSelectedAudio(){const s=Number(q('zadSuraSelect')?.value||1),a=Number(q('zadAyahInput')?.value||1),r=q('zadReciterSelect')?.value||'Husary_128kbps';const url=`https://everyayah.com/data/${r}/${String(s).padStart(3,'0')}${String(a).padStart(3,'0')}.mp3`;const audio=new Audio(url);audio.volume=Number(window.state?.volume||1);audio.play().then(()=>toast('بدأت التلاوة ✅')).catch(()=>toast('تعذر تشغيل التلاوة — جرّب مرة أخرى بعد الضغط على تشغيل.'))}
+  function installSourceBadges(){
+    document.querySelectorAll('.mushaf-ayah').forEach(el=>{if(el.querySelector('.zad-fast-study'))return;const s=Number(el.dataset.sura),a=Number(el.dataset.ayah);const row=document.createElement('div');row.className='zad-source-links zad-fast-study';row.innerHTML=`<a target="_blank" rel="noopener" href="https://quranpedia.net/ayahs/${s}/${a}/11/2919">🕊️ أسباب النزول — الواحدي</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_moyassar/${s}/${a}">📖 التفسير الميسر</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">🔎 السراج — معاني الكلمات</a>`;el.appendChild(row)});
+  }
+  async function customStudy(s,a){
+    const book=Array.isArray(window.quranBook)?window.quranBook.find(x=>x.s===s):null;const v=book?.verses?.find(x=>x.a===a);if(!v)return toast('لم أجد الآية في المصحف المحلي');
+    const panel=q('ayahStudyPanel');if(!panel)return;
+    document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.toggle('selected',Number(x.dataset.sura)===s&&Number(x.dataset.ayah)===a));
+    panel.style.display='block';panel.innerHTML=`<div class="row" style="justify-content:space-between;gap:8px"><div><h3>📚 ${esc2(book.name)} — الآية ${a}</h3><div class="muted">دراسة الآية تبدأ فورًا من مكانها، ثم تُحمّل التفاصيل في الخلفية.</div></div><button class="action" id="closeZadAyahStudy">✕ إغلاق</button></div><div class="ayah-study-tabs"><button class="ayah-study-tab active" data-zatab="overview">✨ نظرة كاملة</button><button class="ayah-study-tab" data-zatab="tafsir">📖 التفسير</button><button class="ayah-study-tab" data-zatab="words">🔎 الكلمات</button><button class="ayah-study-tab" data-zatab="asbab">🕊️ أسباب النزول</button><button class="ayah-study-tab" data-zatab="audio">🎧 التلاوة</button></div><div id="zadAyahInner"></div>`;
+    q('closeZadAyahStudy').onclick=()=>{panel.style.display='none';document.querySelectorAll('.mushaf-ayah').forEach(x=>x.classList.remove('selected'))};
+    const sourceLinks=`<div class="zad-source-links"><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_moyassar/${s}/${a}">📖 التفسير الميسر</a><a target="_blank" rel="noopener" href="https://quranenc.com/ar/browse/arabic_seraj/${s}/${a}">🔎 السراج</a><a target="_blank" rel="noopener" href="https://quranpedia.net/ayahs/${s}/${a}/11/2919">🕊️ أسباب النزول — الواحدي</a></div>`;
+    const render=(tab,taf='',word='')=>{
+      const inner=q('zadAyahInner');if(!inner)return;let h='';
+      if(tab==='overview') h=`<div class="ayah-detail-grid"><section class="ayah-detail"><h4>🕋 الآية</h4><p style="font-size:26px;line-height:2">${esc2(v.text)}</p></section><section class="ayah-detail"><h4>📌 المرجع</h4><p>سورة ${esc2(book.name)} — الآية ${a}</p>${sourceLinks}</section></div>`;
+      if(tab==='tafsir') h=`<section class="ayah-detail"><h4>📖 التفسير الميسر</h4><p id="zadLocalTafsirText">${esc2(taf||'جاري تحميل التفسير الميسر لهذه الآية…')}</p>${sourceLinks}<p class="muted">والكتاب الكامل موجود داخل مكتبة زاد الحافظ ويمكن فتحه مباشرة.</p></section>`;
+      if(tab==='words') h=`<section class="ayah-detail"><h4>🔎 معاني الكلمات</h4><p>${esc2(word||'جاري تحميل معاني الكلمات…')}</p>${sourceLinks}</section>`;
+      if(tab==='asbab') h=`<section class="ayah-detail"><h4>🕊️ أسباب النزول — الواحدي</h4><p>المحتوى يُعرض مباشرة من نسخة الكتاب النصية المرتبة على سور القرآن. إن لم يكن لهذه الآية رواية مخصوصة في الكتاب فستظهر صفحة الكتاب دون اختلاق رواية.</p><div style="height:min(65vh,720px);margin-top:12px;border:1px solid rgba(212,175,55,.18);border-radius:14px;overflow:hidden"><iframe title="أسباب النزول — الواحدي" style="width:100%;height:100%;border:0;background:#111" src="https://quranpedia.net/ayahs/${s}/${a}/11/2919"></iframe></div><div class="zad-source-links"><a target="_blank" rel="noopener" href="https://quranpedia.net/book/242">📚 فتح كتاب أسباب النزول كاملًا</a><a href="content/zad/quran/asbab-alnuzul-alwahidi.pdf" target="_blank" rel="noopener">📕 فتح الـPDF المرفوع</a></div></section>`;
+      if(tab==='audio') h=`<section class="ayah-detail"><h4>🎧 استمع للآية</h4><p>اختر القارئ ثم شغّل الآية مباشرة.</p><div class="grid2"><select id="zadAyahReciter"><option value="Husary_128kbps">الحصري</option><option value="Minshawy_Murattal_128kbps">المنشاوي</option><option value="Fares_Abbad_64kbps">فارس عباد</option></select><button type="button" class="main" id="zadAyahPlay">▶ تشغيل الآية</button></div><div class="zad-source-links"><a target="_blank" rel="noopener" href="https://everyayah.com/recitations_ayat.html">🎧 مكتبة التلاوات</a></div></section>`;
+      inner.innerHTML=h;
+      inner.querySelectorAll('[data-zatab]').forEach(b=>b.onclick=()=>render(b.dataset.zatab,taf,word));
+      q('zadAyahPlay')?.addEventListener('click',()=>{const r=q('zadAyahReciter')?.value||'Husary_128kbps';const au=new Audio(`https://everyayah.com/data/${r}/${String(s).padStart(3,'0')}${String(a).padStart(3,'0')}.mp3`);au.play().catch(()=>toast('تعذر تشغيل التلاوة الآن.'))});
+    };
+    render('overview');
+    requestAnimationFrame(()=>{const target=document.querySelector(`.mushaf-ayah[data-sura="${s}"][data-ayah="${a}"]`);if(target){target.scrollIntoView({behavior:'smooth',block:'center'});target.insertAdjacentElement('afterend',panel);setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),70)}});
+    // Load online text after the study panel is already visible.
+    try{const [tr,wr]=await Promise.all([fetch(`https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${s}/${a}`,{cache:'no-store'}),fetch(`https://quranenc.com/api/v1/translation/aya/arabic_seraj/${s}/${a}`,{cache:'no-store'})]);const tj=tr.ok?await tr.json():{};const wj=wr.ok?await wr.json():{};const taf=tj?.result?.translation||tj?.data?.translation||tj?.translation||'';const word=wj?.result?.translation||wj?.data?.translation||wj?.translation||'';render('tafsir',taf,word)}catch{}
+  }
+  function interceptStudyClicks(){
+    const box=q('mushafVerses');if(!box||box.dataset.zadRealBound)return;box.dataset.zadRealBound='1';box.addEventListener('click',e=>{const b=e.target.closest('[data-study-ayah]');if(!b)return;const art=b.closest('.mushaf-ayah');if(!art)return;e.preventDefault();e.stopImmediatePropagation();customStudy(Number(art.dataset.sura),Number(b.dataset.studyAyah));},true);
+  }
+  function boot(){
+    loadManifest().then(man=>{mergeBooks(man);renderLibrary();});
+    installReader();
+    interceptStudyClicks();
+    setInterval(()=>{interceptStudyClicks();installSourceBadges()},800);
+    document.addEventListener('click',e=>{const n=e.target.closest('.nav-item[data-view="library"]');if(n)setTimeout(renderLibrary,120);});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+  window.RafiqRealContent={renderLibrary,customStudy,openBook,playSelectedAudio};
+})();
 </script>
 </body>
 </html>

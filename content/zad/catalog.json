@@ -1,5 +1,5 @@
 {
-  "version": "Rafiq-Zad-Local-4",
+  "version": "Rafiq-Zad-Local-5",
   "localBooks": [
     {
       "id": "seraj-ghareeb",
@@ -31,6 +31,38 @@
       "category": "القرآن",
       "section": "التثبيت والتربيط",
       "path": "content/zad/quran/mutashabihat-lafziya.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "tadabbur-wa-amal",
+      "title": "القرآن تدبر وعمل",
+      "category": "القرآن",
+      "section": "تدبر وعمل",
+      "path": "content/zad/quran/tadabbur-wa-amal.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "adhkar-yawmiyya",
+      "title": "الأذكار اليومية من صحيح السنة النبوية",
+      "category": "الأذكار",
+      "section": "الأذكار",
+      "path": "content/zad/quran/adhkar-yawmiyya.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "jami-al-dua",
+      "title": "جامع الدعاء من القرآن والسنة",
+      "category": "الأدعية",
+      "section": "الأدعية",
+      "path": "content/zad/quran/jami-al-dua.pdf",
+      "source": "ملف محلي"
+    },
+    {
+      "id": "liannaka-allah",
+      "title": "لأنك الله — رحلة إلى السماء السابعة",
+      "category": "أسماء الله الحسنى",
+      "section": "أسماء الله الحسنى",
+      "path": "content/zad/quran/liannaka-allah.pdf",
       "source": "ملف محلي"
     }
   ]

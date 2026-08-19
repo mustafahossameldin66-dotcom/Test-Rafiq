@@ -1,5 +1,5 @@
 {
-  "version": "Rafiq-Zad-Local-4",
+  "version": "Rafiq-Zad-Local-5",
   "items": [
     {
       "category": "system",
@@ -49,22 +49,44 @@
       "track": "المتشابهات اللفظية في القرآن الكريم"
     },
     {
-      "category": "audio",
-      "name": "Al-Quran_tilawat_Mahmoud_Al-Hosary-1.rar",
-      "title": "تلاوة الحصري — الحزمة",
-      "seriesTitle": "التلاوات"
+      "category": "quran",
+      "name": "tadabbur-wa-amal.pdf",
+      "size": 52637057,
+      "title": "القرآن تدبر وعمل",
+      "seriesTitle": "تدبر وعمل",
+      "section": "تدبر وعمل",
+      "order": 4,
+      "track": "القرآن تدبر وعمل"
     },
     {
-      "category": "audio",
-      "name": "MINSHAWY.1.rar",
-      "title": "تلاوة المنشاوي — الحزمة",
-      "seriesTitle": "التلاوات"
+      "category": "adhkar",
+      "name": "adhkar-yawmiyya.pdf",
+      "size": 7797406,
+      "title": "الأذكار اليومية من صحيح السنة النبوية",
+      "seriesTitle": "الأذكار",
+      "section": "الأذكار",
+      "order": 5,
+      "track": "الأذكار اليومية من صحيح السنة النبوية"
     },
     {
-      "category": "audio",
-      "name": "FARES-ABBAD.rar",
-      "title": "تلاوة فارس عباد — الحزمة",
-      "seriesTitle": "التلاوات"
+      "category": "duas",
+      "name": "jami-al-dua.pdf",
+      "size": 843187,
+      "title": "جامع الدعاء من القرآن والسنة",
+      "seriesTitle": "الأدعية",
+      "section": "الأدعية",
+      "order": 6,
+      "track": "جامع الدعاء من القرآن والسنة"
+    },
+    {
+      "category": "optional",
+      "name": "liannaka-allah.pdf",
+      "size": 3782197,
+      "title": "لأنك الله — رحلة إلى السماء السابعة",
+      "seriesTitle": "أسماء الله الحسنى",
+      "section": "أسماء الله الحسنى",
+      "order": 7,
+      "track": "لأنك الله — رحلة إلى السماء السابعة"
     }
   ]
 }

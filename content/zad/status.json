@@ -1,14 +1,19 @@
 {
-  "localBooks": 4,
+  "localBooks": 8,
   "localFiles": [
     "content/zad/quran/seraj-ghareeb.pdf",
     "content/zad/quran/asbab-alnuzul-alwahidi.pdf",
     "content/zad/quran/mabahith-ulum-alquran.pdf",
-    "content/zad/quran/mutashabihat-lafziya.pdf"
+    "content/zad/quran/mutashabihat-lafziya.pdf",
+    "content/zad/quran/tadabbur-wa-amal.pdf",
+    "content/zad/quran/adhkar-yawmiyya.pdf",
+    "content/zad/quran/jami-al-dua.pdf",
+    "content/zad/quran/liannaka-allah.pdf"
   ],
   "audioOnline": [
     "Husary_128kbps",
     "Minshawy_Murattal_128kbps",
     "Fares_Abbad_64kbps"
-  ]
+  ],
+  "version": "Rafiq-Zad-Local-5"
 }

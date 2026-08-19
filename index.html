@@ -836,7 +836,9 @@ body.mode-3 .global-zad-ocean::before{animation:zadWater 16s ease-in-out infinit
 @media(max-width:700px){.taj-flow{grid-template-columns:1fr}.taj-word-line{grid-template-columns:1fr}.taj-word-main{font-size:27px}.taj-letter-grid{gap:5px}.taj-letter-chip{font-size:19px}.taj-inspector-panel .big{font-size:28px}}
 
 </style>
+<style id="v90-planning-clarity">
 /* v90 planning clarity */#planning .zad-page-content > .card:first-child{display:none}.v60-plan-help{padding:12px 14px;border:1px solid rgba(212,175,55,.18);border-radius:16px;background:var(--goldDim);line-height:1.95;color:var(--muted);margin-top:10px}.v60-plan-result{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.v60-plan-result>div{padding:12px;border-radius:16px;background:var(--surface3);border:1px solid var(--border);text-align:center}.v60-plan-result b{display:block;color:var(--gold);font-size:20px}@media(max-width:700px){.v60-plan-result{grid-template-columns:1fr}.v60-grid2{grid-template-columns:1fr!important}}
+</style>
 
 <style id="v49-frame-cleanup">
 /* V49 — FINAL FRAME CLEANUP: keep V43 functionality, remove the hard page-sized frame only. */
@@ -1235,14 +1237,15 @@ body[data-perf="lite"] .global-zad-ocean .ocean-ray{display:none!important}
 <input aria-label="البحث عن سورة" id="mushafSearch" placeholder="ابحث عن سورة..." type="text"/>
 <div class="mushaf-surah-list" id="mushafSurahList"></div>
 </aside>
-<div aria-label="المصحف" class="mushaf-main" role="region">
+<section aria-label="المصحف" class="mushaf-main">
 <div class="mushaf-toolbar"><button class="action" id="mushafPrev" type="button">← السابقة</button><div class="mushaf-current"><b id="mushafSurahTitle">الفاتحة</b><span id="mushafSurahMeta">1 • مكية • 7 آيات</span></div><button class="action" id="mushafNext" type="button">التالية →</button></div>
 <div class="command" id="mushafLoading" style="display:none">⏳ جاري تجهيز المصحف… إذا لم يوجد الملف المحلي سيُنزَّل مرة واحدة ثم يُحفظ داخل الجهاز للعمل أوفلاين.</div>
 <div class="mushaf-verses" id="mushafVerses"></div>
 <div class="ayah-study" id="ayahStudyPanel" style="display:none"></div>
+</section>
 </div>
 </div>
-</div></div></div></section>
+</div></div></section>
 <section class="view zad-page zad-depth-3" id="study"><header class="header zad-header zad-page-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>📖 مركز دراسة الورد</h1><div class="tagline">جوّد حفظك، افهمه، واسمعه قبل أن تغلق المصحف</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>زاد الحافظ</b><span>عالم واحد</span></div><div class="zad-mini-stat"><b>4</b><span>عمق</span></div></div></header><div class="zad-page-shell"><div class="ocean zad-page-ocean"><div aria-hidden="true" class="ocean-water-noise"></div><div aria-hidden="true" class="ocean-surface"><div class="surface-sheen"></div><div class="page-rays"><div class="page-ray r1"></div><div class="page-ray r2"></div><div class="page-ray r3"></div></div><div class="page-depth"></div><div class="bubble-field page-bubbles"></div><div class="seabed"></div></div><div class="zad-page-title"><div class="badge gold ocean-kicker">🌊 عالم زاد الحافظ</div><h2>📖 مركز دراسة الورد</h2><p class="ocean-subtitle">جوّد حفظك، افهمه، واسمعه قبل أن تغلق المصحف</p><div class="zad-page-audio"><button class="action info" onclick="window.startOceanSound &amp;&amp; startOceanSound();" type="button">🌊 تشغيل صوت البحر</button><button class="action" onclick="window.stopOceanSound &amp;&amp; stopOceanSound();" type="button">🔇 إيقاف الصوت</button></div></div><div class="zad-page-content"><div class="card" id="studyEmpty"><h2>✨ ابدأ من وردك</h2><p class="tagline">اختر أي ورد في الصفحة الرئيسية أو الخطة، وسيظهر هنا التحليل التفصيلي.</p></div><div id="studyContent" style="display:none"><div class="card"><div class="study-tabs"><button class="study-tab active" data-tab="all" type="button">✨ الكل</button><button class="study-tab" data-tab="tajweed" type="button">🎙️ جوّد حفظك</button><button class="study-tab" data-tab="tafsir" type="button">📖 التفسير</button><button class="study-tab" data-tab="words" type="button">🔎 الكلمات</button><button class="study-tab" data-tab="asbab" type="button">🕊️ أسباب النزول</button></div><div id="studyBody"></div></div></div></div></div></div></section>
 <section class="view" id="spiritual"><header class="header zad-header"><div><div class="zad-eyebrow"><span class="zad-mark">✦</span><span>العالم الروحي والمعرفي</span></div><h1>زاد الحافظ</h1><div class="tagline">استكشف، تعلّم، تزكَّ، وقرّب ما تحفظه من العمل والحياة.</div></div><div class="zad-header-actions"><div class="zad-mini-stat"><b>12</b><span>عالمًا</span></div><div class="zad-mini-stat"><b>∞</b><span>أبوابًا متجددة</span></div></div></header><div class="ocean" id="ocean">
 <div aria-hidden="true" class="ocean-water-noise"></div>
@@ -2684,6 +2687,7 @@ window.renderExplore=renderExplore;
 })();
 </script>
 
+<script id="keyboard-shortcuts">
 (function(){
   const keys={
     '1':'home','2':'planning','3':'mushaf','4':'study','5':'spiritual','6':'progress','7':'settings'
@@ -2696,6 +2700,8 @@ window.renderExplore=renderExplore;
     if(id && typeof switchView==='function'){ e.preventDefault(); switchView(id); }
   });
 })();
+
+</script>
 <script src="./rafiq-web-v2-patch.js"></script>
 </body>
 </html>

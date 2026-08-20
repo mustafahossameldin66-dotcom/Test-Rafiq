@@ -1,4 +1,24 @@
-const CACHE='rafiq-v62-clean';
-self.addEventListener('install',e=>self.skipWaiting());
-self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
-self.addEventListener('fetch',e=>{if(e.request.method!=='GET')return;e.respondWith(fetch(e.request).then(r=>{if(r.ok&&new URL(e.request.url).origin===location.origin){const c=r.clone();caches.open(CACHE).then(x=>x.put(e.request,c));}return r;}).catch(()=>caches.match(e.request)));});
+const CACHE='rafiq-v63-shell-v1';
+const API_CACHE='rafiq-v63-api-v1';
+self.addEventListener('install',event=>{
+  event.waitUntil(caches.open(CACHE).then(c=>c.addAll(['./'])).catch(()=>{}).then(()=>self.skipWaiting()));
+});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>![CACHE,API_CACHE].includes(k)).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('fetch',event=>{
+  const req=event.request;
+  if(req.method!=='GET')return;
+  const url=new URL(req.url);
+  if(url.origin!==location.origin)return;
+  event.respondWith((async()=>{
+    const cached=await caches.match(req);
+    try{
+      const res=await fetch(req);
+      const copy=res.clone();
+      const cache=await caches.open(CACHE);
+      cache.put(req,copy).catch(()=>{});
+      return res;
+    }catch{
+      return cached||new Response('Offline',{status:503,headers:{'Content-Type':'text/plain;charset=utf-8'}});
+    }
+  })());
+});

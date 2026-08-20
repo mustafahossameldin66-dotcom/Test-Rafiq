@@ -8,7 +8,8 @@
   const dirs=[-1,1];
   const paths=[];
   const sideData=[];
-  for(let i=0;i<12;i++){
+  const windCount=()=>{const tier=document.body.dataset.perfTier||'balanced';return tier==='lite'?8:tier==='high'?12:10};
+  for(let i=0;i<windCount();i++){
     const dir=pick(dirs);
     const y0=rand(-80,h+80);
     const y3=y0+rand(-260,260);
@@ -31,7 +32,7 @@
     const glow=document.createElementNS(NS,'path'); glow.setAttribute('d',d); glow.setAttribute('class','wisp-glow');
     const core=document.createElementNS(NS,'path'); core.setAttribute('d',d); core.setAttribute('class','wisp-core');
     group.append(glow,body,core);
-    const dots=2+Math.floor(Math.random()*3);
+    const tier=document.body.dataset.perfTier||'balanced'; const dots=tier==='lite'?1:(tier==='high'?2+Math.floor(Math.random()*3):2);
     for(let j=0;j<dots;j++){
       const c=document.createElementNS(NS,'circle'); c.setAttribute('r',String(rand(1.4,3.8).toFixed(1))); c.setAttribute('fill',pick(['#fff2bb','#9ff5d6','#f6df93'])); c.setAttribute('class','wisp-light');
       const motion=document.createElementNS(NS,'animateMotion'); motion.setAttribute('dur',`${rand(6,13).toFixed(2)}s`); motion.setAttribute('repeatCount','indefinite'); motion.setAttribute('begin',`${(-rand(0,10)).toFixed(2)}s`); motion.setAttribute('path',d);
@@ -53,4 +54,6 @@
   const refresh=()=>{ if(document.body.dataset.audio==='playing') host.style.opacity='1'; else host.style.opacity=''; };
   refresh();
   new MutationObserver(refresh).observe(document.body,{attributes:true,attributeFilter:['data-audio']});
+  document.addEventListener('rafiq-motion',e=>host.classList.toggle('wind-paused',!e.detail));
+  document.addEventListener('rafiq-performance-change',()=>{host.dataset.perf=document.body.dataset.perfTier||'balanced'});
 })();

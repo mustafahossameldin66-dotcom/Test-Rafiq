@@ -2526,3 +2526,9 @@ body[data-audio="playing"] .star-glint{animation-duration:1.8s!important;box-sha
 body[data-surface="open"] .athar-memory{background:transparent;border-color:rgba(233,205,112,.06);box-shadow:none}
 body[data-surface="glass"] .athar-memory{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 22px 58px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.03)}
 @media(max-width:700px){.progress-flame-kpi{align-items:center}.progress-flame-visual{flex-basis:88px;width:88px;height:104px}.progress-flame-core{left:23px}.athar-memory-head{align-items:flex-start;flex-direction:column}.athar-memory-item{grid-template-columns:46px 1fr}.athar-memory-meta{grid-column:2}}
+
+/* V87 performance layer: keep the visual language while reducing compositor work. */
+.wind-ribbons.wind-paused .wisp-body,.wind-ribbons.wind-paused .wisp-core,.wind-ribbons.wind-paused .wisp-glow{animation-play-state:paused!important}.wind-ribbons.wind-paused .wisp-light *{animation-play-state:paused!important}
+body[data-perf-tier="lite"] .wind-ribbons .wisp-body{filter:none}body[data-perf-tier="lite"] .wind-ribbons .wisp-glow{display:none}
+body[data-perf-tier="balanced"] .wind-ribbons .wisp-glow{opacity:.07;filter:url(#wispBlur)}
+@media(max-width:760px){body[data-perf-tier="lite"] .wind-ribbons .wisp-glow{display:none}}

@@ -1,21 +1,19 @@
-# رفيق القرآن — Modular Build
+# رفيق القرآن — V88 Modular Performance + Content-ready
 
-Structure:
-- index.html — page markup
-- css/app.css — single cleaned stylesheet
-- js/app.js — core application logic
-- js/sw-register.js — service worker registration
-- js/daily-focus.js — small home sync
-- js/daily-home.js — daily content layer
-- js/wind.js — ambient wind effect
-- js/study-modal.js — Quran study modal
-- js/settings.js — settings helpers
+This package keeps the V87 modular performance work and fixes the missing deployment assets/data structure.
 
-Performance changes:
-- cached static canvas background; dynamic layer only redraws stars/motes/comets
-- lower frame rate outside the home view
-- pause canvas on hidden tabs
-- reduced idle polling for daily focus
-- no page reload when changing performance preset
+## Included
+- `index.html`
+- `css/app.css`
+- `js/` modular scripts
+- `manifest.webmanifest`
+- `sw.js`
+- `assets/icon.svg`
+- `assets/icon-192.png`
+- `data/content-manifest.json`
+- `data/README.md`
 
-Upload the whole folder to GitHub Pages. Keep manifest.webmanifest, icon.svg, icon-192.png, and sw.js from your existing repository in the project root when present.
+## Quran data
+The app first loads `quran-uthmani.json` locally when it exists. If it is missing, it resolves the `content-v1` GitHub release asset with the same filename, downloads it once, and caches it in IndexedDB for later use.
+
+This means an incomplete upload does not silently leave the Quran screen broken.

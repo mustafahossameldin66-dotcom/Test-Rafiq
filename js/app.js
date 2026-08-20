@@ -139,7 +139,7 @@ function getDynamicAthar(seed){
 
 function activityDayKey(d=new Date()){return d.toISOString().slice(0,10)}
 function ensureActivity(){state.activityLog=state.activityLog||{};return state.activityLog}
-function touchActivity(kind='general',amount=1){const log=ensureActivity(),k=activityDayKey(),d=log[k]||{read:0,sessions:0,mem:0,athar:0};d[kind]=(d[kind]||0)+Number(amount||1);d.last=Date.now();log[k]=d;recomputeStreak();save()}
+function touchActivity(kind='general',amount=1){const log=ensureActivity(),k=activityDayKey(),d=log[k]||{read:0,sessions:0,mem:0,athar:0};d[kind]=(d[kind]||0)+Number(amount||1);d.last=Date.now();log[k]=d;recomputeStreak();save();document.dispatchEvent(new CustomEvent('rafiq-activity-change',{detail:{kind,amount:Number(amount||1)}}))}
 function dayActivity(k){const d=state.activityLog?.[k]||{};return (d.read||0)+(d.sessions||0)*2+(d.mem||0)*5+(d.athar||0)}
 function recomputeStreak(){let streak=0,best=0;const today=new Date();for(let i=0;i<366;i++){const d=new Date(today);d.setDate(today.getDate()-i);if(dayActivity(activityDayKey(d))>0)streak++;else break}let run=0;for(let i=365;i>=0;i--){const d=new Date(today);d.setDate(today.getDate()-i);if(dayActivity(activityDayKey(d))>0){run++;best=Math.max(best,run)}else run=0}state.streak=Math.max(streak,state.streak||0);state.bestStreak=Math.max(best,state.bestStreak||0)}
 function planForecast(){const p=state.plan||{};if(!p.goal||!p.daily)return {text:'لا توجد خطة',detail:'أنشئ خطة لمعرفة الموعد المتوقع.'};const remaining=Math.max(0,Number(p.remaining!=null?p.remaining:p.goal));const daily=Math.max(.01,Number(p.daily));const days=Math.ceil(remaining/daily);const when=new Date();when.setDate(when.getDate()+days);return {text:days===0?'اكتملت الخطة':`${days} يوم تقريبًا`,detail:days===0?'ما شاء الله، وصلت للهدف.':`لو حافظت على ${daily} ${p.unit||''} يوميًا، فالموعد التقريبي ${when.toLocaleDateString('ar-EG',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}.`}}
@@ -153,7 +153,22 @@ function getWeekScores(){
   }
   return out;
 }
-function drawActivityChart(){const c=document.getElementById('activityChart');if(!c)return;const r=c.getBoundingClientRect(),w=Math.max(320,Math.floor(r.width)),h=290,dpr=Math.min(devicePixelRatio||1,1.5);c.width=w*dpr;c.height=h*dpr;const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);const vals=[];for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);vals.push(dayActivity(activityDayKey(d)))}const max=Math.max(8,...vals),px=20,pt=22,pb=34;ctx.strokeStyle='rgba(233,205,112,.08)';ctx.lineWidth=1;for(let j=0;j<4;j++){const y=pt+(h-pt-pb)*(j/3);ctx.beginPath();ctx.moveTo(px,y);ctx.lineTo(w-px,y);ctx.stroke()}const grad=ctx.createLinearGradient(0,pt,0,h-pb);grad.addColorStop(0,'rgba(244,220,134,.24)');grad.addColorStop(1,'rgba(52,214,162,.02)');ctx.fillStyle=grad;ctx.beginPath();vals.forEach((v,i)=>{const x=px+i*(w-px*2)/29,y=h-pb-(v/max)*(h-pt-pb);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.lineTo(w-px,h-pb);ctx.lineTo(px,h-pb);ctx.closePath();ctx.fill();ctx.strokeStyle='#f4dc86';ctx.lineWidth=2.2;ctx.beginPath();vals.forEach((v,i)=>{const x=px+i*(w-px*2)/29,y=h-pb-(v/max)*(h-pt-pb);i?ctx.lineTo(x,y):ctx.moveTo(x,y)});ctx.stroke();vals.forEach((v,i)=>{if(v<=0)return;const x=px+i*(w-px*2)/29,y=h-pb-(v/max)*(h-pt-pb);ctx.fillStyle='#f4dc86';ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill()})}
+function drawActivityChart(){
+  const c=document.getElementById('activityChart');if(!c)return;
+  const r=c.getBoundingClientRect(),w=Math.max(320,Math.floor(r.width)),h=290,dpr=Math.min(devicePixelRatio||1,1.5);
+  if(c.__w===w&&c.__dpr===dpr&&c.__v===(state.__activityVersion||0))return;
+  c.__w=w;c.__dpr=dpr;c.__v=state.__activityVersion||0;c.width=w*dpr;c.height=h*dpr;
+  const ctx=c.getContext('2d');ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+  const vals=[];for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);vals.push(dayActivity(activityDayKey(d)))}
+  const max=Math.max(8,...vals),px=20,pt=22,pb=34,span=w-px*2,innerH=h-pt-pb,step=span/29;
+  ctx.strokeStyle='rgba(233,205,112,.08)';ctx.lineWidth=1;for(let j=0;j<4;j++){const y=pt+innerH*(j/3);ctx.beginPath();ctx.moveTo(px,y);ctx.lineTo(w-px,y);ctx.stroke()}
+  const pts=vals.map((v,i)=>[px+i*step,h-pb-(v/max)*innerH]);
+  const grad=ctx.createLinearGradient(0,pt,0,h-pb);grad.addColorStop(0,'rgba(244,220,134,.24)');grad.addColorStop(1,'rgba(52,214,162,.02)');ctx.fillStyle=grad;
+  ctx.beginPath();pts.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.lineTo(w-px,h-pb);ctx.lineTo(px,h-pb);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#f4dc86';ctx.lineWidth=2.2;ctx.beginPath();pts.forEach(([x,y],i)=>i?ctx.lineTo(x,y):ctx.moveTo(x,y));ctx.stroke();
+  ctx.fillStyle='#f4dc86';for(let i=0;i<pts.length;i++){if(vals[i]<=0)continue;const [x,y]=pts[i];ctx.beginPath();ctx.arc(x,y,2.4,0,Math.PI*2);ctx.fill()}
+}
+
 function savedMemorizationStats(){
   const saved=new Set(Array.isArray(hifz)?hifz:[]); let savedAyahs=0;
   for(let i=0;i<quran.length;i++) if(saved.has(i+1)) savedAyahs+=(quran[i]?.verses?.length||quran[i]?.count||0);
@@ -170,16 +185,33 @@ function renderMemorizationSummary(){
   [['memSurahRing',ps],['memAyahRing',pa],['memJuzRing',pj]].forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.style.setProperty('--ring',`${v}%`)});
   groupsBox.innerHTML=Object.entries(st.groupStats).map(([name,g])=>`<div class="mem-group"><div class="mem-group-icon">✦</div><div class="mem-group-copy"><b>${name}</b><span>${g.surahs} من ${g.count} سور · ${g.ayahs.toLocaleString('ar-EG')} آية</span></div><div class="mem-group-mini"><i style="width:${g.total?Math.round(g.ayahs/g.total*100):0}%"></i></div></div>`).join('');
 }
-function renderProgressDashboard(){
+function updateActivitySummary(){
   ensureActivity();recomputeStreak();
-  const rawIntensity=((Number(state.streak)||0)/45)*.34+((Array.isArray(hifz)?hifz.length:0)/114)*.36+(percent()/100)*.18+(Math.min(7,getWeekScores().filter(x=>x.score>0).length)/7)*.12;const intensity=Math.max(.20,Math.min(1,rawIntensity));
-  document.body.style.setProperty('--activity-intensity',intensity.toFixed(3));const flame=document.getElementById('progressFlameVisual');if(flame)flame.style.setProperty('--flame-scale',(0.82+intensity*0.52).toFixed(2));const mem=Array.isArray(hifz)?hifz.length:0,rem=Math.max(0,114-mem),forecast=planForecast(),week=getWeekScores(),ms=savedMemorizationStats();
+  const week=getWeekScores(), pct=percent();
+  const raw=((Number(state.streak)||0)/45)*.38+((Array.isArray(hifz)?hifz.length:0)/114)*.34+(pct/100)*.18+(Math.min(7,week.filter(x=>x.score>0).length)/7)*.10;
+  const intensity=Math.max(.34,Math.min(1,raw));
+  document.body.style.setProperty('--activity-intensity',intensity.toFixed(3));
+  const flame=document.getElementById('heroFlameVisual');if(flame)flame.style.setProperty('--flame-scale',(0.82+intensity*.52).toFixed(2));
+  const pFlame=document.getElementById('progressFlameVisual');if(pFlame)pFlame.style.setProperty('--flame-scale',(0.82+intensity*.52).toFixed(2));
+  const mem=Array.isArray(hifz)?hifz.length:0,rem=Math.max(0,114-mem),forecast=planForecast();
+  const avg=week.reduce((n,x)=>n+x.score,0)/7,weekPct=Math.min(100,Math.round(avg/8*100));
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
+  set('homeFlame',`${state.streak||0} يوم`);set('homeFlameSub',`أفضل سلسلة ${state.bestStreak||state.streak||0} يوم`);
+  set('heroFlameValue',`${state.streak||0} يوم`);set('heroFlameSub',`أفضل سلسلة ${state.bestStreak||state.streak||0} يوم`);
+  set('homeMemProgress',`${mem} / 114`);set('homeMemRemaining',`باقي ${rem} سورة`);
+  set('homePlanProgress',state.plan?.goal?`${pct}%`:'—');set('homeFinishEstimate',state.plan?.goal?forecast.text:'أنشئ خطة لمعرفة الموعد المتوقع');set('homeWeekScore',`${weekPct}%`);
+  const bars=document.getElementById('homeWeekBars');
+  if(bars)bars.innerHTML=week.map(x=>{const h=Math.min(100,Math.round(x.score/8*100));return `<div class="week-bar"><div class="bar-track"><div class="bar-fill" style="height:${Math.max(4,h)}%"></div></div><b>${Math.round(x.score)}</b><small>${x.name}</small></div>`}).join('');
+  state.__activityVersion=(state.__activityVersion||0)+1;
+  document.dispatchEvent(new CustomEvent('rafiq-home-updated'));
+}
+
+function renderProgressDashboard(){
+  updateActivitySummary();
+  const mem=Array.isArray(hifz)?hifz.length:0,rem=Math.max(0,114-mem),forecast=planForecast(),week=getWeekScores(),ms=savedMemorizationStats();
   const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v};
   set('progressFlame',`${state.streak||0} يوم`);set('progressBest',`أفضل سلسلة: ${state.bestStreak||state.streak||0} يوم`);set('progressMem',`${mem} / 114`);set('progressMemRemain',`باقي ${rem} سورة`);
   const planPct=percent(),active7=week.filter(x=>x.score>0).length;set('progressPlanPct',state.plan?.goal?`${planPct}%`:'—');set('progressPlanEta',forecast.detail);set('progressActiveDays',`${active7} يوم`);set('progressSessions7',`${week.reduce((n,x)=>n+x.sessions,0)} جلسة خلال 7 أيام`);
-  set('homeFlame',`${state.streak||0} يوم`);set('homeFlameSub',`أفضل سلسلة ${state.bestStreak||state.streak||0} يوم`);set('heroFlameValue',`${state.streak||0} يوم`);set('heroFlameSub',`أفضل سلسلة ${state.bestStreak||state.streak||0} يوم`);set('homeMemProgress',`${mem} / 114`);set('homeMemRemaining',`باقي ${rem} سورة`);set('homePlanProgress',state.plan?.goal?`${planPct}%`:'—');set('homeFinishEstimate',state.plan?.goal?forecast.text:'أنشئ خطة لمعرفة الموعد المتوقع');
-  const avg=week.reduce((n,x)=>n+x.score,0)/7,weekPct=Math.min(100,Math.round(avg/8*100));set('homeWeekScore',`${weekPct}%`);
-  const bars=document.getElementById('homeWeekBars');if(bars)bars.innerHTML=week.map(x=>{const h=Math.min(100,Math.round(x.score/8*100));return `<div class="week-bar"><div class="bar-track"><div class="bar-fill" style="height:${Math.max(4,h)}%"></div></div><b>${Math.round(x.score)}</b><small>${x.name}</small></div>`}).join('');
   const wd=document.getElementById('weekDetail');if(wd)wd.innerHTML=week.map(x=>{const pct=Math.min(100,Math.round(x.score/8*100));return `<article class="week-detail-row"><div class="week-day-badge"><strong>${x.name}</strong><small>${x.date}</small></div><div class="week-progress-stack"><div class="mini-track"><i style="width:${pct}%"></i></div><div class="week-metrics"><span>📖 ${x.read}</span><span>🎧 ${x.sessions}</span><span>✨ ${x.mem}</span><span>🪶 ${x.athar}</span></div></div><div class="day-score"><b>${Math.round(x.score)}</b><small>نشاط</small></div></article>`}).join('');
   const finish=document.getElementById('finishForecast');if(finish)finish.innerHTML=state.plan?.goal?`<div class="forecast-orb" style="--ring:${planPct}%"><div><strong>${planPct}%</strong><span>التزام</span></div></div><strong>${forecast.text}</strong><p>${forecast.detail}</p><span class="badge">المتبقي: ${state.plan.remaining??state.plan.goal} ${state.plan.unit||''}</span>`:`<div class="forecast-orb empty"><div><strong>—</strong><span>خطة</span></div></div><strong>ابدأ بخطة</strong><p>بمجرد تحديد الهدف والمعدل اليومي هتشوف هنا تقديرًا واضحًا لموعد الانتهاء.</p><button class="btn primary" type="button" data-go="plan">افتح الخطة</button>`;
   const j=document.getElementById('journeyBars');if(j)j.innerHTML=`<div class="journey-row"><b>حفظ السور</b><div class="journey-track"><i style="width:${Math.round(mem/114*100)}%"></i></div><span>${mem}/114 سورة</span></div><div class="journey-row"><b>الآيات المحفوظة</b><div class="journey-track"><i style="width:${Math.round(ms.savedAyahs/ms.totalAyahs*100)}%"></i></div><span>${ms.savedAyahs.toLocaleString('ar-EG')} آية</span></div><div class="journey-row"><b>مقدار الأجزاء</b><div class="journey-track"><i style="width:${Math.round(ms.juzEquivalent/30*100)}%"></i></div><span>≈ ${ms.juzEquivalent.toFixed(ms.juzEquivalent%1?1:0)} / 30</span></div><div class="journey-row"><b>نشاط الأسبوع</b><div class="journey-track"><i style="width:${weekPct}%"></i></div><span>${weekPct}%</span></div>`;
@@ -189,8 +221,6 @@ function renderProgressDashboard(){
 
 function updateHome(){
   const pct=percent();
-  const rawIntensity=((Number(state.streak)||0)/45)*.38+((Array.isArray(hifz)?hifz.length:0)/114)*.34+(pct/100)*.18+(Math.min(7,getWeekScores().filter(x=>x.score>0).length)/7)*.10;const intensity=Math.max(.34,Math.min(1,rawIntensity));
-  document.body.style.setProperty('--activity-intensity',intensity.toFixed(3));
   $('#homePct').textContent=pct+'%';$('#homeOrb').style.setProperty('--p',pct+'%');
   if(state.plan.daily) $('#statWard').textContent=`${state.plan.daily} ${state.plan.unit||''}`;
   else {$('#statWard').innerHTML='<button class="inline-cta" data-go="plan" type="button">حدد وردك اليوم</button>';$('#statWard .inline-cta')?.addEventListener('click',()=>go('plan'));}
@@ -198,7 +228,7 @@ function updateHome(){
   $('#statLast').textContent=(quran.length&&state.last?.s)?`${quran[currentSurah-1]?.name||'غير محدد'} · آية ${state.last?.a||'—'}`:'غير محدد';
   $('#todayList').innerHTML=`<div class="today-row"><b>📖 الورد</b><span>اقرأ المقدار المحدد ثم سجّل جلستك.</span><em>${state.plan.daily?state.plan.daily+' '+state.plan.unit:'حدد وردك اليوم'}</em></div><div class="today-row"><b>🧠 الدراسة</b><span>اختَر مادة واحدة وركّز فيها اليوم.</span><em>خطوة واحدة تكفي</em></div><div class="today-row"><b>✨ الأثر</b><span>خُد فكرة واحدة وحوّلها لعمل.</span><em>قابل للتطبيق</em></div>`;
   const q=getDynamicAthar(Math.floor(Date.now()/86400000));$('#homeQuote').textContent=q.text;$('#homeQuoteRef').textContent=`${q.type} · ${q.ref}`;
-  try{renderProgressDashboard()}catch(e){}
+  updateActivitySummary();
 }
 
 function populatePlanSurahs(){
@@ -242,7 +272,33 @@ $('#savePlan').onclick=()=>{
   toast('تم حفظ الخطة ✅');
 };
 $('#resetPlan').onclick=()=>{state.plan={};save();renderPlan();updateHome();toast('تمت إعادة ضبط الخطة')};
-async function loadQuran(){try{quran=await (await fetch('quran-uthmani.json')).json();atharIndex=Math.floor(Date.now()/86400000)%Math.max(1,buildDynamicAthars().length);renderAthar(atharIndex);renderSurahGrid();renderQuran();updateHome();renderHifz();renderPlan();renderMemorizationSummary();renderProgressDashboard();restoreAudioState();}catch(e){toast('تعذر تحميل المصحف المحلي');renderHifz();}}
+async function loadQuran(){
+  const cacheKey='rafiq-quran-uthmani-v1';
+  const dbOpen=()=>new Promise((resolve,reject)=>{const r=indexedDB.open('rafiq-data',1);r.onupgradeneeded=()=>r.result.createObjectStore('cache');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)});
+  const dbGet=async()=>{try{const db=await dbOpen();return await new Promise((res,rej)=>{const t=db.transaction('cache','readonly');const g=t.objectStore('cache').get(cacheKey);g.onsuccess=()=>res(g.result||null);g.onerror=()=>rej(g.error)})}catch{return null}};
+  const dbPut=async(value)=>{try{const db=await dbOpen();await new Promise((res,rej)=>{const t=db.transaction('cache','readwrite');const q=t.objectStore('cache').put(value,cacheKey);q.onsuccess=()=>res();q.onerror=()=>rej(q.error)})}catch{}};
+  try{
+    const local=await fetch('quran-uthmani.json',{cache:'force-cache'});
+    if(local.ok){quran=await local.json();}
+    else throw new Error('local');
+  }catch{
+    const cached=await dbGet();
+    if(cached){quran=cached;}
+    else if(navigator.onLine){
+      try{
+        const meta=await (await fetch('https://api.github.com/repos/mustafahossameldin66-dotcom/Test-Rafiq/releases/tags/content-v1',{cache:'no-store'})).json();
+        const asset=meta?.assets?.find(a=>a.name==='quran-uthmani.json');
+        if(!asset?.browser_download_url)throw new Error('asset');
+        const r=await fetch(asset.browser_download_url,{cache:'no-store'});
+        if(!r.ok)throw new Error('download');
+        quran=await r.json();
+        await dbPut(quran);
+      }catch(e){toast('تعذر تحميل بيانات المصحف؛ تحقق من الاتصال أو أعد المحاولة');renderHifz();return;}
+    }else{toast('المصحف غير متاح دون اتصال حتى يتم تحميله مرة واحدة');renderHifz();return;}
+  }
+  atharIndex=Math.floor(Date.now()/86400000)%Math.max(1,buildDynamicAthars().length);
+  renderAthar(atharIndex);renderSurahGrid();renderQuran();updateHome();renderHifz();renderPlan();renderMemorizationSummary();renderProgressDashboard();restoreAudioState();
+}
 function restoreAudioState(){const a=state.audio||{};const pref=state.prefs?.reciter||a.reciter;const r=reciters.find(x=>x.folder===pref)||reciters[0];audioState.reciter=r;if(a.surah&&quran[a.surah-1]){audioState.surah=a.surah;audioState.verseIndex=Math.max(0,Math.min(a.verseIndex||0,(quran[a.surah-1]?.verses.length||1)-1));}updatePlayer();updateQuranReciterButton();}
 function renderSurahGrid(filter=''){const q=(filter||'').trim();$('#surahGrid').innerHTML=quran.map((s,i)=>({s,i})).filter(x=>!q||x.s.name.includes(q)||String(x.i+1)===q).map(x=>`<button class="surah-btn ${currentSurah===x.i+1?'active':''}" data-s="${x.i+1}"><b>${x.i+1}. ${x.s.name}</b><small>${x.s.type} · ${x.s.count} آيات</small></button>`).join('');$$('#surahGrid [data-s]').forEach(b=>b.onclick=()=>{currentSurah=+b.dataset.s;state.last={s:currentSurah,a:1};save();renderSurahGrid($('#surahSearch').value);renderQuran();updateHome();})}
 function renderQuran(){
@@ -426,7 +482,7 @@ function hydrateSettings(){
   $('#motionToggle').checked=state.prefs.motion;$('#oceanToggle').checked=state.prefs.ocean;$('#lightToggle').checked=state.prefs.light;
   $('#contrastToggle').checked=state.prefs.contrast;
   document.body.classList.toggle('light',state.prefs.light);document.body.classList.toggle('a11y-contrast',state.prefs.contrast);
-  document.body.dataset.light=state.prefs.light?'on':'off';document.body.dataset.fontSize=state.prefs.fontSize;
+  document.body.dataset.light=state.prefs.light?'on':'off';document.body.dataset.fontSize=state.prefs.fontSize;document.body.dataset.perfTier=state.prefs.performance==='auto'?detectPerformanceTier():state.prefs.performance;
   document.documentElement.classList.toggle('no-motion',!state.prefs.motion);document.body.dataset.motion=state.prefs.motion?'on':'off';
   document.dispatchEvent(new CustomEvent('rafiq-motion',{detail:state.prefs.motion}));
   $('#oceanCanvas').style.display=state.prefs.ocean?'block':'none';
@@ -507,20 +563,21 @@ function ocean(){
     const starLimit={calm:40,balanced:52,vivid:68,cinematic:82}[style]||52;
     const goldLimit={calm:4,balanced:6,vivid:8,cinematic:10}[style]||6;
     const parx=(mx-.5)*12,pary=(my-.5)*6;
+    ctx.fillStyle='rgb(218,231,222)';
     for(let i=0;i<Math.min(starLimit,stars.length);i++){
-      const st=stars[i],tw=.68+.32*Math.sin(ts*(.42+st.depth*.45)+st.p);
-      const a=Math.min(.68,st.a*tw*(style==='calm'?.72:1));
-      const sx=st.x*w+parx*(.08+st.depth*.18),sy=st.y*h+pary*(.06+st.depth*.12),rr=st.r*(.85+tw*.18);
-      ctx.fillStyle=`rgba(218,231,222,${a})`;ctx.beginPath();ctx.arc(sx,sy,rr,0,Math.PI*2);ctx.fill();
+      const st=stars[i],tw=.68+.32*Math.sin(ts*(.42+st.depth*.45)+st.p);ctx.globalAlpha=Math.min(.68,st.a*tw*(style==='calm'?.72:1));
+      const sx=st.x*w+parx*(.08+st.depth*.18),sy=st.y*h+pary*(.06+st.depth*.12),rr=st.r*(.85+tw*.18);ctx.beginPath();ctx.arc(sx,sy,rr,0,Math.PI*2);ctx.fill();
     }
+    ctx.fillStyle='rgb(255,233,158)';
     for(let i=0;i<Math.min(goldLimit,goldStars.length);i++){
-      const st=goldStars[i],tw=.55+.45*(.5+.5*Math.sin(ts*(.65+st.depth*.55)+st.p));
-      const sx=st.x*w+parx*.22,sy=st.y*h+pary*.12,rr=st.r*(.78+tw*.32);
-      ctx.fillStyle=`rgba(255,233,158,${.28+.34*tw})`;ctx.beginPath();ctx.arc(sx,sy,rr,0,Math.PI*2);ctx.fill();
-      if(tw>.92){ctx.strokeStyle='rgba(255,236,163,.18)';ctx.beginPath();ctx.moveTo(sx-5,sy);ctx.lineTo(sx+5,sy);ctx.moveTo(sx,sy-5);ctx.lineTo(sx,sy+5);ctx.stroke()}
+      const st=goldStars[i],tw=.55+.45*(.5+.5*Math.sin(ts*(.65+st.depth*.55)+st.p));ctx.globalAlpha=.28+.34*tw;
+      const sx=st.x*w+parx*.22,sy=st.y*h+pary*.12,rr=st.r*(.78+tw*.32);ctx.beginPath();ctx.arc(sx,sy,rr,0,Math.PI*2);ctx.fill();
+      if(tw>.92){ctx.globalAlpha=.18;ctx.strokeStyle='rgb(255,236,163)';ctx.beginPath();ctx.moveTo(sx-5,sy);ctx.lineTo(sx+5,sy);ctx.moveTo(sx,sy-5);ctx.lineTo(sx,sy+5);ctx.stroke()}
     }
-    for(const m of motes){const xx=(m.x+Math.sin(ts*.035*m.v+m.p)*.008)*w+parx*.10,yy=(m.y+Math.sin(ts*.06*m.v+m.p)*.012)*h+pary*.06;ctx.fillStyle='rgba(64,216,166,.045)';ctx.beginPath();ctx.arc(xx,yy,m.r,0,Math.PI*2);ctx.fill()}
-    for(const cmt of comets){const phase=((ts*.012*cmt.s+cmt.delay)%1);if(phase<.18||phase>.94)continue;const sx=((cmt.x+phase*.9)%1)*w,sy=(cmt.y+Math.sin(phase*6.28+cmt.p)*.04)*h;ctx.strokeStyle='rgba(247,224,142,.10)';ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(sx-22,sy+4);ctx.stroke();ctx.fillStyle='rgba(255,238,165,.48)';ctx.beginPath();ctx.arc(sx,sy,1,0,Math.PI*2);ctx.fill()}
+    ctx.fillStyle='rgb(64,216,166)';ctx.globalAlpha=.045;
+    for(const m of motes){const xx=(m.x+Math.sin(ts*.035*m.v+m.p)*.008)*w+parx*.10,yy=(m.y+Math.sin(ts*.06*m.v+m.p)*.012)*h+pary*.06;ctx.beginPath();ctx.arc(xx,yy,m.r,0,Math.PI*2);ctx.fill()}
+    for(const cmt of comets){const phase=((ts*.012*cmt.s+cmt.delay)%1);if(phase<.18||phase>.94)continue;const sx=((cmt.x+phase*.9)%1)*w,sy=(cmt.y+Math.sin(phase*6.28+cmt.p)*.04)*h;ctx.globalAlpha=.10;ctx.strokeStyle='rgb(247,224,142)';ctx.beginPath();ctx.moveTo(sx,sy);ctx.lineTo(sx-22,sy+4);ctx.stroke();ctx.globalAlpha=.48;ctx.fillStyle='rgb(255,238,165)';ctx.beginPath();ctx.arc(sx,sy,1,0,Math.PI*2);ctx.fill()}
+    ctx.globalAlpha=1;
   }
 
   function loop(ts){

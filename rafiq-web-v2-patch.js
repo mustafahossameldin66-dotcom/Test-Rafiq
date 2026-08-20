@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             floatGrid.insertBefore(asmaaBtn, floatGrid.firstChild);
         }
-        renderLibrary();
+        // المكتبة تُرسم الآن من قائمة الكتب المحلية المحددة في index.html.
     }, 800);
 });
 

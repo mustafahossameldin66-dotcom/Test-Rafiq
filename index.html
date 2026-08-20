@@ -59,6 +59,7 @@ body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;bac
 .pill{padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:rgba(7,24,18,.54);color:#b7c6bd;font-size:12px}
 .online{color:#9ee7b7;border-color:rgba(104,208,154,.22)}
 .view{display:none}.view.active{display:block;animation:viewSoftIn .20s ease both}
+body[data-view="home"] #view-home{display:block;}
 @keyframes viewSoftIn{from{opacity:0}to{opacity:1}}
 .hero{position:relative;overflow:hidden;padding:34px 34px 32px;border-radius:34px;background:
   linear-gradient(145deg,rgba(7,34,25,.66),rgba(11,52,39,.48) 55%,rgba(5,21,15,.66));
@@ -958,8 +959,128 @@ body[data-view="home"] .main::before,body[data-view="plan"] .main::before,body[d
 @keyframes rosetteBreathV62{from{opacity:.65;transform:scale(1)}to{opacity:1;transform:scale(1.018)}}
 @media(prefers-reduced-motion:reduce){.hifz-sky::before,.hifz-sky::after,.hifz-star,.hifz-star.active,.hifz-star.active::after{animation:none!important;will-change:auto}}
 </style>
+<style id="v63-quran-polish">
+/* v63 — Quran reading polish: compact, centered, breathable, no stretched rows */
+#quranBox{overflow:hidden}
+#ayahs{display:grid;gap:0}
+.quran-ayah{
+  display:flex!important;
+  flex-direction:column;
+  align-items:stretch;
+  justify-content:center;
+  gap:12px;
+  padding:26px 24px!important;
+  min-height:0!important;
+  height:auto!important;
+  text-align:center;
+  border-bottom:1px solid rgba(255,255,255,.075);
+}
+.quran-ayah:last-child{border-bottom:0}
+.quran-text{
+  display:block;
+  width:min(100%,1200px);
+  margin:0 auto;
+  text-align:center!important;
+  font-family:Amiri,serif;
+  font-size:clamp(25px,1.75vw,31px)!important;
+  line-height:2.05!important;
+  letter-spacing:0!important;
+  word-spacing:.02em;
+  color:#f7efd6;
+  text-wrap:pretty;
+}
+.ayah-meta{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:8px 18px;
+  color:#9db0a7;
+  font-size:12px;
+  line-height:1.7;
+}
+.ayah-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.ayah-actions .icon-btn{font-size:12px;padding:8px 12px;border-radius:12px}
+#surahGrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;max-height:none}
+.surah-btn{
+  min-height:62px;
+  padding:11px 14px!important;
+  border-radius:16px!important;
+  display:flex!important;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:center;
+  gap:4px;
+}
+.surah-btn b{font-size:14px;line-height:1.5}
+.surah-btn small{color:#8fa79d;font-size:11px;line-height:1.45}
+@media(max-width:900px){
+  #surahGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .quran-ayah{padding:22px 14px!important}
+  .quran-text{font-size:25px!important;line-height:2!important}
+}
+@media(max-width:560px){
+  #surahGrid{grid-template-columns:1fr}
+  .quran-text{font-size:24px!important;line-height:1.95!important}
+}
+
+/* =========================================================
+   FINAL MERGE — Gemini welcome + luminous wind, integrated
+   into Rafiq's existing visual system. No canvas takeover.
+   ========================================================= */
+.welcome-screen{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;background:radial-gradient(circle at 50% 50%,rgba(5,36,26,.985),rgba(2,12,9,.997));visibility:visible;opacity:1;transition:opacity .8s ease,visibility .8s ease;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);pointer-events:auto}
+.welcome-screen::before{content:"";position:absolute;inset:-12%;pointer-events:none;background:radial-gradient(circle at 28% 30%,rgba(46,212,156,.12),transparent 26%),radial-gradient(circle at 72% 62%,rgba(244,220,134,.10),transparent 24%);animation:welcomeAtmos 12s ease-in-out infinite alternate}
+.welcome-screen.hidden{opacity:0;visibility:hidden;pointer-events:none}.welcome-screen.leaving{opacity:0;visibility:hidden;pointer-events:none;transition:opacity .52s ease,visibility .52s ease}
+.welcome-screen.leaving .welcome-content{animation:welcomeExit .52s ease both}
+.welcome-close:disabled{opacity:.65;cursor:wait}
+@keyframes welcomeExit{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-10px) scale(.985)}}
+.welcome-content{position:relative;z-index:2;width:min(820px,94vw);padding:44px 32px;border:1px solid rgba(244,220,134,.20);border-radius:32px;background:linear-gradient(145deg,rgba(7,34,26,.84),rgba(3,17,12,.92));box-shadow:0 35px 120px rgba(0,0,0,.48),0 0 60px rgba(45,211,157,.06),inset 0 1px 0 rgba(255,250,220,.04);animation:welcomeFloat 1s cubic-bezier(.18,.86,.24,1) both;overflow:hidden}
+.welcome-content::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 20%,rgba(255,244,194,.055) 42%,transparent 58%);transform:translateX(-120%);animation:welcomeSweep 4.6s ease-in-out infinite}
+.welcome-icon{font-size:52px;margin-bottom:12px;color:var(--gold-mid);filter:drop-shadow(0 0 22px var(--gold-glow));animation:welcomePulse 3s ease-in-out infinite alternate}
+.welcome-ayah{font:700 clamp(32px,5vw,54px)/1.75 Amiri,serif;color:var(--gold-mid);text-shadow:0 0 40px var(--gold-glow);margin:14px 0 6px}
+.welcome-ref{color:var(--emeraldHi);font-size:17px;margin:0 0 28px}
+.welcome-close{min-width:220px;border-radius:999px}
+body.welcome-lock{overflow:hidden!important}
+@keyframes welcomeFloat{0%{opacity:0;transform:translateY(28px) scale(.96)}100%{opacity:1;transform:none}}
+@keyframes welcomePulse{from{transform:scale(1);filter:drop-shadow(0 0 14px rgba(244,220,134,.34))}to{transform:scale(1.06);filter:drop-shadow(0 0 34px rgba(244,220,134,.82))}}
+@keyframes welcomeSweep{0%,40%{transform:translateX(-120%)}72%,100%{transform:translateX(120%)}}
+@keyframes welcomeAtmos{from{opacity:.55;transform:scale(1)}to{opacity:1;transform:scale(1.025)}}
+
+/* Gemini-style luminous wind, using the Rafiq background — not a replacement. */
+.wind-streams{position:fixed!important;inset:0!important;z-index:1!important;pointer-events:none!important;overflow:hidden!important;opacity:.88!important;mix-blend-mode:screen!important}
+.wind{position:absolute!important;height:3px!important;border:0!important;border-radius:999px!important;background:linear-gradient(90deg,transparent,rgba(255,255,255,.72),rgba(244,220,134,1),rgba(96,230,186,.24),transparent)!important;box-shadow:0 0 20px 4px rgba(244,220,134,.38),0 0 34px 6px rgba(53,216,165,.12)!important;filter:blur(.45px)!important}
+.wind::before{content:""!important;position:absolute!important;inset:-3px -10%!important;border:0!important;border-radius:999px!important;background:linear-gradient(90deg,transparent,rgba(255,247,208,.16),rgba(77,230,183,.08),transparent)!important;filter:blur(2px)!important}
+.wind::after{content:""!important;position:absolute!important;inset:-7px -12%!important;border:0!important;border-radius:999px!important;background:linear-gradient(90deg,transparent,rgba(255,239,178,.10),transparent)!important;box-shadow:none!important;animation:none!important}
+.w1{width:72vw!important;right:-80vw!important;left:auto!important;top:18vh!important;transform:rotate(-4deg)!important;animation:finalWindFast 16s linear infinite!important}
+.w2{width:58vw!important;left:-70vw!important;right:auto!important;top:42vh!important;transform:rotate(5deg)!important;opacity:.72!important;animation:finalWindSlow 23s linear infinite!important}
+.w3{width:82vw!important;right:-85vw!important;left:auto!important;top:67vh!important;transform:rotate(-2deg)!important;opacity:.58!important;animation:finalWindFast 20s linear infinite!important}
+.w4{width:64vw!important;left:-76vw!important;right:auto!important;top:86vh!important;transform:rotate(4deg)!important;opacity:.42!important;animation:finalWindSlow 27s linear infinite!important}
+@keyframes finalWindFast{0%{transform:translateX(0) rotate(-4deg);opacity:0}10%{opacity:1}90%{opacity:.92}100%{transform:translateX(180vw) rotate(-1deg);opacity:0}}
+@keyframes finalWindSlow{0%{transform:translateX(0) rotate(5deg);opacity:0}12%{opacity:.76}88%{opacity:.58}100%{transform:translateX(175vw) rotate(2deg);opacity:0}}
+.light-wind-dust{position:fixed!important;inset:0!important;z-index:2!important;pointer-events:none!important;overflow:hidden!important;opacity:.82!important;mix-blend-mode:screen!important}
+.light-wind-dust i{position:absolute!important;width:3px!important;height:3px!important;border-radius:50%!important;background:#fff4c7!important;box-shadow:0 0 10px 3px rgba(255,232,150,.34),0 0 18px 4px rgba(54,218,165,.10)!important;animation:finalLightDust 14s linear infinite!important}
+.wd1{right:14%!important;top:22%!important;animation-delay:-2s!important}.wd2{right:31%!important;top:39%!important;animation-delay:-7s!important}.wd3{right:47%!important;top:17%!important;animation-delay:-10s!important}.wd4{right:64%!important;top:52%!important;animation-delay:-4s!important}.wd5{right:78%!important;top:29%!important;animation-delay:-9s!important}.wd6{right:8%!important;top:67%!important;animation-delay:-6s!important}
+@keyframes finalLightDust{0%{transform:translate3d(0,12vh,0) scale(.45);opacity:0}18%{opacity:.78}52%{transform:translate3d(6vw,-45vh,0) scale(1);opacity:.48}100%{transform:translate3d(-8vw,-118vh,0) scale(.2);opacity:0}}
+body[data-style="calm"] .wind-streams{opacity:.48!important}body[data-style="calm"] .light-wind-dust{opacity:.28!important}
+body[data-style="balanced"] .wind-streams{opacity:.80!important}body[data-style="balanced"] .light-wind-dust{opacity:.68!important}
+body[data-style="vivid"] .wind-streams{opacity:1!important}body[data-style="vivid"] .light-wind-dust{opacity:.95!important}
+body[data-style="cinematic"] .wind-streams{opacity:.92!important}body[data-style="cinematic"] .light-wind-dust{opacity:.88!important}
+@media(max-width:760px){.wind-streams{opacity:.46!important}.light-wind-dust{opacity:.30!important}.welcome-content{padding:34px 22px;border-radius:26px}.welcome-ayah{font-size:30px;line-height:1.9}.welcome-ref{font-size:14px}}
+@media(prefers-reduced-motion:reduce){.welcome-content,.welcome-icon,.welcome-content::after,.welcome-screen::before,.wind,.light-wind-dust i{animation:none!important}.welcome-screen{backdrop-filter:none;-webkit-backdrop-filter:none}}
+
+</style>
 </head>
 <body>
+<!-- Rafiq × Gemini — actual welcome overlay. -->
+<div id="welcomeScreen" class="welcome-screen" aria-hidden="true">
+  <div class="welcome-content" role="dialog" aria-modal="true" aria-labelledby="welcomeAyahText">
+    <div class="welcome-icon" aria-hidden="true">✦</div>
+    <span class="eyebrow">تحية اليوم</span>
+    <h2 id="welcomeAyahText" class="welcome-ayah">وَقُل رَّبِّ زِدْنِي عِلْمًا</h2>
+    <p id="welcomeAyahRef" class="welcome-ref">طه · آية 114</p>
+    <button type="button" class="btn primary welcome-close" id="closeWelcomeBtn">ابدأ يومك بسلام</button>
+  </div>
+</div>
 <a class="skip-link" href="#main-content">تجاوز إلى المحتوى</a>
 <canvas aria-hidden="true" id="oceanCanvas"></canvas>
 <div aria-hidden="true" class="sky-ornament">
@@ -1622,7 +1743,42 @@ function dailyVerse(){
 }
 function checkRitualBoundary(){const key=ritualKey();if(state.lastRitualKey!==key){state.lastRitualKey=key;save();renderDailyHome();renderAthar((state.atharIndex||0)+1);}}
 const tapGlow=$('#tapGlow');document.addEventListener('pointerdown',e=>{const el=e.target.closest('button,a,[data-go],[data-view],.style-card,.hifz-star');if(!el||el.matches('input,textarea,select'))return;if(tapGlow){tapGlow.style.left=e.clientX+'px';tapGlow.style.top=e.clientY+'px';tapGlow.classList.remove('show');void tapGlow.offsetWidth;tapGlow.classList.add('show');}});
-document.body.dataset.view='home';renderAthar(atharIndex);renderPlan();hydrateSettings();updateHome();updateNetwork();addEventListener('online',updateNetwork);addEventListener('offline',updateNetwork);ocean();updatePlayer();loadQuran();renderDailyHome(); setInterval(checkRitualBoundary,60000);
+
+// Gemini-style welcome, using Rafiq's local daily verse and existing state.
+function renderWelcome(){
+  const a=dailyVerse();
+  const t=$('#welcomeAyahText'),r=$('#welcomeAyahRef');
+  if(t) t.textContent=a?.text||'وَقُل رَّبِّ زِدْنِي عِلْمًا';
+  if(r) r.textContent=a?.ref||'طه · آية 114';
+}
+function openWelcome(){const el=$('#welcomeScreen');if(!el)return;renderWelcome();el.classList.remove('hidden','leaving');el.setAttribute('aria-hidden','false');document.body.classList.add('welcome-lock');setTimeout(()=>$('#closeWelcomeBtn')?.focus(),60)}
+function closeWelcome(){
+  const el=$('#welcomeScreen');
+  const home=$('#view-home');
+  if(!el||!home) return;
+  // Enter the application first; only then fade the welcome layer away.
+  document.body.dataset.view='home';
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v===home));
+  document.querySelectorAll('[data-view]').forEach(b=>{
+    const on=b.dataset.view==='home';
+    b.classList.toggle('active',on);
+    if(on)b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current');
+  });
+  try{ updateHome(); }catch(e){}
+  try{ renderDailyHome(); }catch(e){}
+  el.classList.add('leaving');
+  requestAnimationFrame(()=>{
+    el.setAttribute('aria-hidden','true');
+    setTimeout(()=>{
+      el.classList.add('hidden');
+      el.classList.remove('leaving');
+      document.body.classList.remove('welcome-lock');
+      localStorage.setItem('rafiq-welcome-seen-v68','1');
+    },520);
+  });
+}
+$('#closeWelcomeBtn')?.addEventListener('click',e=>{e.preventDefault();closeWelcome()});
+document.body.dataset.view='home';renderAthar(atharIndex);renderPlan();hydrateSettings();updateHome();updateNetwork();addEventListener('online',updateNetwork);addEventListener('offline',updateNetwork);ocean();updatePlayer();renderDailyHome();if(!localStorage.getItem('rafiq-welcome-seen-v68'))openWelcome();loadQuran().then(()=>{renderWelcome();renderDailyHome();updateHome()}).catch(()=>{});setInterval(checkRitualBoundary,60000);
 })();
 </script>
 <script>

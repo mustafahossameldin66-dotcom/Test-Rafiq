@@ -1067,18 +1067,192 @@ body[data-style="vivid"] .wind-streams{opacity:1!important}body[data-style="vivi
 body[data-style="cinematic"] .wind-streams{opacity:.92!important}body[data-style="cinematic"] .light-wind-dust{opacity:.88!important}
 @media(max-width:760px){.wind-streams{opacity:.46!important}.light-wind-dust{opacity:.30!important}.welcome-content{padding:34px 22px;border-radius:26px}.welcome-ayah{font-size:30px;line-height:1.9}.welcome-ref{font-size:14px}}
 @media(prefers-reduced-motion:reduce){.welcome-content,.welcome-icon,.welcome-content::after,.welcome-screen::before,.wind,.light-wind-dust i{animation:none!important}.welcome-screen{backdrop-filter:none;-webkit-backdrop-filter:none}}
+  
+.welcome-greeting{
+  font:700 clamp(24px,4vw,38px)/1.6 Amiri,serif;
+  color:var(--gold-mid);
+  margin:12px 0 10px;
+  text-shadow:0 0 30px var(--gold-glow);
+}
 
+.welcome-intro{
+  color:var(--text-main);
+  opacity:.88;
+  font-size:16px;
+  line-height:2;
+  margin:0 auto 24px;
+  max-width:680px;
+}
+
+.welcome-section{
+  margin:18px auto 0;
+  padding:18px 20px;
+  border:1px solid rgba(244,220,134,.12);
+  border-radius:22px;
+  background:rgba(4,24,17,.38);
+}
+
+.welcome-label{
+  color:var(--emeraldHi);
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:12px;
+}
+
+.welcome-ayah{
+  font:700 clamp(28px,4.5vw,46px)/1.9 Amiri,serif;
+  color:var(--gold-mid);
+  text-shadow:0 0 34px var(--gold-glow);
+}
+
+.welcome-ref{
+  color:var(--text-muted);
+  font-size:13px;
+  margin-top:8px;
+}
+
+.welcome-hadith{
+  background:linear-gradient(
+    145deg,
+    rgba(46,212,156,.07),
+    rgba(244,220,134,.035)
+  );
+}
+
+.welcome-hadith-text{
+  font:700 clamp(20px,3vw,28px)/1.9 Amiri,serif;
+  color:#f4f0d9;
+}
+
+.welcome-charity{
+  margin-top:18px;
+  padding:20px;
+  border-radius:22px;
+  text-align:right;
+  border:1px solid rgba(46,212,156,.22);
+  background:
+    radial-gradient(
+      circle at 80% 10%,
+      rgba(46,212,156,.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      145deg,
+      rgba(10,55,40,.58),
+      rgba(3,20,14,.72)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 0 30px rgba(46,212,156,.04);
+}
+
+.welcome-charity-title{
+  font:700 21px/1.7 Amiri,serif;
+  color:var(--emeraldHi);
+  margin-bottom:8px;
+}
+
+.welcome-charity-text{
+  font:16px/2.1 Amiri,serif;
+  color:var(--text-main);
+}
+
+.welcome-close{
+  margin-top:24px;
+  min-width:220px;
+}
+
+@media(max-width:760px){
+  .welcome-content{
+    max-height:90vh;
+    overflow:auto;
+    padding:28px 18px;
+  }
+
+  .welcome-intro{
+    font-size:14px;
+  }
+
+  .welcome-section{
+    padding:15px;
+  }
+
+  .welcome-charity{
+    padding:16px;
+  }
+
+  .welcome-charity-title{
+    font-size:19px;
+  }
+
+  .welcome-charity-text{
+    font-size:14px;
+    line-height:1.95;
+  }
+}
 </style>
 </head>
 <body>
 <!-- Rafiq × Gemini — actual welcome overlay. -->
 <div id="welcomeScreen" class="welcome-screen" aria-hidden="true">
-  <div class="welcome-content" role="dialog" aria-modal="true" aria-labelledby="welcomeAyahText">
+  <div class="welcome-content" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+
     <div class="welcome-icon" aria-hidden="true">✦</div>
-    <span class="eyebrow">تحية اليوم</span>
-    <h2 id="welcomeAyahText" class="welcome-ayah">وَقُل رَّبِّ زِدْنِي عِلْمًا</h2>
-    <p id="welcomeAyahRef" class="welcome-ref">طه · آية 114</p>
-    <button type="button" class="btn primary welcome-close" id="closeWelcomeBtn">ابدأ يومك بسلام</button>
+
+    <span class="eyebrow">🌿 تحية اليوم</span>
+
+    <h2 id="welcomeTitle" class="welcome-greeting">
+      السلام عليك ورحمة الله وبركاته 🤍
+    </h2>
+
+    <p class="welcome-intro">
+      نورت رفيق القرآن.<br>
+      خُد يومك مع القرآن بهدوء، وخلي لك كل يوم خطوة صغيرة تقرّبك من كتاب الله.
+    </p>
+
+    <div class="welcome-section">
+      <div class="welcome-label">📖 آية اليوم</div>
+
+      <div id="welcomeAyahText" class="welcome-ayah">
+        ﴿وَقُل رَّبِّ زِدْنِي عِلْمًا﴾
+      </div>
+
+      <div id="welcomeAyahRef" class="welcome-ref">
+        طه · 114
+      </div>
+    </div>
+
+    <div class="welcome-section welcome-hadith">
+      <div class="welcome-label">🌙 من هدي النبي ﷺ</div>
+
+      <div id="welcomeHadith" class="welcome-hadith-text">
+        خيركم من تعلم القرآن وعلمه
+      </div>
+
+      <div id="welcomeHadithRef" class="welcome-ref">
+        صحيح البخاري
+      </div>
+    </div>
+
+    <div class="welcome-charity">
+      <div class="welcome-charity-title">
+        🤲 صدقة جارية لأخي ولوالديّ
+      </div>
+
+      <div class="welcome-charity-text">
+        اللهم فرّج عن أخي الكرب والهم، واكشف عنه الضر،
+        وألبسه العافية والسكينة، واحفظ والديّ وبارك في عمرهما وصحتهما،
+        وأدم عليهم نعمك وعافيتك، واجعل هذا العمل نفعًا وبركةً مستمرة.
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class="btn primary welcome-close"
+      id="closeWelcomeBtn">
+      ابدأ يومك بسلام ✦
+    </button>
+
   </div>
 </div>
 <a class="skip-link" href="#main-content">تجاوز إلى المحتوى</a>
@@ -1745,11 +1919,29 @@ function checkRitualBoundary(){const key=ritualKey();if(state.lastRitualKey!==ke
 const tapGlow=$('#tapGlow');document.addEventListener('pointerdown',e=>{const el=e.target.closest('button,a,[data-go],[data-view],.style-card,.hifz-star');if(!el||el.matches('input,textarea,select'))return;if(tapGlow){tapGlow.style.left=e.clientX+'px';tapGlow.style.top=e.clientY+'px';tapGlow.classList.remove('show');void tapGlow.offsetWidth;tapGlow.classList.add('show');}});
 
 // Gemini-style welcome, using Rafiq's local daily verse and existing state.
-function renderWelcome(){
-  const a=dailyVerse();
-  const t=$('#welcomeAyahText'),r=$('#welcomeAyahRef');
-  if(t) t.textContent=a?.text||'وَقُل رَّبِّ زِدْنِي عِلْمًا';
-  if(r) r.textContent=a?.ref||'طه · آية 114';
+const DAILY_HADITH = [
+  ...
+];
+
+function dailyStableIndex(...) {
+  ...
+}
+
+function getDailyHadith() {
+  ...
+}
+
+function renderWelcome() {
+  ...
+}
+
+function openWelcome() {
+  ...
+}
+
+function closeWelcome() {
+  ...
+}
 }
 function openWelcome(){const el=$('#welcomeScreen');if(!el)return;renderWelcome();el.classList.remove('hidden','leaving');el.setAttribute('aria-hidden','false');document.body.classList.add('welcome-lock');setTimeout(()=>$('#closeWelcomeBtn')?.focus(),60)}
 function closeWelcome(){

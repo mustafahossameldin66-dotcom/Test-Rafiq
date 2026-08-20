@@ -4217,3 +4217,54 @@ body[data-surface="glass"] .athar-memory{backdrop-filter:blur(12px);-webkit-back
     max-height: 90vh;
     overflow-y: auto;
 }                                       
+/* =======================================================
+   🔥 رقعة الإنقاذ الشاملة (توضع في آخر سطر في الملف) 🔥
+   ======================================================= */
+
+/* 1. إصلاح الضغط (منع الخلفية من حجب الزراير) */
+.app {
+    position: relative !important;
+    z-index: 999 !important;
+    pointer-events: auto !important;
+}
+canvas, .sky-ornament, .wind-streams, .light-wind-dust, .emeralds, .ambient-lanterns, .celestial-jewels, .ambient-stars-extra, .wind-ribbons, .tap-glow {
+    position: fixed !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+}
+
+/* 2. فك اشتباك الكروت (إلغاء التداخل ووضع نظام الشبكة) */
+.daily-home-grid, .editorial-grid, .grid, .welcome-daily-grid, .welcome-fixed-grid, .welcome-family-grid {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px !important;
+    position: relative !important;
+    height: auto !important;
+}
+.daily-home-grid article, .editorial-grid article, .daily-card, .card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+}
+
+/* 3. إخفاء شاشة الترحيب بشكل سليم بعد الضغط */
+.welcome-screen.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* 4. تظبيط منطقة الشعلة */
+.hero-activity-zone {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 40px !important;
+    flex-wrap: wrap !important;
+    margin-top: 20px !important;
+}

@@ -1919,36 +1919,39 @@ function checkRitualBoundary(){const key=ritualKey();if(state.lastRitualKey!==ke
 const tapGlow=$('#tapGlow');document.addEventListener('pointerdown',e=>{const el=e.target.closest('button,a,[data-go],[data-view],.style-card,.hifz-star');if(!el||el.matches('input,textarea,select'))return;if(tapGlow){tapGlow.style.left=e.clientX+'px';tapGlow.style.top=e.clientY+'px';tapGlow.classList.remove('show');void tapGlow.offsetWidth;tapGlow.classList.add('show');}});
 
 // Gemini-style welcome, using Rafiq's local daily verse and existing state.
-const DAILY_HADITH = [
-  ...
+// Gemini-style welcome, using Rafiq's local daily verse and existing state.
+const DAILY_HADITH=[
+ {text:'إِنَّمَا الأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى',ref:'صحيح البخاري ومسلم'},
+ {text:'خيركم من تعلم القرآن وعلمه',ref:'صحيح البخاري'},
+ {text:'الطُّهُورُ شَطْرُ الْإِيمَانِ',ref:'صحيح مسلم'},
+ {text:'مَنْ سَلَكَ طَرِيقًا يَلْتَمِسُ فِيهِ عِلْمًا سَهَّلَ اللَّهُ لَهُ بِهِ طَرِيقًا إِلَى الْجَنَّةِ',ref:'صحيح مسلم'},
+ {text:'الدُّعَاءُ هُوَ الْعِبَادَةُ',ref:'رواه الترمذي'},
+ {text:'تَبَسُّمُكَ فِي وَجْهِ أَخِيكَ صَدَقَةٌ',ref:'رواه الترمذي'},
+ {text:'اتَّقِ اللَّهَ حَيْثُمَا كُنْتَ',ref:'رواه الترمذي'}
 ];
-
-function dailyStableIndex(...) {
-  ...
+function dailyStableIndex(len){
+  const key=ritualKey();
+  const seed=key.split('').reduce((n,c)=>((n*31+c.charCodeAt(0))>>>0),7);
+  return seed%Math.max(1,len);
 }
-
-function getDailyHadith() {
-  ...
+function getDailyHadith(){
+  return DAILY_HADITH[dailyStableIndex(DAILY_HADITH.length)]||DAILY_HADITH[0];
 }
-
-function renderWelcome() {
-  ...
-}
-
-function openWelcome() {
-  ...
-}
-
-function closeWelcome() {
-  ...
-}
+function renderWelcome(){
+  const v=dailyVerse();
+  const h=getDailyHadith();
+  const ayahEl=$('#welcomeAyahText'), refEl=$('#welcomeAyahRef');
+  const hadithEl=$('#welcomeHadith'), hadithRefEl=$('#welcomeHadithRef');
+  if(ayahEl) ayahEl.textContent=`﴿${v.text}﴾`;
+  if(refEl) refEl.textContent=v.ref;
+  if(hadithEl) hadithEl.textContent=h.text;
+  if(hadithRefEl) hadithRefEl.textContent=h.ref;
 }
 function openWelcome(){const el=$('#welcomeScreen');if(!el)return;renderWelcome();el.classList.remove('hidden','leaving');el.setAttribute('aria-hidden','false');document.body.classList.add('welcome-lock');setTimeout(()=>$('#closeWelcomeBtn')?.focus(),60)}
 function closeWelcome(){
   const el=$('#welcomeScreen');
   const home=$('#view-home');
   if(!el||!home) return;
-  // Enter the application first; only then fade the welcome layer away.
   document.body.dataset.view='home';
   document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v===home));
   document.querySelectorAll('[data-view]').forEach(b=>{
